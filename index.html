@@ -1,5 +1,224 @@
-<html>
-    <body>
-        lich phung vu html
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duy Tran -  Full Stack Web Developer</title>
+    <meta name="description"
+        content="Duy Tran - a Full Stack Developer. Worked with PHP, AngularJs, aws services Five years of remote work experience.">
+    <link rel="canonical" href="https://duytran31187.github.io/" />
+
+    <!-- Open Graph protocol -->
+    <meta property="og:title" content="Duy Tran - Web Full Stack Developer" />
+    <meta property="og:description"
+        content="Duy Tran - Web Full Stack Developer. Five years of remote work experience." />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://duytran31187.github.io/" />
+    <meta property="og:image" content="https://duytran31187.github.io/assets/images/avatar_small.jpg" />
+    <meta property="og:image:width" content="50">
+    <meta property="og:image:height" content="50">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="profile:first_name" content="Duy">
+    <meta property="profile:last_name" content="Tran">
+    <meta property="profile:gender" content="male">
+    <meta property="profile:username" content="duytran31187">
+
+    <!-- BEGIN: Favicon -->
+    <link rel="manifest" href="./public/assests/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./public/assests/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- END: Favicon -->
+
+    <!-- CSS -->
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link href="./public/assests/libs/fontawesome/all.min.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./public/assests/css/main.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Begin: Header -->
+        <header>
+            <div class="container">
+                <nav class="custom-nav top-nav">
+                    <span v-for="item in top_menu"><a class="nav-link" v-bind:href="item.link">{{item.name}}</a></span>
+                </nav>
+            </div>
+        </header>
+        <!-- End: Header -->
+
+        <!-- Begin: Banner -->
+        <div id="particles-js">
+            <section id="personal_information">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="informations">
+                                <div class="wrapper-logo">
+                                    <img src="./public/assests/images/avatar.jpg" alt="Duy Tran"/>
+                                </div>
+                                <div class="list-infos">
+                                    <div class="info" v-for="item in informations.infos">
+                                        <div><span v-html="item.icon" class="icon-wrapper"></span></div>
+                                        <div class="content">{{item.text}}</div>
+                                    </div>
+                                    <div class="info" v-for="item in informations.links">
+                                        <div><span v-html="item.icon" class="icon-wrapper"></span></div>
+                                        <div class="content"><a v-bind:href="item.link"
+                                                v-bind:title="item.title">{{item.title}}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="short-describe">
+                                <h2>Duy Tran</h2>
+                                <h2>Remote Full Stack Web Developer</h2>
+                                <br />
+                                <ul>
+                                    <li v-for="item in informations.summary" v-html="item"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- End: Banner -->
+
+        <!-- Begin: Skills -->
+        <section id="skills" class="pt-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="section-title fancy"><span>Skills</span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col flex-horiz">
+                        <div class="group-skill" v-for="group in skills">
+                            <h3>{{group.name}}</h3>
+                            <ul class="circle">
+                                <li v-for="skill in group.skills">{{skill}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End: Skills -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <div class="row">
+                        <div class="col">
+                            <!-- Begin: Work History -->
+                            <section id="work-history" class="pt-50">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="section-title fancy"><span>Work History</span></h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" class="period" v-for="period in work_history">
+                                        <p><span class="period">{{period.time_period}}</span><span v-if="period.company"
+                                                v-html="period.company"></span></p>
+                                        <h3 class="jobs">{{period.job}}</h3>
+                                        <ul class="circle">
+                                            <li v-for="item in period.job_details">{{item.name}}<span v-if="item.link">: <a
+                                                        v-for="link in item.link" v-bind:href="link.link"
+                                                        v-bind:title="link.title">{{link.title}} </a></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- End: Work History -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="row">
+                        <div class="col">
+                            <!-- Begin: Project -->
+                            <section id="project" class="pt-50">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="section-title fancy"><span>About some Projects</span></h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 project" v-for="project in projects">
+                                        <h3 class="name">{{project.name}}</h3>
+                                        <p class="description">{{project.description}}</p>
+                                        <p class="participate-in">{{project.participate_in}}</p>
+                                        <p v-if="project.link" class="link"><i class="fas fa-globe"></i> <a v-bind:href="project.link">{{project.link}}</a></p>
+                                        <hr />
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- End: Education -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Begin: Education -->
+                            <section id="education" class="pt-50">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="section-title fancy"><span>Education</span></h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 period" v-for="period in education">
+                                        <p><span class="period">{{period.time_period}}</span> | <span
+                                                v-if="period.school" v-html="period.school"></span></p>
+                                        <h3 class="jobs">{{period.level}}</h3>
+                                        <p><i class="fas fa-map-marker-alt"></i> {{period.address}}</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- End: Education -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin: Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col">© Duy Tran</div>
+                </div>
+            </div>
+            <div class="btn-to-top"><span class="icon-wrapper"><a href="#particles-js"><i class="fas fa-arrow-up"></i></a></span></div>
+        </footer>
+        <!-- End: Footer -->
+    </div>
+
+    <!-- Javascript -->
+    <!-- JQuery -->
+    <script src="./public/assests/libs/jquery/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- VueJS -->
+    <script src="./public/assests/libs/vuejs/vue.js"></script>
+
+    <!-- App JS -->
+    <script src="./public/assests/js/main.js"></script>
+    <script src="./public/assests/js/app.js"></script>
+</body>
+
 </html>

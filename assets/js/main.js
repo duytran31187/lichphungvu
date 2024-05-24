@@ -351,8 +351,12 @@ function tinh4TuanMuaVong (y) {
       'The Epiphany of the Lord (Hiển Linh)'
   ];
   
-  
-  var date = new Date();
+  var currntDate = new Date();
+  var defaultYear = currntDate.getFullYear();
+  let params = new URLSearchParams(window.location.search);
+  let searchYear = params.get('searchYear') ? params.get('searchYear') : defaultYear;
+
+  var date = new Date(searchYear + '-' + currntDate.getMonth() + '-01');
   var y = date.getFullYear();
   var tuanmuaVong = tinh4TuanMuaVong(y);
   var year = tuanmuaVong.yearABC;

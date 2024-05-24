@@ -400,7 +400,7 @@ function tinh4TuanMuaVong (y) {
   for( let key in namphungVuIns) 
   {
     const trItemBody =document.createElement('tr');
-    const tdItemLabel = document.createElement('td');
+    const tdItemLabel = document.createElement('th');
     tdItemLabel.textContent = colums[count];
     trItemBody.appendChild(tdItemLabel);
 

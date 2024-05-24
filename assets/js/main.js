@@ -385,22 +385,30 @@ function tinh4TuanMuaVong (y) {
       theEpiphanyOfTheLord: tinhLeChuaHienLinh(),
   };
   
-  const trItem =document.createElement('tr');
-  for( let key in colums) 
-  {
-    const tdItem = document.createElement('td');
-    tdItem.textContent = colums[key];
-    trItem.appendChild(tdItem);
-  }
-  lichphungvuTable.appendChild(trItem);
+  // const trItem =document.createElement('tr');
+  // for( let key in colums) 
+  // {
+  //   const tdItem = document.createElement('td');
+  //   tdItem.textContent = colums[key];
+  //   trItem.appendChild(tdItem);
+  // }
+  // lichphungvuTable.appendChild(trItem);
     
   
-  const trItemBody =document.createElement('tr');
+  
+  let count = 0;
   for( let key in namphungVuIns) 
   {
-    const tdItem = document.createElement('td');
-    tdItem.textContent = namphungVuIns[key] instanceof Date ? namphungVuIns[key].toDateString() : namphungVuIns[key];
-    trItemBody.appendChild(tdItem);
+    const trItemBody =document.createElement('tr');
+    const tdItemLabel = document.createElement('td');
+    tdItemLabel.textContent = colums[count];
+    trItemBody.appendChild(tdItemLabel);
+
+    const tdItemVal = document.createElement('td');
+    tdItemVal.textContent = namphungVuIns[key] instanceof Date ? namphungVuIns[key].toDateString() : namphungVuIns[key];
+    trItemBody.appendChild(tdItemVal);
+    lichphungvuTable.appendChild(trItemBody);
+    count++;
   }
-  lichphungvuTable.appendChild(trItemBody);
+  
 // });

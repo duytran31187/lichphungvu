@@ -1,7 +1,7 @@
-var tinh4TuanMuaVong = require('./tinh4TuanMuaVong').tinh4TuanMuaVong;
-var _a = require('./tinhlephucsinh'), tinhNgayPhucSinh = _a.tinhNgayPhucSinh, tinhThuTuLeTro = _a.tinhThuTuLeTro, addDate = _a.addDate, tinhLeChuaHienLinh = _a.tinhLeChuaHienLinh;
+import {tinh4TuanMuaVong} from ('./tinh4TuanMuaVong.js');
+import {tinhNgayPhucSinh, tinhThuTuLeTro, addDate, tinhLeChuaHienLinh} from ('./tinhlephucsinh.js');
   
-$(document).ready(function () {
+// $(document).ready(function () {
   var date = new Date();
   var month = date.getMonth(); //months from 1-12
   var year = date.getFullYear();
@@ -105,4 +105,4 @@ $(document).ready(function () {
     trItemBody.appendChild(tdItem);
   }
   lichphungvuTable.appendChild(trItemBody);
-});
+// });

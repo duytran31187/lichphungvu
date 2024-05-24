@@ -1,7 +1,7 @@
 var cloneDate = function (d) {
     return new Date(d.getTime());
 };
-var tinh4TuanMuaVong = function (y) {
+export function tinh4TuanMuaVong (y) {
     /////////////////////////////////////A|B|C///
     var yearStr = y.toString();
     var yearNums = Array.from(yearStr);
@@ -54,13 +54,3 @@ var tinh4TuanMuaVong = function (y) {
     } while (!sundayFound);
     return finalResult;
 };
-for (var ye = 2020; ye <= 2024; ye++) {
-    // 29/11/2020
-    // 28 tháng 11 năm 2021 => tuan 1
-    // 27 tháng 11 năm 2022 => tuan 1
-    // Sun Dec 03 2023 => tuan 1
-    //Sun Dec 01 2024 => tuan 1
-    var result = tinh4TuanMuaVong(ye);
-    console.log(result);
-}
-module.exports = { tinh4TuanMuaVong: tinh4TuanMuaVong };

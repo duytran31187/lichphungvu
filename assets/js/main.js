@@ -1,6 +1,5 @@
 
 // tinhlephucsinh
-import {convertSolar2Lunar} from './lephucsinhlib.js';
 // chuyen doi ngay duong sang ngay âm
 var cloneDate = function (d) {
     return new Date(d.getTime());

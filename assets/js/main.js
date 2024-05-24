@@ -184,7 +184,7 @@ function tinh4TuanMuaVong (y) {
   var y = date.getFullYear();
   var tuanmuaVong = tinh4TuanMuaVong(y);
   var year = tuanmuaVong.yearABC;
-  var easter = function(y);
+  var easter = tinhNgayPhucSinh(y);
   var ashWednesday = tinhThuTuLeTro(easter);
   var namphungVuIns = {
       year: y,

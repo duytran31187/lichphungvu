@@ -44,17 +44,18 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- Begin: Header -->
-        <header>
-            <div class="container">
-                <nav class="custom-nav top-nav">
-                    <span v-for="item in top_menu"><a class="nav-link" v-bind:href="item.link">{{item.name}}</a></span>
-                </nav>
-            </div>
-        </header>
-        <!-- End: Header -->
-    </div>
+    <h2>Calendar</h2>
+    <table id="calendar">
+        <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+        </tr>
+    </table>
 
     <!-- Javascript -->
     <!-- JQuery -->

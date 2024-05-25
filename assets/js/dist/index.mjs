@@ -253,7 +253,7 @@ var timChuaNhatGanNhatTuNgay = (d) => {
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
   let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
-  closestSunday.setDate(closestSunday.getDate() + 1);
+  closestSunday.setDate(closestSunday.getDate());
   return timChuaNhatGanNhatTuNgay(closestSunday);
 };
 function tinhLeChuaHienLinh(y) {

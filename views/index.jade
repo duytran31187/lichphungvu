@@ -1,5 +1,16 @@
 extends layout
-
 block content
-  h1= title
-  p #{title}
+  div(class='col-6')
+    //- h1(id='calender-title')
+    //- table(id='calendar', class='table table-bordered')
+    //-   thead 
+    //-     tr 
+    //-       th Sun
+    //-       th Mon
+    //-       th Tue
+    //-       th Wed
+    //-       th Thu
+    //-       th Fri
+    //-       th Sat
+  div(class='col-6')  
+    table(id='lichphungvuTable', class='table table-bordered')

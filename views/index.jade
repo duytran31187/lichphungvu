@@ -14,6 +14,11 @@ block content
           th Sat
   div(class='col-6')
     form
-      input(type='number', id='searchYear', name='searchYear')
-      input(type='submit')
+      div(class='form-group')
+        label Search Year
+        input(type='number', id='searchYear', name='searchYear', class='form-control')
+        br
+      div(class='form-group') 
+        input(type='submit', class='btn btn-primary')
+      br  
     table(id='lichphungvuTable', class='table table-bordered')

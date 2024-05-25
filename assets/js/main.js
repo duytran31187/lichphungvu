@@ -306,6 +306,10 @@ $(document).ready(function () {
   var firstDay = new Date(year, month, 1);
   var lastDay = new Date(year, month + 1, 0);
   var calendar = document.getElementById('calendar');
+  var calendarTitle = document.getElementById('calender-title');
+  if (calendarTitle) {
+    calendarTitle.innerHTML = date.toISOString().substring(0,7);
+  }
   var lichphungvuTable = document.getElementById('lichphungvuTable');
   for (var i = firstDay.getDay(); i > 0; i--) {
       var cell = document.createElement('td');
@@ -355,6 +359,10 @@ $(document).ready(function () {
   var defaultYear = currntDate.getFullYear();
   let params = new URLSearchParams(window.location.search);
   let searchYear = params.get('searchYear') ? params.get('searchYear') : defaultYear;
+  const searchYearField = $('#searchYear');
+  if (searchYearField) {
+    searchYearField.val(searchYear);
+  }
 
   var date = new Date(searchYear + '-' + currntDate.getMonth() + '-01');
   var y = date.getFullYear();

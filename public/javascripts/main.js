@@ -359,6 +359,10 @@ $(document).ready(function () {
   var defaultYear = currntDate.getFullYear();
   let params = new URLSearchParams(window.location.search);
   let searchYear = params.get('searchYear') ? params.get('searchYear') : defaultYear;
+  const searchYearField = $('#searchYear');
+  if (searchYearField) {
+    searchYearField.val(searchYear);
+  }
 
   var date = new Date(searchYear + '-' + currntDate.getMonth() + '-01');
   var y = date.getFullYear();

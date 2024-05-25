@@ -220,7 +220,7 @@ function addDate(currentDate, numOfDate) {
   return newDate;
 }
 function getChristmasDay(year) {
-  return /* @__PURE__ */ new Date(year + "12-25");
+  return /* @__PURE__ */ new Date(year + "-12-25");
 }
 
 // src/tinhlephucsinh.ts

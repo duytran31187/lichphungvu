@@ -386,7 +386,7 @@ function tinh4TuanMuaVong (y) {
       thirdSundayOfAdvent: tuanmuaVong.week3,
       fourthSundayOfAdvent: tuanmuaVong.week4,
       christmas: new Date(y + '-12-25'),
-      theEpiphanyOfTheLord: tinhLeChuaHienLinh(),
+      theEpiphanyOfTheLord: tinhLeChuaHienLinh(y),
   };
   
   // const trItem =document.createElement('tr');

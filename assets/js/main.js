@@ -299,7 +299,7 @@ function tinh4TuanMuaVong (y) {
 };
 
 ////  
-// $(document).ready(function () {
+$(document).ready(function () {
   var date = new Date();
   var month = date.getMonth(); //months from 1-12
   var year = date.getFullYear();
@@ -415,4 +415,4 @@ function tinh4TuanMuaVong (y) {
     count++;
   }
   
-// });
+});

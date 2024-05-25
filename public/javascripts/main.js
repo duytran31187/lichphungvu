@@ -266,6 +266,7 @@ function tinh4TuanMuaVong (y) {
   }
   ///////////
   var chrismastDate = new Date(y + '-12-25');
+  var closestSunday = chrismastDate;
   // console.log(`vong giang sinh: %s`, chrismastDate.toDateString());
   // tuan thu 4 mua vong5
   var sundayFound = false;
@@ -299,41 +300,34 @@ function tinh4TuanMuaVong (y) {
 
 ////  
 $(document).ready(function () {
-  var currentDate = new Date();
-  var defaultYear = currentDate.getFullYear();
-  var defaultMonth = currentDate.getMonth() + 1;
-  let params = new URLSearchParams(window.location.search);
-  let searchYear = params.get('searchYear') ? params.get('searchYear') : defaultYear;
-
-  var date = new Date(searchYear,defaultMonth,1);
+  var date = new Date();
+  var month = date.getMonth(); //months from 1-12
   var year = date.getFullYear();
-//   var firstDay = new Date(year, defaultMonth, 1);
-//   var lastDay = new Date(year, defaultMonth, 0);
-//   console.log(`currentDate ${currentDate.toISOString()}`);
-//   console.log(`date ${date.toISOString()}`);
-//   console.log(`lastDay ${lastDay.toISOString()}`);
-//   console.log(`firstDay ${firstDay.toISOString()}`);
-//   var calendar = document.getElementById('calendar');
-//   var calendarTitle = document.getElementById('calender-title');
-//   calendarTitle.innerHTML = `${currentDate.toISOString().substring(0,7)}`;
-//   for (var i = firstDay.getDay(); i > 0; i--) {
-//       var cell = document.createElement('td');
-//       cell.textContent = ' ';
-//       calendar.appendChild(cell);
-//   }
+  var firstDay = new Date(year, month, 1);
+  var lastDay = new Date(year, month + 1, 0);
+  var calendar = document.getElementById('calendar');
+  var calendarTitle = document.getElementById('calender-title');
+  if (calendarTitle) {
+    calendarTitle.innerHTML = date.toISOString().substring(0,7);
+  }
+  var lichphungvuTable = document.getElementById('lichphungvuTable');
+  for (var i = firstDay.getDay(); i > 0; i--) {
+      var cell = document.createElement('td');
+      cell.textContent = ' ';
+      calendar.appendChild(cell);
+  }
 
-//   for (var i = 1; i <= lastDay.getDate(); i++) {
-//       if ((i + firstDay.getDay() - 1) % 7 === 0) {
-//           var row = document.createElement('tr');
-//           calendar.appendChild(row);
-//       }
-//       var cell = document.createElement('td');
-//       cell.textContent = i;
-//       calendar.appendChild(cell);
-//   }
+  for (var i = 1; i <= lastDay.getDate(); i++) {
+      if ((i + firstDay.getDay() - 1) % 7 === 0) {
+          var row = document.createElement('tr');
+          calendar.appendChild(row);
+      }
+      var cell = document.createElement('td');
+      cell.textContent = i;
+      calendar.appendChild(cell);
+  }
 
   // add lich phung vu
-  var lichphungvuTable = document.getElementById('lichphungvuTable');
   var colums = [
       'year',
       'A|B|C',
@@ -361,8 +355,12 @@ $(document).ready(function () {
       'The Epiphany of the Lord (Hiển Linh)'
   ];
   
+  var currntDate = new Date();
+  var defaultYear = currntDate.getFullYear();
+  let params = new URLSearchParams(window.location.search);
+  let searchYear = params.get('searchYear') ? params.get('searchYear') : defaultYear;
 
-  var date = new Date(searchYear + '-' + currentDate.getMonth() + '-01');
+  var date = new Date(searchYear + '-' + currntDate.getMonth() + '-01');
   var y = date.getFullYear();
   var tuanmuaVong = tinh4TuanMuaVong(y);
   var year = tuanmuaVong.yearABC;
@@ -404,6 +402,8 @@ $(document).ready(function () {
   // }
   // lichphungvuTable.appendChild(trItem);
     
+  
+  
   let count = 0;
   for( let key in namphungVuIns) 
   {

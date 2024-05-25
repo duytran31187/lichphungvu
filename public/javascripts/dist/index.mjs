@@ -137,55 +137,6 @@ var require_lephucsinhlib = __commonJS({
   }
 });
 
-// src/tinh4TuanMuaVong.ts
-function tinh4TuanMuaVong(y) {
-  let yearStr = y.toString();
-  let yearNums = Array.from(yearStr);
-  let countNum = 0;
-  yearNums.forEach((element) => {
-    countNum += parseInt(element);
-  });
-  let year;
-  let finalResult;
-  switch (countNum % 3) {
-    case 1:
-      year = "A";
-      break;
-    case 2:
-      year = "B";
-      break;
-    default:
-      year = "C";
-  }
-  let chrismastDate = /* @__PURE__ */ new Date(y + "-12-25");
-  let sundayFound = false;
-  let count = 0;
-  do {
-    var closestSunday_1 = chrismastDate;
-    closestSunday_1.setDate(chrismastDate.getDate() - 1);
-    if (closestSunday_1.getDay() === 0) {
-      var sunday4 = new Date(closestSunday_1.getTime());
-      var sunday3 = new Date(sunday4.getTime());
-      sunday3.setDate(sunday3.getDate() - 7);
-      var sunday2 = new Date(sunday3.getTime());
-      sunday2.setDate(sunday2.getDate() - 7);
-      var sunday1 = new Date(sunday2.getTime());
-      sunday1.setDate(sunday2.getDate() - 7);
-      sundayFound = true;
-      finalResult = {
-        week1: sunday1,
-        week2: sunday2,
-        week3: sunday3,
-        week4: sunday4,
-        yearABC: year
-      };
-      break;
-    }
-    count++;
-  } while (!sundayFound);
-  return finalResult;
-}
-
 // src/utils.ts
 function cloneDate(d) {
   return new Date(d.getTime());
@@ -197,6 +148,57 @@ function addDate(currentDate, numOfDate) {
 }
 function getChristmasDay(year) {
   return /* @__PURE__ */ new Date(year + "-12-25");
+}
+
+// src/tinh4TuanMuaVong.ts
+function tinhNamABC(y) {
+  let yearStr = y.toString();
+  let yearNums = Array.from(yearStr);
+  let countNum = 0;
+  let year;
+  yearNums.forEach((element) => {
+    countNum += parseInt(element);
+  });
+  switch (countNum % 3) {
+    case 1:
+      year = "A";
+      break;
+    case 2:
+      year = "B";
+      break;
+    default:
+      year = "C";
+  }
+  return year;
+}
+function tinh4TuanMuaVong(y) {
+  let chrismastDate = getChristmasDay(y);
+  let sundayFound = false;
+  let count = 0;
+  let finalResult;
+  do {
+    let closestSunday_1 = chrismastDate;
+    closestSunday_1.setDate(chrismastDate.getDate() - 1);
+    if (closestSunday_1.getDay() === 0) {
+      let sunday4 = new Date(closestSunday_1.getTime());
+      let sunday3 = new Date(sunday4.getTime());
+      sunday3.setDate(sunday3.getDate() - 7);
+      let sunday2 = new Date(sunday3.getTime());
+      sunday2.setDate(sunday2.getDate() - 7);
+      let sunday1 = new Date(sunday2.getTime());
+      sunday1.setDate(sunday2.getDate() - 7);
+      sundayFound = true;
+      finalResult = {
+        week1: sunday1,
+        week2: sunday2,
+        week3: sunday3,
+        week4: sunday4
+      };
+      break;
+    }
+    count++;
+  } while (!sundayFound);
+  return finalResult;
 }
 
 // src/tinhlephucsinh.ts
@@ -264,13 +266,12 @@ function tinhLeChuaHienLinh(y) {
 // src/index.ts
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
-  const year = tuanmuaVong.yearABC;
   const easter = tinhNgayPhucSinh(y);
   const ashWednesday = tinhThuTuLeTro(easter);
   return {
     year: y,
-    yearABC: year,
-    oddEven: y % 2 == 0 ? "Even" : "Odd",
+    yearABC: tinhNamABC(y),
+    oddEven: y % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
     ashWed: ashWednesday,
     firstSundayOfLent: addDate(ashWednesday, 4),
     secondSundayOfLent: addDate(ashWednesday, 11),

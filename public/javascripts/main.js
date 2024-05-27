@@ -33,6 +33,8 @@ $(document).ready(function () {
       'year( Năm)',
       'A|B|C (năm A|B|C)',
       'Odd|Even (Năm chẵn lẻ)',
+      'The Epiphany of the Lord (Lễ Chúa Hiển Linh)',
+      'Lễ Chúa chịu phép rửa',
       'Ash Wednesday (Thứ tư lễ tro)',
       'First Sunday of Lent (Chúa nhật thứ nhất mùa chay)',
       'Second Sunday of Lent (Chúa nhật thứ 2 mùa chay)',
@@ -53,9 +55,7 @@ $(document).ready(function () {
       'Third Sunday of Advent (Chúa nhật thứ 3 mùa vọng)',
       'Fourth Sunday of Advent (Chúa nhật thứ tư mùa vọng)',
       'Christmas (Giáng sinh)',
-      'Lễ Thánh Gia',
-      'The Epiphany of the Lord (Lễ Chúa Hiển Linh)',
-      'Lễ Chúa chịu phép rửa'
+      'Lễ Thánh Gia'
   ];
   
   var currentDate = new Date();

@@ -339,6 +339,8 @@ function tinhNamPhungVu(y) {
     yearABC: tinhNamABC(y),
     oddEven: y % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
     ashWed: ashWednesday,
+    theEpiphanyOfTheLord: tinhLeChuaHienLinh(y),
+    leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y),
     firstSundayOfLent: addDate(ashWednesday, 4),
     secondSundayOfLent: addDate(ashWednesday, 11),
     thirdSundayOfLent: addDate(ashWednesday, 18),
@@ -358,9 +360,7 @@ function tinhNamPhungVu(y) {
     thirdSundayOfAdvent: tuanmuaVong.week3,
     fourthSundayOfAdvent: tuanmuaVong.week4,
     christmas: getChristmasDay(y),
-    leThanhGia: tinhLeThanhGia(y),
-    theEpiphanyOfTheLord: tinhLeChuaHienLinh(y),
-    leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y)
+    leThanhGia: tinhLeThanhGia(y)
   };
 }
 export {

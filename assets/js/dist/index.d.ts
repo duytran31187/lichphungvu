@@ -2,6 +2,8 @@ type NamPhungVu = {
     year: number;
     yearABC: string;
     oddEven: string;
+    theEpiphanyOfTheLord: Date;
+    leChuaChiuPhepRua: Date;
     ashWed: Date;
     firstSundayOfLent: Date;
     secondSundayOfLent: Date;
@@ -23,8 +25,6 @@ type NamPhungVu = {
     fourthSundayOfAdvent: Date;
     christmas: Date;
     leThanhGia: Date;
-    theEpiphanyOfTheLord: Date;
-    leChuaChiuPhepRua: Date;
 };
 
 declare function tinhNamPhungVu(y: number): NamPhungVu;

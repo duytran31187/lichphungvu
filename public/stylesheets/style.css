@@ -339,3 +339,6 @@ footer .btn-to-top a {
   color: #ffd666;
 }
 /* End: Footer */
+#currentMonthCalendar {
+  display: none;
+}

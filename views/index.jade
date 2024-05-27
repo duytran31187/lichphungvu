@@ -1,24 +1,28 @@
 extends layout
 block content
-  div(class='col-6', id='currentMonthCalendar')
-    h1(id='calender-title')
-    table(id='calendar', class='table table-bordered')
-      thead 
-        tr 
-          th Sun
-          th Mon
-          th Tue
-          th Wed
-          th Thu
-          th Fri
-          th Sat
-  div(class='col-12')
-    form
-      div(class='form-group')
-        label Search Year
+  div(class='row')
+    div(class='col-12', id='currentMonthCalendar')
+      h1(id='calender-title')
+      table(id='calendar', class='table table-bordered')
+        thead 
+          tr 
+            th Sun
+            th Mon
+            th Tue
+            th Wed
+            th Thu
+            th Fri
+            th Sat
+  
+  form
+    div(class='row')
+      div(class='form-group col-1')
+        label Search Year 
+      div(class='form-group col-2')
         input(type='number', id='searchYear', name='searchYear', class='form-control')
-        br
-      div(class='form-group') 
+      div(class='form-group col-2') 
         input(type='submit', class='btn btn-primary')
-      br  
-    table(id='lichphungvuTable', class='table table-bordered')
+  hr       
+  div(class='row')          
+    div(class='col-12')
+      table(id='lichphungvuTable', class='table table-bordered')

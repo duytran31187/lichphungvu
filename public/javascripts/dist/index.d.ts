@@ -27,6 +27,34 @@ type NamPhungVu = {
     leThanhGia: Date;
 };
 
+declare const nameOfDays: {
+    year: string;
+    yearABC: string;
+    oddEven: string;
+    theEpiphanyOfTheLord: string;
+    leChuaChiuPhepRua: string;
+    ashWed: string;
+    firstSundayOfLent: string;
+    secondSundayOfLent: string;
+    thirdSundayOfLent: string;
+    fourthSundayOfLent: string;
+    fifthSundayOfLent: string;
+    palmSunday: string;
+    easterSunday: string;
+    secondSundayOfEaster: string;
+    thirdSundayOfEaster: string;
+    fourthSundayOfEaster: string;
+    fifthSundayOfEaster: string;
+    sixthSundayOfEaster: string;
+    theAscentionOfTheLord: string;
+    pentecostSunday: string;
+    firstSundayOfAdvent: string;
+    secondSundayOfAdvent: string;
+    thirdSundayOfAdvent: string;
+    fourthSundayOfAdvent: string;
+    christmas: string;
+    leThanhGia: string;
+};
 declare function tinhNamPhungVu(y: number): NamPhungVu;
 
-export { tinhNamPhungVu };
+export { nameOfDays, tinhNamPhungVu };

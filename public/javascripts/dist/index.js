@@ -157,6 +157,7 @@ var require_lephucsinhlib = __commonJS({
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
+  nameOfDays: () => nameOfDays,
   tinhNamPhungVu: () => tinhNamPhungVu
 });
 module.exports = __toCommonJS(src_exports);
@@ -354,6 +355,34 @@ function tinhLeChuaChiuPhepRua(y) {
 }
 
 // src/index.ts
+var nameOfDays = {
+  year: "year( N\u0103m)",
+  yearABC: "A|B|C (n\u0103m A|B|C)",
+  oddEven: "Odd|Even (N\u0103m ch\u1EB5n l\u1EBB)",
+  theEpiphanyOfTheLord: "The Epiphany of the Lord (L\u1EC5 Ch\xFAa Hi\u1EC3n Linh)",
+  leChuaChiuPhepRua: "L\u1EC5 Ch\xFAa ch\u1ECBu ph\xE9p r\u1EEDa",
+  ashWed: "Ash Wednesday (Th\u1EE9 t\u01B0 l\u1EC5 tro)",
+  firstSundayOfLent: "First Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a chay)",
+  secondSundayOfLent: "Second Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 2 m\xF9a chay)",
+  thirdSundayOfLent: "Third Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 3 m\xF9a chay)",
+  fourthSundayOfLent: "Fourth Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 4 m\xF9a chay)",
+  fifthSundayOfLent: "Fifth Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 5 m\xF9a chay)",
+  palmSunday: "Palm Sunday (L\u1EC5 L\xE1)",
+  easterSunday: "Easter Sunda (Ph\u1EE5c sinh)",
+  secondSundayOfEaster: "Second Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 2 ph\u1EE5c sinh)",
+  thirdSundayOfEaster: "Third Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 3 ph\u1EE5c sinh)",
+  fourthSundayOfEaster: "Fourth Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 4 ph\u1EE5c sinh)",
+  fifthSundayOfEaster: "Fifth Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 5 ph\u1EE5c sinh)",
+  sixthSundayOfEaster: "Sixth Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 6 ph\u1EE5c sinh)",
+  theAscentionOfTheLord: "The Ascention of the Lord (L\u1EC5 Ch\xFAa L\xEAn Tr\u1EDDi)",
+  pentecostSunday: "Pentecost Sunday (L\u1EC5 Ch\xFAa Th\xE1nh Th\u1EA7n hi\u1EC7n xu\u1ED1ng)",
+  firstSundayOfAdvent: "First Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a v\u1ECDng)",
+  secondSundayOfAdvent: "Second Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 2 m\xF9a v\u1ECDng)",
+  thirdSundayOfAdvent: "Third Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 3 m\xF9a v\u1ECDng)",
+  fourthSundayOfAdvent: "Fourth Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 t\u01B0 m\xF9a v\u1ECDng)",
+  christmas: "Christmas (Gi\xE1ng sinh)",
+  leThanhGia: "L\u1EC5 Th\xE1nh Gia"
+};
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
   const easter = tinhNgayPhucSinh(y);
@@ -362,9 +391,9 @@ function tinhNamPhungVu(y) {
     year: y,
     yearABC: tinhNamABC(y),
     oddEven: y % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
-    ashWed: ashWednesday,
     theEpiphanyOfTheLord: tinhLeChuaHienLinh(y),
     leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y),
+    ashWed: ashWednesday,
     firstSundayOfLent: addDate(ashWednesday, 4),
     secondSundayOfLent: addDate(ashWednesday, 11),
     thirdSundayOfLent: addDate(ashWednesday, 18),
@@ -389,6 +418,7 @@ function tinhNamPhungVu(y) {
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  nameOfDays,
   tinhNamPhungVu
 });
 //# sourceMappingURL=index.js.map

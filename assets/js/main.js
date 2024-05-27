@@ -30,31 +30,33 @@ $(document).ready(function () {
 
   // add lich phung vu
   var colums = [
-      'year( Năm)',
-      'A|B|C (năm A|B|C)',
-      'Odd|Even (Năm chẵn lẻ)',
-      'Ash Wednesday (Thứ tư lễ tro)',
-      'First Sunday of Lent (Chúa nhật thứ nhất mùa chay)',
-      'Second Sunday of Lent (Chúa nhật thứ 2 mùa chay)',
-      'Third Sunday of Lent (Chúa nhật thứ 3 mùa chay)',
-      'Fourth Sunday of Lent (Chúa nhật thứ 4 mùa chay)',
-      'Fifth Sunday of Lent (Chúa nhật thứ 5 mùa chay)',
-      'Palm Sunday (Lễ Lá)',
-      'Easter Sunda (Phục sinh)',
-      'Second Sunday of Easter (Chúa nhật thứ 2 phục sinh)',
-      'Third Sunday of Easter (Chúa nhật thứ 3 phục sinh)',
-      'Fourth Sunday of Easter (Chúa nhật thứ 4 phục sinh)',
-      'Fifth Sunday of Easter (Chúa nhật thứ 5 phục sinh)',
-      'Sixth Sunday of Easter (Chúa nhật thứ 6 phục sinh)',
-      'The Ascention of the Lord (Lễ Chúa Lên Trời)',
-      'Pentecost Sunday (Lễ Chúa Thánh Thần hiện xuống)',
-      'First Sunday of Advent (Chúa nhật thứ nhất mùa vọng)',
-      'Second Sunday of Advent (Chúa nhật thứ 2 mùa vọng)',
-      'Third Sunday of Advent (Chúa nhật thứ 3 mùa vọng)',
-      'Fourth Sunday of Advent (Chúa nhật thứ tư mùa vọng)',
-      'Christmas (Giáng sinh)',
-      'The Epiphany of the Lord (Lễ Chúa Hiển Linh)'
-  ];
+    'year( Năm)',
+    'A|B|C (năm A|B|C)',
+    'Odd|Even (Năm chẵn lẻ)',
+    'Ash Wednesday (Thứ tư lễ tro)',
+    'First Sunday of Lent (Chúa nhật thứ nhất mùa chay)',
+    'Second Sunday of Lent (Chúa nhật thứ 2 mùa chay)',
+    'Third Sunday of Lent (Chúa nhật thứ 3 mùa chay)',
+    'Fourth Sunday of Lent (Chúa nhật thứ 4 mùa chay)',
+    'Fifth Sunday of Lent (Chúa nhật thứ 5 mùa chay)',
+    'Palm Sunday (Lễ Lá)',
+    'Easter Sunda (Phục sinh)',
+    'Second Sunday of Easter (Chúa nhật thứ 2 phục sinh)',
+    'Third Sunday of Easter (Chúa nhật thứ 3 phục sinh)',
+    'Fourth Sunday of Easter (Chúa nhật thứ 4 phục sinh)',
+    'Fifth Sunday of Easter (Chúa nhật thứ 5 phục sinh)',
+    'Sixth Sunday of Easter (Chúa nhật thứ 6 phục sinh)',
+    'The Ascention of the Lord (Lễ Chúa Lên Trời)',
+    'Pentecost Sunday (Lễ Chúa Thánh Thần hiện xuống)',
+    'First Sunday of Advent (Chúa nhật thứ nhất mùa vọng)',
+    'Second Sunday of Advent (Chúa nhật thứ 2 mùa vọng)',
+    'Third Sunday of Advent (Chúa nhật thứ 3 mùa vọng)',
+    'Fourth Sunday of Advent (Chúa nhật thứ tư mùa vọng)',
+    'Christmas (Giáng sinh)',
+    'Lễ Thánh Gia',
+    'The Epiphany of the Lord (Lễ Chúa Hiển Linh)',
+    'Lễ Chúa chịu phép rửa'
+];
   
   var currentDate = new Date();
   var defaultYear = currentDate.getFullYear();

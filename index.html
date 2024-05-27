@@ -45,32 +45,28 @@
 
 <body>
     <div class="container">
-        <div class="row" id="currentMonthCalendar">
-            <h1 id="calender-title"></h1>
-            <table id="calendar" class="table table-bordered">
-                <thead> 
-                    <tr> 
-                    <th>Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <form>
-            <div class="form-group">
-                <label>Search Year</label>
-                <input type="number" id="searchYear" name="searchYear" class="form-control"/><br/>
+        <div class="row">
+            <div id="divCalendar" class="col-12"></div>
+            <form>
+                <div class="row">
+                <div class="form-group col-1">
+                    <label>Search Year </label>
+                </div>
+                <div class="form-group col-2">
+                    <input type="number" id="searchYear" name="searchYear" class="form-control"/>
+                </div>
+                <div class="form-group col-2"> 
+                    <input type="submit" class="btn btn-primary"/>
+                </div>
+                </div>
+            </form>
+            <hr/>
+            <div class="row">         
+                <div class="col-12">
+                <table id="lichphungvuTable" class="table table-bordered"></table>
+                </div>
             </div>
-            <div class="form-group"> 
-                <input type="submit" class="btn btn-primary"/>
-            </div><br/>
-        </form>
-        <table id="lichphungvuTable" class="table table-bordered"></table>   
+        </div>
     </div>
     
 

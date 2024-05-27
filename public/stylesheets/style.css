@@ -342,3 +342,6 @@ footer .btn-to-top a {
 #currentMonthCalendar {
   display: none;
 }
+.th-month, .summary_month {
+  text-align: center;
+}

@@ -173,6 +173,26 @@ function addDate(currentDate, numOfDate) {
 function getChristmasDay(year) {
   return /* @__PURE__ */ new Date(year + "-12-25");
 }
+function timNgayTrongTuanSauNgay(d, dayOfWeek) {
+  let count = 1;
+  let resultDay;
+  let breakTheLoop = false;
+  do {
+    const testDate = addDate(d, count);
+    if (testDate.getDay() == dayOfWeek) {
+      breakTheLoop = true;
+      resultDay = cloneDate(testDate);
+    }
+    count++;
+    if (count > 7) {
+      breakTheLoop = true;
+    }
+  } while (!breakTheLoop);
+  if (!resultDay) {
+    console.log("invalid date");
+  }
+  return resultDay;
+}
 
 // src/tinh4TuanMuaVong.ts
 function tinhNamABC(y) {
@@ -281,10 +301,56 @@ var tinhNgayPhucSinh = (year) => {
   return timChuaNhatGanNhatTuNgay(closestSunday);
 };
 function tinhLeChuaHienLinh(y) {
-  const christmasDate = getChristmasDay(y);
-  const chuaNhatSauGiangsinh = timChuaNhatGanNhatTuNgay(christmasDate);
-  chuaNhatSauGiangsinh.setDate(chuaNhatSauGiangsinh.getDate());
-  return addDate(chuaNhatSauGiangsinh, 7);
+  const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
+  switch (ngayLeHienLinh.getDay()) {
+    case 1:
+      return /* @__PURE__ */ new Date(y + "-01-05");
+    case 2:
+      return /* @__PURE__ */ new Date(y + "-01-04");
+    case 3:
+      return /* @__PURE__ */ new Date(y + "-01-03");
+    case 4:
+      return /* @__PURE__ */ new Date(y + "-01-02");
+    case 5:
+      return /* @__PURE__ */ new Date(y + "-01-8");
+    case 6:
+      return /* @__PURE__ */ new Date(y + "-01-7");
+    default:
+      return ngayLeHienLinh;
+  }
+}
+function tinhLeThanhGia(y) {
+  const christMas = getChristmasDay(y);
+  let count = 1;
+  let breakTheLoop = false;
+  let foundDate = /* @__PURE__ */ new Date(y + "-12-30");
+  do {
+    let octaveDay = addDate(christMas, count);
+    if (octaveDay.getDay() == 0) {
+      breakTheLoop = true;
+      foundDate = cloneDate(octaveDay);
+    }
+    count++;
+    if (count > 6) {
+      breakTheLoop = true;
+    }
+  } while (!breakTheLoop);
+  return foundDate;
+}
+function tinhLeChuaChiuPhepRua(y) {
+  const leHienLinh = tinhLeChuaHienLinh(y);
+  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
+  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
+  console.log(`leHienLinh ${leHienLinh.toDateString()}`);
+  let ngayLe;
+  if (leHienLinh.getTime() == day7.getTime()) {
+    ngayLe = timNgayTrongTuanSauNgay(day7, 1);
+  } else if (leHienLinh.getTime() == day8.getTime()) {
+    ngayLe = timNgayTrongTuanSauNgay(day8, 1);
+  } else {
+    ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
+  }
+  return ngayLe;
 }
 
 // src/index.ts
@@ -316,7 +382,9 @@ function tinhNamPhungVu(y) {
     thirdSundayOfAdvent: tuanmuaVong.week3,
     fourthSundayOfAdvent: tuanmuaVong.week4,
     christmas: getChristmasDay(y),
-    theEpiphanyOfTheLord: tinhLeChuaHienLinh(y)
+    leThanhGia: tinhLeThanhGia(y),
+    theEpiphanyOfTheLord: tinhLeChuaHienLinh(y),
+    leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y)
   };
 }
 // Annotate the CommonJS export names for ESM import in node:

@@ -53,7 +53,9 @@ $(document).ready(function () {
       'Third Sunday of Advent (Chúa nhật thứ 3 mùa vọng)',
       'Fourth Sunday of Advent (Chúa nhật thứ tư mùa vọng)',
       'Christmas (Giáng sinh)',
-      'The Epiphany of the Lord (Lễ Chúa Hiển Linh)'
+      'Lễ Thánh Gia',
+      'The Epiphany of the Lord (Lễ Chúa Hiển Linh)',
+      'Lễ Chúa chịu phép rửa'
   ];
   
   var currentDate = new Date();

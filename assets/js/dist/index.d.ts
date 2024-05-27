@@ -3,6 +3,11 @@ type NamPhungVu = {
     yearABC: string;
     oddEven: string;
     theEpiphanyOfTheLord: Date;
+    chuaNhatThu2ThuongNien: Date;
+    chuaNhatThu3ThuongNien: Date;
+    chuaNhatThu4ThuongNien: Date;
+    chuaNhatThu5ThuongNien: Date;
+    chuaNhatThu6ThuongNien: Date;
     leChuaChiuPhepRua: Date;
     ashWed: Date;
     firstSundayOfLent: Date;
@@ -32,6 +37,12 @@ declare const nameOfDays: {
     yearABC: string;
     oddEven: string;
     theEpiphanyOfTheLord: string;
+    chuaNhatThu1ThuongNien: string;
+    chuaNhatThu2ThuongNien: string;
+    chuaNhatThu3ThuongNien: string;
+    chuaNhatThu4ThuongNien: string;
+    chuaNhatThu5ThuongNien: string;
+    chuaNhatThu6ThuongNien: string;
     leChuaChiuPhepRua: string;
     ashWed: string;
     firstSundayOfLent: string;

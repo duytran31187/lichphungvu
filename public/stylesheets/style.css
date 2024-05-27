@@ -345,3 +345,6 @@ footer .btn-to-top a {
 .th-month, .summary_month {
   text-align: center;
 }
+tr.Sunday {
+  color: red;
+}

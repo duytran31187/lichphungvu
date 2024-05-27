@@ -1,7 +1,7 @@
 import { nameOfDays, tinhNamPhungVu } from './dist/index.mjs'
 ////  
 $(document).ready(function () {
-
+  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   // add lich phung vu
   const printCalendarMonth = (year, month) => {
     const calendar = document.createElement('table');
@@ -97,10 +97,11 @@ $(document).ready(function () {
         currentDate.setDate(currentDate.getDate() + d);
         if (currentDate.getTime() <= lastDay.getTime()) { // if > last day => skip
           const trItemBody =document.createElement('tr');
+          trItemBody.className = weekday[currentDate.getDay()];
           const td1 = document.createElement('td');
           const td2 = document.createElement('td');
           const td3 = document.createElement('td');
-          td1.innerText = (d+1); // ngay 1/thang
+          td1.innerText = currentDate.toDateString(); // ngay 1/thang
           if (ngayPhungVuTheoThang[currentDate.toDateString()]) {
             td2.innerText = currentDate.toDateString();
             td3.innerText = ngayPhungVuTheoThang[currentDate.toDateString()];

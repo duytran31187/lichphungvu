@@ -360,6 +360,12 @@ var nameOfDays = {
   yearABC: "A|B|C (n\u0103m A|B|C)",
   oddEven: "Odd|Even (N\u0103m ch\u1EB5n l\u1EBB)",
   theEpiphanyOfTheLord: "The Epiphany of the Lord (L\u1EC5 Ch\xFAa Hi\u1EC3n Linh)",
+  chuaNhatThu1ThuongNien: "Chua Nhat thuong nien 1",
+  chuaNhatThu2ThuongNien: "Chua Nhat thuong nien 2",
+  chuaNhatThu3ThuongNien: "Chua Nhat thuong nien 3",
+  chuaNhatThu4ThuongNien: "Chua Nhat thuong nien 4",
+  chuaNhatThu5ThuongNien: "Chua Nhat thuong nien 5",
+  chuaNhatThu6ThuongNien: "Chua Nhat thuong nien 6",
   leChuaChiuPhepRua: "L\u1EC5 Ch\xFAa ch\u1ECBu ph\xE9p r\u1EEDa",
   ashWed: "Ash Wednesday (Th\u1EE9 t\u01B0 l\u1EC5 tro)",
   firstSundayOfLent: "First Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a chay)",
@@ -387,11 +393,17 @@ function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
   const easter = tinhNgayPhucSinh(y);
   const ashWednesday = tinhThuTuLeTro(easter);
+  const chuaHienLinh = tinhLeChuaHienLinh(y);
   return {
     year: y,
     yearABC: tinhNamABC(y),
     oddEven: y % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
-    theEpiphanyOfTheLord: tinhLeChuaHienLinh(y),
+    theEpiphanyOfTheLord: chuaHienLinh,
+    chuaNhatThu2ThuongNien: addDate(chuaHienLinh, 7),
+    chuaNhatThu3ThuongNien: addDate(chuaHienLinh, 14),
+    chuaNhatThu4ThuongNien: addDate(chuaHienLinh, 21),
+    chuaNhatThu5ThuongNien: addDate(chuaHienLinh, 28),
+    chuaNhatThu6ThuongNien: addDate(chuaHienLinh, 35),
     leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y),
     ashWed: ashWednesday,
     firstSundayOfLent: addDate(ashWednesday, 4),

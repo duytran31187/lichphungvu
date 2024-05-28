@@ -169,8 +169,130 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
   }
   return resultDay;
 }
+var timChuaNhatGanNhatTuNgay = (d) => {
+  d.setDate(d.getDate() - 1);
+  return timNgayTrongTuanSauNgay(d, 0);
+};
 
-// src/tinh4TuanMuaVong.ts
+// src/cacNgayLeNamPhungVu.ts
+var { convertSolar2Lunar } = require_lephucsinhlib();
+var tinhngayramsau21thang3 = (y) => {
+  let ngayRamFound = false;
+  let count = 0;
+  let dateFrom21 = 21;
+  let month = 3;
+  do {
+    const ngayAm = convertSolar2Lunar(
+      dateFrom21,
+      month,
+      y,
+      7
+      // UTC+7
+    );
+    const lunarDay = ngayAm[0];
+    if (lunarDay === 16) {
+      ngayRamFound = true;
+    }
+    count++;
+    dateFrom21++;
+    if (dateFrom21 == 32) {
+      dateFrom21 = 1;
+      month = 4;
+    }
+  } while (!ngayRamFound);
+  return {
+    year: y,
+    month,
+    day: dateFrom21
+  };
+};
+function tinhThuTuLeTro(ngayLePhucSinh) {
+  ngayLePhucSinh.setDate(ngayLePhucSinh.getDate() - 46);
+  return ngayLePhucSinh;
+}
+var tinhNgayPhucSinh = (year) => {
+  const simpleDateParam = tinhngayramsau21thang3(year);
+  let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
+  return timChuaNhatGanNhatTuNgay(closestSunday);
+};
+function tinhLeChuaHienLinh(y) {
+  const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
+  switch (ngayLeHienLinh.getDay()) {
+    case 1:
+      return /* @__PURE__ */ new Date(y + "-01-05");
+    case 2:
+      return /* @__PURE__ */ new Date(y + "-01-04");
+    case 3:
+      return /* @__PURE__ */ new Date(y + "-01-03");
+    case 4:
+      return /* @__PURE__ */ new Date(y + "-01-02");
+    case 5:
+      return /* @__PURE__ */ new Date(y + "-01-8");
+    case 6:
+      return /* @__PURE__ */ new Date(y + "-01-7");
+    default:
+      return ngayLeHienLinh;
+  }
+}
+function tinhLeThanhGia(y) {
+  const christMas = getChristmasDay(y);
+  let count = 1;
+  let breakTheLoop = false;
+  let foundDate = /* @__PURE__ */ new Date(y + "-12-30");
+  do {
+    let octaveDay = addDate(christMas, count);
+    if (octaveDay.getDay() == 0) {
+      breakTheLoop = true;
+      foundDate = octaveDay;
+    }
+    count++;
+    if (count > 6) {
+      breakTheLoop = true;
+    }
+  } while (!breakTheLoop);
+  return foundDate;
+}
+function tinhLeChuaChiuPhepRua(y) {
+  const leHienLinh = tinhLeChuaHienLinh(y);
+  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
+  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
+  let ngayLe;
+  if (leHienLinh.getTime() == day7.getTime()) {
+    ngayLe = timNgayTrongTuanSauNgay(day7, 1);
+  } else if (leHienLinh.getTime() == day8.getTime()) {
+    ngayLe = timNgayTrongTuanSauNgay(day8, 1);
+  } else {
+    ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
+  }
+  return ngayLe;
+}
+var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
+  chuaNhatThuNhatMuaVong.setDate(chuaNhatThuNhatMuaVong.getDate() - 7);
+  return chuaNhatThuNhatMuaVong;
+};
+var tinhLeChuaThanhThanHienxuong = (easter) => {
+  return addDate(easter, 49);
+};
+var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
+  let count = 33;
+  let found = false;
+  const chuaNhatThuongNienDauTienMua2 = cloneDate(leChuatthienxuong);
+  chuaNhatThuongNienDauTienMua2.setDate(chuaNhatThuongNienDauTienMua2.getDate() + 7);
+  if (leChuatthienxuong.getDay() != 0 || leKiToVua.getDay() != 0) {
+    console.error("invalid params");
+    return 100;
+  }
+  do {
+    let sunday34 = cloneDate(leKiToVua);
+    sunday34.setDate(sunday34.getDate() - (34 - count) * 7);
+    count--;
+    if (sunday34.toDateString() == chuaNhatThuongNienDauTienMua2.toDateString()) {
+      found = true;
+      count++;
+    }
+  } while (!found);
+  return count;
+};
 function tinhNamABC(y) {
   let yearStr = y.toString();
   let yearNums = Array.from(yearStr);
@@ -220,113 +342,27 @@ function tinh4TuanMuaVong(y) {
   } while (!sundayFound);
   return finalResult;
 }
-
-// src/tinhlephucsinh.ts
-var { convertSolar2Lunar } = require_lephucsinhlib();
-var tinhngayramsau21thang3 = (y) => {
-  let ngayRamFound = false;
-  let count = 0;
-  let dateFrom21 = 21;
-  let month = 3;
-  do {
-    const ngayAm = convertSolar2Lunar(
-      dateFrom21,
-      month,
-      y,
-      7
-      // UTC+7
-    );
-    const lunarDay = ngayAm[0];
-    if (lunarDay === 16) {
-      ngayRamFound = true;
-    }
-    count++;
-    dateFrom21++;
-    if (dateFrom21 == 32) {
-      dateFrom21 = 1;
-      month = 4;
-    }
-  } while (!ngayRamFound);
-  return {
-    year: y,
-    month,
-    day: dateFrom21
-  };
+var firstSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 4);
 };
-function tinhThuTuLeTro(ngayLePhucSinh) {
-  const thutuLeTro = cloneDate(ngayLePhucSinh);
-  thutuLeTro.setDate(thutuLeTro.getDate() - 46);
-  return thutuLeTro;
-}
-var timChuaNhatGanNhatTuNgay = (d) => {
-  let sundayFound = false;
-  let closestSunday = cloneDate(d);
-  do {
-    if (closestSunday.getDay() === 0) {
-      sundayFound = true;
-      break;
-    }
-    closestSunday.setDate(closestSunday.getDate() + 1);
-  } while (!sundayFound);
-  return closestSunday;
+var secondSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 11);
 };
-var tinhNgayPhucSinh = (year) => {
-  const simpleDateParam = tinhngayramsau21thang3(year);
-  let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
-  closestSunday.setDate(closestSunday.getDate());
-  return timChuaNhatGanNhatTuNgay(closestSunday);
+var thirdSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 18);
 };
-function tinhLeChuaHienLinh(y) {
-  const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
-  switch (ngayLeHienLinh.getDay()) {
-    case 1:
-      return /* @__PURE__ */ new Date(y + "-01-05");
-    case 2:
-      return /* @__PURE__ */ new Date(y + "-01-04");
-    case 3:
-      return /* @__PURE__ */ new Date(y + "-01-03");
-    case 4:
-      return /* @__PURE__ */ new Date(y + "-01-02");
-    case 5:
-      return /* @__PURE__ */ new Date(y + "-01-8");
-    case 6:
-      return /* @__PURE__ */ new Date(y + "-01-7");
-    default:
-      return ngayLeHienLinh;
-  }
-}
-function tinhLeThanhGia(y) {
-  const christMas = getChristmasDay(y);
-  let count = 1;
-  let breakTheLoop = false;
-  let foundDate = /* @__PURE__ */ new Date(y + "-12-30");
-  do {
-    let octaveDay = addDate(christMas, count);
-    if (octaveDay.getDay() == 0) {
-      breakTheLoop = true;
-      foundDate = cloneDate(octaveDay);
-    }
-    count++;
-    if (count > 6) {
-      breakTheLoop = true;
-    }
-  } while (!breakTheLoop);
-  return foundDate;
-}
-function tinhLeChuaChiuPhepRua(y) {
-  const leHienLinh = tinhLeChuaHienLinh(y);
-  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
-  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
-  let ngayLe;
-  if (leHienLinh.getTime() == day7.getTime()) {
-    ngayLe = timNgayTrongTuanSauNgay(day7, 1);
-  } else if (leHienLinh.getTime() == day8.getTime()) {
-    ngayLe = timNgayTrongTuanSauNgay(day8, 1);
-  } else {
-    ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
-  }
-  return ngayLe;
-}
+var fourthSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 25);
+};
+var fifthSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 32);
+};
+var calculateTheAscentionOfTheLord = (easter) => {
+  return addDate(easter, 42);
+};
+var palmSunday = (ashWednesday) => {
+  return addDate(ashWednesday, 39);
+};
 
 // src/index.ts
 var nameOfDays = {
@@ -359,35 +395,13 @@ var nameOfDays = {
   chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua",
   firstOrdinarySundayAfterPentecostSunday: "Chua Nhat Thuong Nien sau Le Chua Thanh than hien xuong"
 };
-var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
-  const ngayLe = cloneDate(chuaNhatThuNhatMuaVong);
-  ngayLe.setDate(ngayLe.getDate() - 7);
-  return ngayLe;
-};
-var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
-  let count = 33;
-  let found = false;
-  const chuaNhatThuongNienDauTienMua2 = cloneDate(leChuatthienxuong);
-  chuaNhatThuongNienDauTienMua2.setDate(chuaNhatThuongNienDauTienMua2.getDate() + 7);
-  do {
-    let sunday34 = cloneDate(leKiToVua);
-    sunday34.setDate(sunday34.getDate() - (34 - count) * 7);
-    console.log(`${count} --- ${sunday34.toDateString()}`);
-    count--;
-    if (sunday34.toDateString() == chuaNhatThuongNienDauTienMua2.toDateString()) {
-      found = true;
-      count++;
-    }
-  } while (!found);
-  return count;
-};
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
   const easter = tinhNgayPhucSinh(y);
-  const ashWednesday = tinhThuTuLeTro(easter);
+  const ashWednesday = tinhThuTuLeTro(cloneDate(easter));
   const chuaHienLinh = tinhLeChuaHienLinh(y);
   const leChuaKiToVua = tinhLeChuaKiToVua(tuanmuaVong.week1);
-  const pentecostSunday = addDate(easter, 49);
+  const pentecostSunday = tinhLeChuaThanhThanHienxuong(cloneDate(easter));
   const chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong(
     leChuaKiToVua,
     pentecostSunday
@@ -400,19 +414,19 @@ function tinhNamPhungVu(y) {
     firstOrdinarySundayAfterPentecostSunday: chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
     leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y),
     ashWed: ashWednesday,
-    firstSundayOfLent: addDate(ashWednesday, 4),
-    secondSundayOfLent: addDate(ashWednesday, 11),
-    thirdSundayOfLent: addDate(ashWednesday, 18),
-    fourthSundayOfLent: addDate(ashWednesday, 25),
-    fifthSundayOfLent: addDate(ashWednesday, 32),
-    palmSunday: addDate(ashWednesday, 39),
+    firstSundayOfLent: firstSundayOfLent(ashWednesday),
+    secondSundayOfLent: secondSundayOfLent(ashWednesday),
+    thirdSundayOfLent: thirdSundayOfLent(ashWednesday),
+    fourthSundayOfLent: fourthSundayOfLent(ashWednesday),
+    fifthSundayOfLent: fifthSundayOfLent(ashWednesday),
+    palmSunday: palmSunday(ashWednesday),
     easterSunday: easter,
     secondSundayOfEaster: addDate(easter, 7),
     thirdSundayOfEaster: addDate(easter, 14),
     fourthSundayOfEaster: addDate(easter, 21),
     fifthSundayOfEaster: addDate(easter, 28),
     sixthSundayOfEaster: addDate(easter, 35),
-    theAscentionOfTheLord: addDate(easter, 42),
+    theAscentionOfTheLord: calculateTheAscentionOfTheLord(easter),
     pentecostSunday,
     chuaKitoVua: leChuaKiToVua,
     firstSundayOfAdvent: tuanmuaVong.week1,
@@ -425,8 +439,6 @@ function tinhNamPhungVu(y) {
 }
 export {
   nameOfDays,
-  tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
-  tinhLeChuaKiToVua,
   tinhNamPhungVu
 };
 //# sourceMappingURL=index.mjs.map

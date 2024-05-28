@@ -59,8 +59,6 @@ declare const nameOfDays: {
     chuaKitoVua: string;
     firstOrdinarySundayAfterPentecostSunday: string;
 };
-declare const tinhLeChuaKiToVua: (chuaNhatThuNhatMuaVong: Date) => Date;
-declare const tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong: (leKiToVua: Date, leChuatthienxuong: Date) => number;
 declare function tinhNamPhungVu(y: number): NamPhungVu;
 
-export { nameOfDays, tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong, tinhLeChuaKiToVua, tinhNamPhungVu };
+export { nameOfDays, tinhNamPhungVu };

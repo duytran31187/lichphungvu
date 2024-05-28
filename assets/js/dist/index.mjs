@@ -362,13 +362,20 @@ var nameOfDays = {
   thirdSundayOfAdvent: "Third Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 3 m\xF9a v\u1ECDng)",
   fourthSundayOfAdvent: "Fourth Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 t\u01B0 m\xF9a v\u1ECDng)",
   christmas: "Christmas (Gi\xE1ng sinh)",
-  leThanhGia: "L\u1EC5 Th\xE1nh Gia"
+  leThanhGia: "L\u1EC5 Th\xE1nh Gia",
+  chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua"
+};
+var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
+  const ngayLe = cloneDate(chuaNhatThuNhatMuaVong);
+  ngayLe.setDate(ngayLe.getDate() - 7);
+  return ngayLe;
 };
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
   const easter = tinhNgayPhucSinh(y);
   const ashWednesday = tinhThuTuLeTro(easter);
   const chuaHienLinh = tinhLeChuaHienLinh(y);
+  const leChuaKiToVua = tinhLeChuaKiToVua(tuanmuaVong.week1);
   return {
     year: y,
     yearABC: tinhNamABC(y),
@@ -395,6 +402,7 @@ function tinhNamPhungVu(y) {
     sixthSundayOfEaster: addDate(easter, 35),
     theAscentionOfTheLord: addDate(easter, 42),
     pentecostSunday: addDate(easter, 49),
+    chuaKitoVua: leChuaKiToVua,
     firstSundayOfAdvent: tuanmuaVong.week1,
     secondSundayOfAdvent: tuanmuaVong.week2,
     thirdSundayOfAdvent: tuanmuaVong.week3,
@@ -405,6 +413,7 @@ function tinhNamPhungVu(y) {
 }
 export {
   nameOfDays,
+  tinhLeChuaKiToVua,
   tinhNamPhungVu
 };
 //# sourceMappingURL=index.mjs.map

@@ -24,6 +24,7 @@ type NamPhungVu = {
     sixthSundayOfEaster: Date;
     theAscentionOfTheLord: Date;
     pentecostSunday: Date;
+    chuaKitoVua: Date;
     firstSundayOfAdvent: Date;
     secondSundayOfAdvent: Date;
     thirdSundayOfAdvent: Date;
@@ -65,7 +66,9 @@ declare const nameOfDays: {
     fourthSundayOfAdvent: string;
     christmas: string;
     leThanhGia: string;
+    chuaKitoVua: string;
 };
+declare const tinhLeChuaKiToVua: (chuaNhatThuNhatMuaVong: Date) => Date;
 declare function tinhNamPhungVu(y: number): NamPhungVu;
 
-export { nameOfDays, tinhNamPhungVu };
+export { nameOfDays, tinhLeChuaKiToVua, tinhNamPhungVu };

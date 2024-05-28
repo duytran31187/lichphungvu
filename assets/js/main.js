@@ -52,7 +52,7 @@ $(document).ready(function () {
   const printHeadOfMonth = (month) => {
     const trItemBody =document.createElement('tr');
     const th = document.createElement('th');
-    th.colSpan = 3;
+    th.colSpan = 2;
     th.className = 'th-month';
     th.textContent = 'thang ' + month;
     trItemBody.appendChild(th);
@@ -61,7 +61,7 @@ $(document).ready(function () {
   const printABC = () => {
     const trItemBody =document.createElement('tr');
     const th = document.createElement('th');
-    th.colSpan = 3;
+    th.colSpan = 2;
     th.className = 'summary_month';
     th.textContent = namphungVuIns.year + ' - Năm ' + namphungVuIns.yearABC + ' - ' + namphungVuIns.oddEven;
     trItemBody.appendChild(th);
@@ -101,24 +101,24 @@ $(document).ready(function () {
         const trItemBody =document.createElement('tr');
         trItemBody.className = weekday[currentDate.getDay()]; // set class name theo weekday
         const td1 = document.createElement('td');
-        const td2 = document.createElement('td');
+        // const td2 = document.createElement('td');
         const td3 = document.createElement('td');
         td1.innerText = currentDate.toDateString(); // ngay 1/thang
         if (ngayPhungVuTheoThang[currentDate.toDateString()]) { // neu co trong danh sach in ra
-          td2.innerText = currentDate.toDateString();
+          // td2.innerText = currentDate.toDateString();
           td3.innerText = ngayPhungVuTheoThang[currentDate.toDateString()];
         } else {
           if (
             currentDate.getDay() == 0 // sunday
             && currentDate.getTime() > leChuaThanhThanHienxuong.getTime() // sau le chua thanh than hien xuong
           ) {
-            td2.innerText = currentDate.toDateString();
+            // td2.innerText = currentDate.toDateString();
             td3.innerText = 'Chua Nhat thu ' + chuaNhatTuanThuongNien + ' mua Thuong Nien';
             chuaNhatTuanThuongNien++;
           }
         }
         trItemBody.appendChild(td1);
-        trItemBody.appendChild(td2);
+        // trItemBody.appendChild(td2);
         trItemBody.appendChild(td3);
         lichphungvuTable.appendChild(trItemBody);
       }

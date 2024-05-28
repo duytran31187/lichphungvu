@@ -339,12 +339,19 @@ footer .btn-to-top a {
   color: #ffd666;
 }
 /* End: Footer */
+
 #currentMonthCalendar {
   display: none;
 }
-.th-month, .summary_month {
+.summary_month {
   text-align: center;
   padding: 20px 0;
+  background-color: rgb(170, 238, 219);
+}
+.th-month {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #ECA;
 }
 tr.Sunday {
   color: red;

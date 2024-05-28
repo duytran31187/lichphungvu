@@ -158,6 +158,7 @@ var require_lephucsinhlib = __commonJS({
 var src_exports = {};
 __export(src_exports, {
   nameOfDays: () => nameOfDays,
+  tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong: () => tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
   tinhLeChuaKiToVua: () => tinhLeChuaKiToVua,
   tinhNamPhungVu: () => tinhNamPhungVu
 });
@@ -343,7 +344,6 @@ function tinhLeChuaChiuPhepRua(y) {
   const leHienLinh = tinhLeChuaHienLinh(y);
   const day7 = /* @__PURE__ */ new Date(y + "-1-7");
   const day8 = /* @__PURE__ */ new Date(y + "-1-8");
-  console.log(`leHienLinh ${leHienLinh.toDateString()}`);
   let ngayLe;
   if (leHienLinh.getTime() == day7.getTime()) {
     ngayLe = timNgayTrongTuanSauNgay(day7, 1);
@@ -361,12 +361,6 @@ var nameOfDays = {
   yearABC: "A|B|C (n\u0103m A|B|C)",
   oddEven: "Odd|Even (N\u0103m ch\u1EB5n l\u1EBB)",
   theEpiphanyOfTheLord: "The Epiphany of the Lord (L\u1EC5 Ch\xFAa Hi\u1EC3n Linh)",
-  // chuaNhatThu1ThuongNien: 'Chua Nhat thuong nien 1',
-  // chuaNhatThu2ThuongNien: 'Chua Nhat thuong nien 2',
-  // chuaNhatThu3ThuongNien: 'Chua Nhat thuong nien 3',
-  // chuaNhatThu4ThuongNien: 'Chua Nhat thuong nien 4',
-  // chuaNhatThu5ThuongNien: 'Chua Nhat thuong nien 5',
-  // chuaNhatThu6ThuongNien: 'Chua Nhat thuong nien 6',
   leChuaChiuPhepRua: "L\u1EC5 Ch\xFAa ch\u1ECBu ph\xE9p r\u1EEDa",
   ashWed: "Ash Wednesday (Th\u1EE9 t\u01B0 l\u1EC5 tro)",
   firstSundayOfLent: "First Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a chay)",
@@ -389,12 +383,29 @@ var nameOfDays = {
   fourthSundayOfAdvent: "Fourth Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 t\u01B0 m\xF9a v\u1ECDng)",
   christmas: "Christmas (Gi\xE1ng sinh)",
   leThanhGia: "L\u1EC5 Th\xE1nh Gia",
-  chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua"
+  chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua",
+  firstOrdinarySundayAfterPentecostSunday: "Chua Nhat Thuong Nien sau Le Chua Thanh than hien xuong"
 };
 var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
   const ngayLe = cloneDate(chuaNhatThuNhatMuaVong);
   ngayLe.setDate(ngayLe.getDate() - 7);
   return ngayLe;
+};
+var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
+  let count = 33;
+  let found = false;
+  leKiToVua.setHours(10);
+  leChuatthienxuong.setHours(10);
+  do {
+    let sunday34 = cloneDate(leKiToVua);
+    sunday34.setDate(sunday34.getDate() - (34 - count) * 7);
+    console.log(`${count} --- ${sunday34.toDateString()}`);
+    count--;
+    if (sunday34.getTime() <= leChuatthienxuong.getTime()) {
+      found = true;
+    }
+  } while (!found);
+  return count + 2;
 };
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
@@ -402,16 +413,17 @@ function tinhNamPhungVu(y) {
   const ashWednesday = tinhThuTuLeTro(easter);
   const chuaHienLinh = tinhLeChuaHienLinh(y);
   const leChuaKiToVua = tinhLeChuaKiToVua(tuanmuaVong.week1);
+  const pentecostSunday = addDate(easter, 49);
+  const chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong(
+    leChuaKiToVua,
+    pentecostSunday
+  );
   return {
     year: y,
     yearABC: tinhNamABC(y),
     oddEven: y % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
     theEpiphanyOfTheLord: chuaHienLinh,
-    // chuaNhatThu2ThuongNien: addDate(chuaHienLinh,7),
-    // chuaNhatThu3ThuongNien: addDate(chuaHienLinh,14),
-    // chuaNhatThu4ThuongNien: addDate(chuaHienLinh,21),
-    // chuaNhatThu5ThuongNien: addDate(chuaHienLinh,28),
-    // chuaNhatThu6ThuongNien: addDate(chuaHienLinh,35),
+    firstOrdinarySundayAfterPentecostSunday: chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
     leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y),
     ashWed: ashWednesday,
     firstSundayOfLent: addDate(ashWednesday, 4),
@@ -427,7 +439,7 @@ function tinhNamPhungVu(y) {
     fifthSundayOfEaster: addDate(easter, 28),
     sixthSundayOfEaster: addDate(easter, 35),
     theAscentionOfTheLord: addDate(easter, 42),
-    pentecostSunday: addDate(easter, 49),
+    pentecostSunday,
     chuaKitoVua: leChuaKiToVua,
     firstSundayOfAdvent: tuanmuaVong.week1,
     secondSundayOfAdvent: tuanmuaVong.week2,
@@ -437,9 +449,11 @@ function tinhNamPhungVu(y) {
     leThanhGia: tinhLeThanhGia(y)
   };
 }
+var namphungVuIns = tinhNamPhungVu(2025);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   nameOfDays,
+  tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
   tinhLeChuaKiToVua,
   tinhNamPhungVu
 });

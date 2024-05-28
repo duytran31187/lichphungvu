@@ -76,6 +76,9 @@ $(document).ready(function () {
     const ngayPhungVuTheoThang = [];
     // lay danh sach ngay phung vu từ library
     const leChuaThanhThanHienxuong = namphungVuIns.pentecostSunday;
+    const leChuaHienLinh = namphungVuIns.theEpiphanyOfTheLord;
+    const chuaChiuPhepRua = namphungVuIns.leChuaChiuPhepRua;
+    const leTro = namphungVuIns.ashWed;
     for( let key in namphungVuIns) 
     {
       
@@ -112,7 +115,17 @@ $(document).ready(function () {
             currentDate.getDay() == 0 // sunday
             && currentDate.getTime() > leChuaThanhThanHienxuong.getTime() // sau le chua thanh than hien xuong
           ) {
+            if (chuaNhatTuanThuongNien == 7) {
+              chuaNhatTuanThuongNien = 8; // Pentecost Sunday (Lễ Chúa Thánh Thần hiện xuống) la tuan 6
+            }
             // td2.innerText = currentDate.toDateString();
+            td3.innerText = 'Chua Nhat thu ' + chuaNhatTuanThuongNien + ' mua Thuong Nien';
+            chuaNhatTuanThuongNien++;
+          } else if (
+            currentDate.getDay() == 0 // sunday
+            && currentDate.getTime() > chuaChiuPhepRua.getTime() // chua nhat dau tien sau chua chiu phep rua la tuan 2 thuogn nien
+            && currentDate.getTime() < leTro.getTime()
+          ) {
             td3.innerText = 'Chua Nhat thu ' + chuaNhatTuanThuongNien + ' mua Thuong Nien';
             chuaNhatTuanThuongNien++;
           }
@@ -128,7 +141,7 @@ $(document).ready(function () {
   printABC();
   
   const printFullLichPhungVuTheoNam = (year) => {
-    let chuaNhatTuanThuongNien = 8; // sau le chua thanh than hien xuong la tuan 7 mua thuong nien
+    let chuaNhatTuanThuongNien = 2; // sau le chua thanh than hien xuong la tuan 7 mua thuong nien
     for (let i=1; i<=12;i++) {
       chuaNhatTuanThuongNien = printByMonth(i, chuaNhatTuanThuongNien);
     }

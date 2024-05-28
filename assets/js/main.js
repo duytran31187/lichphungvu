@@ -67,7 +67,7 @@ $(document).ready(function () {
     trItemBody.appendChild(th);
     lichphungvuTable.appendChild(trItemBody);
   }
-  const printByMonth = (month, chuaNhatTuanThuongNien) => {
+  const printByMonth = (month, chuaNhatTuanThuongNien, chuaNhatThuongNienMua2) => {
     printHeadOfMonth(month);
     
     const monthInNum = month-1;
@@ -115,12 +115,9 @@ $(document).ready(function () {
             currentDate.getDay() == 0 // sunday
             && currentDate.getTime() > leChuaThanhThanHienxuong.getTime() // sau le chua thanh than hien xuong
           ) {
-            if (chuaNhatTuanThuongNien == 7) {
-              chuaNhatTuanThuongNien = 8; // Pentecost Sunday (Lễ Chúa Thánh Thần hiện xuống) la tuan 6
-            }
             // td2.innerText = currentDate.toDateString();
-            td3.innerText = 'Chua Nhat thu ' + chuaNhatTuanThuongNien + ' mua Thuong Nien';
-            chuaNhatTuanThuongNien++;
+            td3.innerText = 'Chua Nhat thu ' + chuaNhatThuongNienMua2 + ' mua Thuong Nien';
+            chuaNhatThuongNienMua2++;
           } else if (
             currentDate.getDay() == 0 // sunday
             && currentDate.getTime() > chuaChiuPhepRua.getTime() // chua nhat dau tien sau chua chiu phep rua la tuan 2 thuogn nien
@@ -136,14 +133,23 @@ $(document).ready(function () {
         lichphungvuTable.appendChild(trItemBody);
       }
     }
-    return chuaNhatTuanThuongNien;
+    return [
+      chuaNhatTuanThuongNien,
+      chuaNhatThuongNienMua2
+    ];
   }
   printABC();
   
   const printFullLichPhungVuTheoNam = (year) => {
     let chuaNhatTuanThuongNien = 2; // sau le chua thanh than hien xuong la tuan 7 mua thuong nien
+    
+    let chuaNhatThuongNienMua2 = namphungVuIns.firstOrdinarySundayAfterPentecostSunday;
+    console.log(`chuaNhatThuongNienMua2 ${chuaNhatThuongNienMua2}`);
     for (let i=1; i<=12;i++) {
-      chuaNhatTuanThuongNien = printByMonth(i, chuaNhatTuanThuongNien);
+      [
+        chuaNhatTuanThuongNien,
+        chuaNhatThuongNienMua2
+      ] = printByMonth(i, chuaNhatTuanThuongNien,chuaNhatThuongNienMua2);
     }
   };
   printFullLichPhungVuTheoNam(currentDate.getFullYear());

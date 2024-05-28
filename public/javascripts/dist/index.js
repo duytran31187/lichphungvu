@@ -394,18 +394,19 @@ var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
 var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
   let count = 33;
   let found = false;
-  leKiToVua.setHours(10);
-  leChuatthienxuong.setHours(10);
+  const chuaNhatThuongNienDauTienMua2 = cloneDate(leChuatthienxuong);
+  chuaNhatThuongNienDauTienMua2.setDate(chuaNhatThuongNienDauTienMua2.getDate() + 7);
   do {
     let sunday34 = cloneDate(leKiToVua);
     sunday34.setDate(sunday34.getDate() - (34 - count) * 7);
     console.log(`${count} --- ${sunday34.toDateString()}`);
     count--;
-    if (sunday34.getTime() <= leChuatthienxuong.getTime()) {
+    if (sunday34.toDateString() == chuaNhatThuongNienDauTienMua2.toDateString()) {
       found = true;
+      count++;
     }
   } while (!found);
-  return count + 2;
+  return count;
 };
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
@@ -449,7 +450,6 @@ function tinhNamPhungVu(y) {
     leThanhGia: tinhLeThanhGia(y)
   };
 }
-var namphungVuIns = tinhNamPhungVu(2025);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   nameOfDays,

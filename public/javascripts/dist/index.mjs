@@ -207,8 +207,9 @@ var tinhngayramsau21thang3 = (y) => {
   };
 };
 function tinhThuTuLeTro(ngayLePhucSinh) {
-  ngayLePhucSinh.setDate(ngayLePhucSinh.getDate() - 46);
-  return ngayLePhucSinh;
+  const d = cloneDate(ngayLePhucSinh);
+  d.setDate(d.getDate() - 46);
+  return d;
 }
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
@@ -271,7 +272,8 @@ var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
   return chuaNhatThuNhatMuaVong;
 };
 var tinhLeChuaThanhThanHienxuong = (easter) => {
-  return addDate(easter, 49);
+  const d = cloneDate(easter);
+  return addDate(d, 49);
 };
 var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
   let count = 33;

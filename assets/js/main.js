@@ -1,5 +1,18 @@
 import { nameOfDays, tinhNamPhungVu } from './dist/index.mjs'
-////  
+function printDate(d) {
+  const weekdays = ["CN","T2","T3","T4","T5","T6","T7"];
+
+  let day;
+  let month;
+  day = d.getDate();
+  month = d.getMonth() + 1;
+  let year = d.getFullYear();
+  
+  let weekday = d.getDay();
+  day = day < 10 ? '0'+day : day;
+  month = month < 10 ? '0' + month : month;
+  return `${weekdays[weekday]}, ${day}-${month}-${year}`;
+}
 $(document).ready(function () {
   const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   // add lich phung vu
@@ -76,7 +89,6 @@ $(document).ready(function () {
     const ngayPhungVuTheoThang = [];
     // lay danh sach ngay phung vu từ library
     const leChuaThanhThanHienxuong = namphungVuIns.pentecostSunday;
-    const leChuaHienLinh = namphungVuIns.theEpiphanyOfTheLord;
     const chuaChiuPhepRua = namphungVuIns.leChuaChiuPhepRua;
     const leTro = namphungVuIns.ashWed;
     for( let key in namphungVuIns) 
@@ -106,7 +118,7 @@ $(document).ready(function () {
         const td1 = document.createElement('td');
         // const td2 = document.createElement('td');
         const td3 = document.createElement('td');
-        td1.innerText = currentDate.toDateString(); // ngay 1/thang
+        td1.innerText = printDate(currentDate); // ngay 1/thang
         if (ngayPhungVuTheoThang[currentDate.toDateString()]) { // neu co trong danh sach in ra
           // td2.innerText = currentDate.toDateString();
           td3.innerText = ngayPhungVuTheoThang[currentDate.toDateString()];
@@ -144,7 +156,6 @@ $(document).ready(function () {
     let chuaNhatTuanThuongNien = 2; // sau le chua thanh than hien xuong la tuan 7 mua thuong nien
     
     let chuaNhatThuongNienMua2 = namphungVuIns.firstOrdinarySundayAfterPentecostSunday;
-    console.log(`chuaNhatThuongNienMua2 ${chuaNhatThuongNienMua2}`);
     for (let i=1; i<=12;i++) {
       [
         chuaNhatTuanThuongNien,

@@ -3,6 +3,7 @@ type NamPhungVu = {
     yearABC: string;
     oddEven: string;
     leDucMeChuaTroi: Date;
+    dangchuaGiesuTrongDenThanh: Date;
     theEpiphanyOfTheLord: Date;
     leChuaChiuPhepRua: Date;
     ashWed: Date;
@@ -60,6 +61,7 @@ declare const nameOfDays: {
     chuaKitoVua: string;
     firstOrdinarySundayAfterPentecostSunday: string;
     leDucMeChuaTroi: string;
+    dangchuaGiesuTrongDenThanh: string;
 };
 declare function tinhNamPhungVu(y: number): NamPhungVu | false;
 

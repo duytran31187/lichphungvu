@@ -67,7 +67,7 @@ $(document).ready(function () {
     const th = document.createElement('th');
     th.colSpan = 2;
     th.className = 'th-month';
-    th.textContent = 'thang ' + month;
+    th.textContent = 'Tháng ' + month;
     trItemBody.appendChild(th);
     lichphungvuTable.appendChild(trItemBody);
   }
@@ -82,7 +82,7 @@ $(document).ready(function () {
   }
   const printByMonth = (month, chuaNhatTuanThuongNien, chuaNhatThuongNienMua2) => {
     printHeadOfMonth(month);
-    
+    const classMonth = month%2 == 1 ? 'odd-cls' : 'even-cls';
     const monthInNum = month-1;
     const firstDay = new Date(namphungVuIns.year, monthInNum, 1);
     const lastDay = new Date(namphungVuIns.year, month, 0);
@@ -114,7 +114,7 @@ $(document).ready(function () {
       currentDate.setDate(currentDate.getDate() + d);
       if (currentDate.getTime() <= lastDay.getTime()) { // if > last day => skip
         const trItemBody =document.createElement('tr');
-        trItemBody.className = weekday[currentDate.getDay()]; // set class name theo weekday
+        trItemBody.className = weekday[currentDate.getDay()] + ' ' + classMonth; // set class name theo weekday
         const td1 = document.createElement('td');
         // const td2 = document.createElement('td');
         const td3 = document.createElement('td');

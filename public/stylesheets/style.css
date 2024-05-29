@@ -349,9 +349,13 @@ footer .btn-to-top a {
 }
 .th-month {
   text-align: center;
-  padding: 20px 0;
+  padding: 5px 10px;
   background-color: #ECA;
 }
 tr.Sunday {
   color: red;
+  font-variant: small-caps;
+}
+tr.odd-cls {
+  background-color: #cccc;
 }

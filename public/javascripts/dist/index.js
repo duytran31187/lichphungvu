@@ -164,15 +164,18 @@ module.exports = __toCommonJS(src_exports);
 
 // src/utils.ts
 function cloneDate(d) {
-  return new Date(d.getTime());
+  return new Date(d);
+}
+function newDate(year, month, day) {
+  return /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
 }
 function addDate(currentDate, numOfDate) {
-  const newDate = cloneDate(currentDate);
-  newDate.setDate(newDate.getDate() + numOfDate);
-  return newDate;
+  const newDate3 = cloneDate(currentDate);
+  newDate3.setDate(newDate3.getDate() + numOfDate);
+  return newDate3;
 }
 function getChristmasDay(year) {
-  return /* @__PURE__ */ new Date(year + "-12-25");
+  return newDate(year, 12, 25);
 }
 function timNgayTrongTuanSauNgay(d, dayOfWeek) {
   let count = 1;
@@ -190,13 +193,18 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
     }
   } while (!breakTheLoop);
   if (!resultDay) {
-    console.log("invalid date");
+    console.log(`cant find timNgayTrongTuanSauNgay for d ${d.toDateString()} for ${dayOfWeek}`);
+    return null;
   }
   return resultDay;
 }
 var timChuaNhatGanNhatTuNgay = (d) => {
   d.setDate(d.getDate() - 1);
-  return timNgayTrongTuanSauNgay(d, 0);
+  const foundDate = timNgayTrongTuanSauNgay(d, 0);
+  if (foundDate instanceof Date) {
+    return foundDate;
+  }
+  return false;
 };
 
 // src/cacNgayLeNamPhungVu.ts
@@ -239,7 +247,11 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
   let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
-  return timChuaNhatGanNhatTuNgay(closestSunday);
+  const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
+  if (foundDate instanceof Date) {
+    return foundDate;
+  }
+  return false;
 };
 function tinhLeChuaHienLinh(y) {
   const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
@@ -290,7 +302,11 @@ function tinhLeChuaChiuPhepRua(y) {
   } else {
     ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
   }
-  return ngayLe;
+  if (ngayLe instanceof Date) {
+    return ngayLe;
+  } else {
+    return false;
+  }
 }
 var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
   chuaNhatThuNhatMuaVong.setDate(chuaNhatThuNhatMuaVong.getDate() - 7);
@@ -425,21 +441,28 @@ var nameOfDays = {
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
   const easter = tinhNgayPhucSinh(y);
-  const ashWednesday = tinhThuTuLeTro(cloneDate(easter));
+  if (!(easter instanceof Date)) {
+    return false;
+  }
+  const ashWednesday = tinhThuTuLeTro(easter);
   const chuaHienLinh = tinhLeChuaHienLinh(y);
   const leChuaKiToVua = tinhLeChuaKiToVua(tuanmuaVong.week1);
-  const pentecostSunday = tinhLeChuaThanhThanHienxuong(cloneDate(easter));
+  const pentecostSunday = tinhLeChuaThanhThanHienxuong(easter);
   const chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong(
     leChuaKiToVua,
     pentecostSunday
   );
+  const leChuaChiuPhepRua = tinhLeChuaChiuPhepRua(y);
+  if (!(leChuaChiuPhepRua instanceof Date)) {
+    return false;
+  }
   return {
     year: y,
     yearABC: tinhNamABC(y),
     oddEven: y % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
     theEpiphanyOfTheLord: chuaHienLinh,
     firstOrdinarySundayAfterPentecostSunday: chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
-    leChuaChiuPhepRua: tinhLeChuaChiuPhepRua(y),
+    leChuaChiuPhepRua,
     ashWed: ashWednesday,
     firstSundayOfLent: firstSundayOfLent(ashWednesday),
     secondSundayOfLent: secondSundayOfLent(ashWednesday),

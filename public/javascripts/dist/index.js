@@ -436,7 +436,8 @@ var nameOfDays = {
   christmas: "Christmas (Gi\xE1ng sinh)",
   leThanhGia: "L\u1EC5 Th\xE1nh Gia",
   chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua",
-  firstOrdinarySundayAfterPentecostSunday: "Chua Nhat Thuong Nien sau Le Chua Thanh than hien xuong"
+  firstOrdinarySundayAfterPentecostSunday: "Chua Nhat Thuong Nien sau Le Chua Thanh than hien xuong",
+  leDucMeChuaTroi: " Th\xE1nh Ma-ri-a, \xD0\u1EE9c M\u1EB9 Ch\xFAa Tr\u1EDDi"
 };
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
@@ -460,6 +461,7 @@ function tinhNamPhungVu(y) {
     year: y,
     yearABC: tinhNamABC(y),
     oddEven: y % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
+    leDucMeChuaTroi: newDate(y, 1, 1),
     theEpiphanyOfTheLord: chuaHienLinh,
     firstOrdinarySundayAfterPentecostSunday: chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
     leChuaChiuPhepRua,

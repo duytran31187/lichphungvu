@@ -1,3 +1,35 @@
+type NamPhungVu = {
+    year: number;
+    yearABC: string;
+    oddEven: string;
+    leDucMeChuaTroi: Date;
+    theEpiphanyOfTheLord: Date;
+    leChuaChiuPhepRua: Date;
+    ashWed: Date;
+    firstSundayOfLent: Date;
+    secondSundayOfLent: Date;
+    thirdSundayOfLent: Date;
+    fourthSundayOfLent: Date;
+    fifthSundayOfLent: Date;
+    palmSunday: Date;
+    easterSunday: Date;
+    secondSundayOfEaster: Date;
+    thirdSundayOfEaster: Date;
+    fourthSundayOfEaster: Date;
+    fifthSundayOfEaster: Date;
+    sixthSundayOfEaster: Date;
+    theAscentionOfTheLord: Date;
+    pentecostSunday: Date;
+    chuaKitoVua: Date;
+    firstSundayOfAdvent: Date;
+    secondSundayOfAdvent: Date;
+    thirdSundayOfAdvent: Date;
+    fourthSundayOfAdvent: Date;
+    christmas: Date;
+    leThanhGia: Date;
+    firstOrdinarySundayAfterPentecostSunday: number;
+};
+
 declare const nameOfDays: {
     year: string;
     yearABC: string;
@@ -27,7 +59,8 @@ declare const nameOfDays: {
     leThanhGia: string;
     chuaKitoVua: string;
     firstOrdinarySundayAfterPentecostSunday: string;
+    leDucMeChuaTroi: string;
 };
-declare function tinhNamPhungVu(y: number): any;
+declare function tinhNamPhungVu(y: number): NamPhungVu | false;
 
 export { nameOfDays, tinhNamPhungVu };

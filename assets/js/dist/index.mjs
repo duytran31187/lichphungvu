@@ -284,8 +284,9 @@ function tinhLeChuaChiuPhepRua(y) {
   }
 }
 var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
-  chuaNhatThuNhatMuaVong.setDate(chuaNhatThuNhatMuaVong.getDate() - 7);
-  return chuaNhatThuNhatMuaVong;
+  let tuan = cloneDate(chuaNhatThuNhatMuaVong);
+  tuan.setDate(tuan.getDate() - 7);
+  return tuan;
 };
 var tinhLeChuaThanhThanHienxuong = (easter) => {
   const d = cloneDate(easter);

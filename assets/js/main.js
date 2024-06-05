@@ -1,4 +1,4 @@
-import { nameOfDays, tinhNamPhungVu } from './dist/index.mjs'
+import { nameOfDays, tinhNamPhungVu } from './lichphungvu/dist/index.mjs'
 function printDate(d) {
   const weekdays = ["CN","T2","T3","T4","T5","T6","T7"];
 

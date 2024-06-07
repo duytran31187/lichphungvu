@@ -21,6 +21,9 @@ type NamPhungVu = {
     sixthSundayOfEaster: Date;
     theAscentionOfTheLord: Date;
     pentecostSunday: Date;
+    leChuaBaNgoi: Date;
+    leMinhMauThanhChua: Date;
+    leThanhTamChuaGieSu: Date;
     chuaKitoVua: Date;
     firstSundayOfAdvent: Date;
     secondSundayOfAdvent: Date;
@@ -62,6 +65,9 @@ declare const nameOfDays: {
     firstOrdinarySundayAfterPentecostSunday: string;
     leDucMeChuaTroi: string;
     dangchuaGiesuTrongDenThanh: string;
+    leChuaBaNgoi: string;
+    leMinhMauThanhChua: string;
+    leThanhTamChuaGieSu: string;
 };
 declare function tinhNamPhungVu(y: number): NamPhungVu | false;
 

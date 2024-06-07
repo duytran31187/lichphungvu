@@ -317,6 +317,18 @@ var tinhLeChuaThanhThanHienxuong = (easter) => {
   const d = cloneDate(easter);
   return addDate(d, 49);
 };
+var tinhLeChuaBaNgoi = (leChuaThanhThanHienXuong) => {
+  const d = cloneDate(leChuaThanhThanHienXuong);
+  return addDate(d, 7);
+};
+var tinhLeMinhMauThanhChua = (tinhLeChuaBaNgoi2) => {
+  const d = cloneDate(tinhLeChuaBaNgoi2);
+  return addDate(d, 7);
+};
+var tinhLeThanhTamChuaGieSu = (tinhLeMinhMauThanhChua2) => {
+  const d = cloneDate(tinhLeMinhMauThanhChua2);
+  return addDate(d, 7);
+};
 var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
   let count = 33;
   let found = false;
@@ -439,7 +451,10 @@ var nameOfDays = {
   chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua",
   firstOrdinarySundayAfterPentecostSunday: "Chua Nhat Thuong Nien sau Le Chua Thanh than hien xuong",
   leDucMeChuaTroi: "Th\xE1nh Ma-ri-a, \xD0\u1EE9c M\u1EB9 Ch\xFAa Tr\u1EDDi",
-  dangchuaGiesuTrongDenThanh: "D\xE2ng Ch\xFAa Gi\xEA-su Trong \u0110\u1EC1n Th\xE1nh"
+  dangchuaGiesuTrongDenThanh: "D\xE2ng Ch\xFAa Gi\xEA-su Trong \u0110\u1EC1n Th\xE1nh",
+  leChuaBaNgoi: "L\u1EC5 Ch\xFAa Ba Ng\xF4i",
+  leMinhMauThanhChua: "L\u1EC5 M\xECnh M\xE1u Th\xE1nh Ch\xFAa",
+  leThanhTamChuaGieSu: "L\u1EC5 Th\xE1nh T\xE2m Ch\xFAa Gi\xEA Su"
 };
 function tinhNamPhungVu(y) {
   const tuanmuaVong = tinh4TuanMuaVong(y);
@@ -451,6 +466,9 @@ function tinhNamPhungVu(y) {
   const chuaHienLinh = tinhLeChuaHienLinh(y);
   const leChuaKiToVua = tinhLeChuaKiToVua(tuanmuaVong.week1);
   const pentecostSunday = tinhLeChuaThanhThanHienxuong(easter);
+  const leChuaBaNgoi = tinhLeChuaBaNgoi(pentecostSunday);
+  const leMinhMauThanhChua = tinhLeMinhMauThanhChua(leChuaBaNgoi);
+  const leThanhTamChuaGieSu = tinhLeThanhTamChuaGieSu(leMinhMauThanhChua);
   const chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong(
     leChuaKiToVua,
     pentecostSunday
@@ -483,6 +501,9 @@ function tinhNamPhungVu(y) {
     sixthSundayOfEaster: addDate(easter, 35),
     theAscentionOfTheLord: calculateTheAscentionOfTheLord(easter),
     pentecostSunday,
+    leChuaBaNgoi,
+    leMinhMauThanhChua,
+    leThanhTamChuaGieSu,
     chuaKitoVua: leChuaKiToVua,
     firstSundayOfAdvent: tuanmuaVong.week1,
     secondSundayOfAdvent: tuanmuaVong.week2,

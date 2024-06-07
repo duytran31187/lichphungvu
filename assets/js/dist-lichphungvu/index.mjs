@@ -302,7 +302,7 @@ var tinhLeMinhMauThanhChua = (tinhLeChuaBaNgoi2) => {
 };
 var tinhLeThanhTamChuaGieSu = (tinhLeMinhMauThanhChua2) => {
   const d = cloneDate(tinhLeMinhMauThanhChua2);
-  return addDate(d, 7);
+  return addDate(d, 5);
 };
 var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
   let count = 33;

@@ -2,7 +2,7 @@ type NamPhungVu = {
     year: number;
     yearABC: string;
     oddEven: string;
-    leDucMeChuaTroi: Date;
+    leDucMeChuaTroi?: Date;
     dangchuaGiesuTrongDenThanh: Date;
     theEpiphanyOfTheLord: Date;
     leChuaChiuPhepRua: Date;
@@ -33,7 +33,6 @@ type NamPhungVu = {
     leThanhGia: Date;
     firstOrdinarySundayAfterPentecostSunday: number;
 };
-
 declare const nameOfDays: {
     year: string;
     yearABC: string;
@@ -69,6 +68,50 @@ declare const nameOfDays: {
     leMinhMauThanhChua: string;
     leThanhTamChuaGieSu: string;
 };
-declare function tinhNamPhungVu(y: number): NamPhungVu | false;
+type NgayLeData = {
+    name: string;
+    type?: string;
+    fixed?: boolean;
+    date?: Date;
+};
+type SingleDateData = {
+    date: Date;
+    cacNgayLe: NgayLeData[];
+};
 
-export { nameOfDays, tinhNamPhungVu };
+declare class tinhNamPhungVu {
+    private year;
+    private pLePhucSinh;
+    private pThuTuLeTro;
+    private pNgayLeChuaHienLinh;
+    private pLeThanhGia;
+    private pNgayLeGiangSinh;
+    private p4TuanMuaVong;
+    private namPhungVu;
+    private fullYear;
+    private firstSundayOfYear;
+    constructor(year: number);
+    private getFullYearKeyFromDate;
+    private addNgayLeVoDanhSach;
+    private tinhNgayPhucSinh;
+    private tinhThuTuLeTro;
+    private get ngayLePhucSinh();
+    private get ngayLeTro();
+    private get ngayLeChuaHienLinh();
+    private get ngayLeThanhGia();
+    private get ngayLeGiangSinh();
+    private get bonTuanMuaVong();
+    private tinhLichPhungVu;
+    getNamPhungVu(): NamPhungVu | undefined;
+    private populateCalculatedDaysToCalender;
+    private populateCacNgayLeCoDinh;
+    /**
+     * goi sau khi da populate het cac ngay le co dinh, theo cong thu
+     */
+    private tinhchuaNhatMuaThuongNien;
+    getFullLichPhungVuTheoNam(): SingleDateData[];
+}
+
+declare function getTinhNamPhungVuInstant(year: number): tinhNamPhungVu;
+
+export { getTinhNamPhungVuInstant, nameOfDays };

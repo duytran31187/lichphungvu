@@ -143,6 +143,9 @@ function cloneDate(d) {
 }
 function newDate(year, month, day) {
   const d = /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
+  d.setHours(1);
+  d.setMinutes(0);
+  d.setSeconds(0);
   return d;
 }
 function addDate(currentDate, numOfDate) {
@@ -224,7 +227,6 @@ var nameOfDays = {
   chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua",
   firstOrdinarySundayAfterPentecostSunday: "Chua Nhat Thuong Nien sau Le Chua Thanh than hien xuong",
   leDucMeChuaTroi: "Th\xE1nh Ma-ri-a, \xD0\u1EE9c M\u1EB9 Ch\xFAa Tr\u1EDDi",
-  dangchuaGiesuTrongDenThanh: "D\xE2ng Ch\xFAa Gi\xEA-su Trong \u0110\u1EC1n Th\xE1nh",
   leChuaBaNgoi: "L\u1EC5 Ch\xFAa Ba Ng\xF4i",
   leMinhMauThanhChua: "L\u1EC5 M\xECnh M\xE1u Th\xE1nh Ch\xFAa",
   leThanhTamChuaGieSu: "L\u1EC5 Th\xE1nh T\xE2m Ch\xFAa Gi\xEA Su"
@@ -321,7 +323,7 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "D\xE2ng Ch\xFAa Gi\xEA-su Trong \u0110\u1EC1n Th\xE1nh",
       date: newDate(year, 2, 2),
-      type: "Le K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
@@ -1440,7 +1442,7 @@ var TinhNamPhungVu = class {
       yearABC: tinhNamABC(this.year),
       oddEven: this.year % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
       // leDucMeChuaTroi: newDate(this.year, 1,1),
-      dangchuaGiesuTrongDenThanh: newDate(this.year, 2, 2),
+      // dangchuaGiesuTrongDenThanh: newDate(this.year, 2, 2),
       theEpiphanyOfTheLord: this.ngayLeChuaHienLinh,
       firstOrdinarySundayAfterPentecostSunday: chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
       leChuaChiuPhepRua,

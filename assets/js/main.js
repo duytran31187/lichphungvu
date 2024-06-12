@@ -68,7 +68,8 @@ $(document).ready(function () {
       }
       // print date
       trItemBody.className = weekday[currentDate.getDay()] + ' ' + classMonth; // set class name theo weekday
-      const td1 = document.createElement('td');
+      const td1 = document.createElement('th');
+      td1.className = 'th-date';
       const td3 = document.createElement('td');
       td1.innerText = printDate(currentDate); // ngay 1/thang
       trItemBody.appendChild(td1);

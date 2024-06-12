@@ -28,7 +28,6 @@ type NamPhungVu = {
     secondSundayOfAdvent: Date;
     thirdSundayOfAdvent: Date;
     fourthSundayOfAdvent: Date;
-    christmas: Date;
     leThanhGia: Date;
     firstOrdinarySundayAfterPentecostSunday: number;
 };
@@ -83,7 +82,6 @@ declare class TinhNamPhungVu {
     private pThuTuLeTro;
     private pNgayLeChuaHienLinh;
     private pLeThanhGia;
-    private pNgayLeGiangSinh;
     private p4TuanMuaVong;
     private namPhungVu;
     private fullYear;
@@ -97,7 +95,6 @@ declare class TinhNamPhungVu {
     private get ngayLeTro();
     private get ngayLeChuaHienLinh();
     private get ngayLeThanhGia();
-    private get ngayLeGiangSinh();
     private get bonTuanMuaVong();
     private tinhLichPhungVu;
     getNamPhungVu(): NamPhungVu | undefined;

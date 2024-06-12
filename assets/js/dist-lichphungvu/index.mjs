@@ -1410,12 +1410,6 @@ var TinhNamPhungVu = class {
     }
     return this.pLeThanhGia;
   }
-  get ngayLeGiangSinh() {
-    if (!this.pNgayLeGiangSinh) {
-      this.pNgayLeGiangSinh = getChristmasDay(this.year);
-    }
-    return this.pNgayLeGiangSinh;
-  }
   get bonTuanMuaVong() {
     if (!this.p4TuanMuaVong) {
       this.p4TuanMuaVong = tinh4TuanMuaVong(this.year);
@@ -1469,7 +1463,6 @@ var TinhNamPhungVu = class {
       secondSundayOfAdvent: tuanMuaVong.week2,
       thirdSundayOfAdvent: tuanMuaVong.week3,
       fourthSundayOfAdvent: tuanMuaVong.week4,
-      christmas: this.ngayLeGiangSinh,
       leThanhGia: this.ngayLeThanhGia
     };
   }

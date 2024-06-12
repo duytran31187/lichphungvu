@@ -76,7 +76,10 @@ $(document).ready(function () {
       if (fullYear[idx].cacNgayLe.length > 0) {
         let txt = '';
         for (let i in fullYear[idx].cacNgayLe) {
-          txt += fullYear[idx].cacNgayLe[i]['name'] + '-' + fullYear[idx].cacNgayLe[i]['type'] + '<br />';
+          if (fullYear[idx].cacNgayLe[i]['type']) {
+            txt +=  '<i class="loai_ngay_le">'+ fullYear[idx].cacNgayLe[i]['type'] + ' </i>| ';
+          }
+          txt += fullYear[idx].cacNgayLe[i]['name'] + '<br />';
         }
         td3.innerHTML = txt;
       } else {

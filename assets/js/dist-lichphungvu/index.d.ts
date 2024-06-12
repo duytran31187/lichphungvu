@@ -79,7 +79,7 @@ type SingleDateData = {
     cacNgayLe: NgayLeData[];
 };
 
-declare class tinhNamPhungVu {
+declare class TinhNamPhungVu {
     private year;
     private pLePhucSinh;
     private pThuTuLeTro;
@@ -104,7 +104,9 @@ declare class tinhNamPhungVu {
     private tinhLichPhungVu;
     getNamPhungVu(): NamPhungVu | undefined;
     private populateCalculatedDaysToCalender;
+    private setSameTimeOfDate;
     private populateCacNgayLeCoDinh;
+    private nameChuaNhaMuaThuongNienThu;
     /**
      * goi sau khi da populate het cac ngay le co dinh, theo cong thu
      */
@@ -112,6 +114,6 @@ declare class tinhNamPhungVu {
     getFullLichPhungVuTheoNam(): SingleDateData[];
 }
 
-declare function getTinhNamPhungVuInstant(year: number): tinhNamPhungVu;
+declare function getTinhNamPhungVuInstant(year: number): TinhNamPhungVu;
 
 export { getTinhNamPhungVuInstant, nameOfDays };

@@ -276,16 +276,19 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Kinh Danh r\u1EA5t th\xE1nh Ch\xFAa Gi\xEA-su",
       date: newDate(year, 1, 3),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh R\xE2y-mun-\u0111\xF4 P\xEA-nha-pho, linh m\u1EE5c",
       date: newDate(year, 1, 7),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Hi-la-ri-\xF4, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 1, 13),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -297,11 +300,13 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Pha-bi-a-n\xF4, gi\xE1o ho\xE0ng, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 1, 20),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh X\xEA-b\xE1t-ti-a-n\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 1, 20),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -313,36 +318,43 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Vinh-s\u01A1n, ph\xF3 t\u1EBF, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 1, 22),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phan-xi-c\xF4 \u0111\u01A1 Xan, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 1, 24),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phao-l\xF4 T\xF4ng \u0111\u1ED3 tr\u1EDF l\u1EA1i",
       date: newDate(year, 1, 25),
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Ti-m\xF4-th\xEA v\xE0 th\xE1nh Ti-t\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 1, 26),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-gi\xEA-la M\xEA-ri-si, trinh n\u1EEF",
       date: newDate(year, 1, 27),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xF4-ma A-qui-n\xF4, linh m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 1, 28),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an B\u1ED1t-c\xF4, linh m\u1EE5c",
       date: newDate(year, 1, 31),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -1460,8 +1472,6 @@ var TinhNamPhungVu = class {
       year: this.year,
       yearABC: tinhNamABC(this.year),
       oddEven: this.year % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
-      // leDucMeChuaTroi: newDate(this.year, 1,1),
-      // dangchuaGiesuTrongDenThanh: newDate(this.year, 2, 2),
       theEpiphanyOfTheLord: this.ngayLeChuaHienLinh,
       firstOrdinarySundayAfterPentecostSunday: chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
       leChuaChiuPhepRua,
@@ -1499,13 +1509,25 @@ var TinhNamPhungVu = class {
   }
   populateCalculatedDaysToCalender() {
     const namphungVuIns = this.getNamPhungVu();
+    const LeTrong = [
+      "theEpiphanyOfTheLord"
+    ];
+    const LeKinh = [
+      "leChuaChiuPhepRua"
+    ];
     for (let key in namphungVuIns) {
       if (namphungVuIns.hasOwnProperty(key)) {
         const val = namphungVuIns[key];
         const nameOfDate = nameOfDays[key];
         if (val instanceof Date) {
           if (nameOfDays.hasOwnProperty(key)) {
-            this.addNgayLeVoDanhSach(val, nameOfDate, "", false);
+            let loaiNgayLe = "";
+            if (LeTrong.includes(key)) {
+              loaiNgayLe = LE_TRONG;
+            } else if (LeKinh.includes(key)) {
+              loaiNgayLe = LE_KINH;
+            }
+            this.addNgayLeVoDanhSach(val, nameOfDate, loaiNgayLe, false);
           } else {
             throw new Error("khong the tim thay ten ngay le");
           }
@@ -1515,7 +1537,7 @@ var TinhNamPhungVu = class {
   }
   setSameTimeOfDate(date) {
     const d = cloneDate(date);
-    d.setHours(0);
+    d.setHours(1);
     d.setMinutes(0);
     d.setSeconds(0);
     return d;

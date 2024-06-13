@@ -1655,11 +1655,27 @@ var TinhNamPhungVu = class {
       );
     } while (batNhaThu < 8);
   }
+  populateTuanThanh() {
+    const namPhungVu = this.namPhungVu;
+    const d = cloneDate(namPhungVu.palmSunday);
+    let thu = 1;
+    do {
+      d.setDate(d.getDate() + 1);
+      thu++;
+      this.addNgayLeVoDanhSach(
+        d,
+        `Thu ${thu} Tu\u1EA7n Th\xE1nh`,
+        "",
+        false
+      );
+    } while (thu < 8);
+  }
   getFullLichPhungVuTheoNam() {
     this.populateCacNgayLeCoDinh();
     this.populateCalculatedDaysToCalender();
     this.tinhchuaNhatMuaThuongNien();
     this.populateTuanBatNhat();
+    this.populateTuanThanh();
     return this.fullYear;
   }
 };

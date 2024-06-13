@@ -586,6 +586,7 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh R\xF4-moan-\u0111\xF4, vi\u1EC7n ph\u1EE5",
       date: newDate(year, 6, 19),
+      type: LE_NHO,
       fixed: true
     },
     {

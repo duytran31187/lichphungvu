@@ -341,21 +341,25 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh An-ga-ri-\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 2, 3),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh B\u01A1-la-xi-\xF4, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 2, 3),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh A-ga-ta, trinh n\u1EEF, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 2, 5),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phao-l\xF4 Mi-ki v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 2, 6),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -378,11 +382,13 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "B\u1EA3y th\xE1nh l\u1EADp d\xF2ng T\xF4i T\u1EDB \u0110\u1EE9c M\u1EB9",
       date: newDate(year, 2, 17),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ph\xEA-r\xF4 \u0110a-mi-a-n\xF4, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 2, 21),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -394,6 +400,7 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Gh\xEA-g\xF4-ri-\xF4 th\xE0nh Narek, vi\u1EC7n ph\u1EE5, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 2, 27),
+      type: LE_NHO,
       fixed: true
     },
     {

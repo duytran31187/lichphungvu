@@ -431,33 +431,37 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Ca-xi-mia",
       date: newDate(year, 3, 4),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh n\u1EEF Pe-p\xEA-tu-a v\xE0 th\xE1nh n\u1EEF Ph\xEA-li-xi-ta, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 3, 7),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh P\xE1t-tric, gi\xE1m m\u1EE5c",
       date: newDate(year, 3, 17),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Sy-ri-l\xF4, gi\xE1m m\u1EE5c Gi\xEA-ru-sa-lem, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 3, 18),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Giu-se, B\u1EA1n tr\u0103m n\u0103m \u0110\u1EE9c Trinh n\u1EEF Maria",
       date: newDate(year, 3, 19),
-      type: LE_NHO,
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "L\u1EC5 Truy\u1EC1n Tin",
       date: newDate(year, 3, 25),
-      type: LE_NHO,
+      type: LE_TRONG,
       fixed: true
     },
     {
@@ -469,26 +473,31 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Lu-i \u0111\u01A1 M\xF4ng-pho, linh m\u1EE5c",
       date: newDate(year, 4, 28),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ph\xEA-r\xF4 Sa-nen, linh m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 4, 28),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ca-ta-ri-na Si-\xEA-na, trinh n\u1EEF, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 4, 29),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Pi-\xF4 V, gi\xE1o ho\xE0ng",
       date: newDate(year, 4, 30),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Giu-se th\u1EE3",
       date: newDate(year, 5, 1),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -506,16 +515,19 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh N\xEA-r\xEA-\xF4 v\xE0 th\xE1nh A-ki-l\xEA-\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 5, 12),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh P\u0103ng-ra-xi-\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 5, 12),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c M\u1EB9 Fa-ti-ma",
       date: newDate(year, 5, 13),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -527,16 +539,19 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh B\xEA-na-\u0111i-n\xF4 Xi-\xEA-na, linh m\u1EE5c",
       date: newDate(year, 5, 20),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Christ\xF4ph\xEA de Magallanes, linh m\u1EE5c, v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 5, 21),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ri-ta th\xE0nh Ca-xi-a, N\u1EEF tu",
       date: newDate(year, 5, 22),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -548,6 +563,7 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Au-tinh th\xE0nh Can-t\u01A1-b\u01A1-ri, gi\xE1m m\u1EE5c",
       date: newDate(year, 5, 27),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -559,6 +575,7 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh M\xE1c-s\xEA-li-n\xF4 v\xE0 th\xE1nh Ph\xEA-r\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 6, 2),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -576,6 +593,7 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh N\xF4-bec-t\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 6, 6),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -610,6 +628,7 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "C\xE1c th\xE1nh t\u1EED \u0111\u1EA1o ti\xEAn kh\u1EDFi c\u1EE7a gi\xE1o \u0111o\xE0n R\xF4-ma",
       date: newDate(year, 6, 30),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -1517,7 +1536,16 @@ var TinhNamPhungVu = class {
   populateCalculatedDaysToCalender() {
     const namphungVuIns = this.getNamPhungVu();
     const LeTrong = [
-      "theEpiphanyOfTheLord"
+      "theEpiphanyOfTheLord",
+      // Le Chua Hien Linh
+      "theAscentionOfTheLord",
+      // Le Chua Len Troi
+      "pentecostSunday",
+      //: 'Lễ Chúa Thánh Thần hiện xuống'
+      "leChuaBaNgoi",
+      //: leChuaBaNgoi
+      "leMinhMauThanhChua",
+      "leThanhTamChuaGieSu"
     ];
     const LeKinh = [
       "leChuaChiuPhepRua"
@@ -1600,10 +1628,26 @@ var TinhNamPhungVu = class {
       muaThuongNienThu++;
     }
   }
+  populateTuanBatNhat() {
+    const namPhungVu = this.namPhungVu;
+    const d = cloneDate(namPhungVu.easterSunday);
+    let batNhaThu = 1;
+    do {
+      d.setDate(d.getDate() + 1);
+      batNhaThu++;
+      this.addNgayLeVoDanhSach(
+        d,
+        `Thu ${batNhaThu} trong Tu\u1EA7n B\xE1t Nh\u1EADt L\u1EC5 Ph\u1EE5c Sinh`,
+        LE_TRONG,
+        false
+      );
+    } while (batNhaThu < 8);
+  }
   getFullLichPhungVuTheoNam() {
     this.populateCacNgayLeCoDinh();
     this.populateCalculatedDaysToCalender();
     this.tinhchuaNhatMuaThuongNien();
+    this.populateTuanBatNhat();
     return this.fullYear;
   }
 };

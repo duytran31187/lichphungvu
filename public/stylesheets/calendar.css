@@ -11,6 +11,9 @@
   .selected {
     background-color: #eee;
   }
+  .today {
+    background-color: #f0c9c9;
+  }
   .outside .date {
     color: #ccc;
   }
@@ -42,19 +45,19 @@
     border-width: 1px;
   }
   .event.le_trong_d {
-    border-top: 1px solid #be0f0f;
-    border-bottom: 1px solid #be0f0f;
-    background-image: linear-gradient(to bottom, #be0f0f 0px, #be0f0f 100%);
+    border-top: 1px solid #ec4444;
+    border-bottom: 1px solid #ec4444;
+    background-image: linear-gradient(to bottom, #f69b9b 0px, #f2a3a3 100%);
     background-repeat: repeat-x;
-    color: #bfd0be;
+    color: #be0f0f;
     border-width: 1px;
   }
   .event.le_kinh_d {
-    border-top: 1px solid #a8d112;
-    border-bottom: 1px solid #a8d112;
-    background-image: linear-gradient(to bottom, #a8d112 0px, #a8d112 100%);
+    border-top: 1px solid #c4dc2c;
+    border-bottom: 1px solid #c4dc2c;
+    background-image: linear-gradient(to bottom, #e8f5ba 0px, #d5eb82 100%);
     background-repeat: repeat-x;
-    color: #052504;
+    color: #2c3203;
     border-width: 1px;
   }
   /* .event.all-day.begin {
@@ -89,4 +92,8 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-  
+  .sample {
+    width: 100px;
+    padding: 5px;
+    font-size: 10px;  
+  }  

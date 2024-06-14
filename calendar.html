@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lich Phung Vu</title>
+    <meta name="description"
+        content="Lich phung vu">
+    <link rel="canonical" href="https://duytran31187.github.io/" />
+
+    <!-- Open Graph protocol -->
+    <meta property="og:title" content="Lich phung vu" />
+    <meta property="og:description"
+        content="Lich phung vu" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://duytran31187.github.io/" />
+    <meta property="og:image" content="https://duytran31187.github.io/assets/images/avatar_small.jpg" />
+    <meta property="og:image:width" content="50">
+    <meta property="og:image:height" content="50">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="profile:first_name" content="Duy">
+    <meta property="profile:last_name" content="Tran">
+    <meta property="profile:gender" content="male">
+    <meta property="profile:username" content="duytran31187">
+
+    <!-- BEGIN: Favicon -->
+    <link rel="manifest" href="./assets/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./assets/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- END: Favicon -->
+
+    <!-- CSS -->
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link href="./assets/libs/fontawesome/all.min.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./assets/css/calendar.css">
+</head>
+
+<body>
+    <div class="container theme-showcase">
+        <div class="row">
+          <div id="sample-color" class="col">
+            <span class="sample event le_trong_d" >Lễ Trọng</span>
+            <span class="sample event le_kinh_d" >Lễ Kính</span>
+            <span class="sample event le_nho_d" >Lễ Nhớ</span>
+            <span class="sample today" >Ngày hôm nay</span>
+          </div>
+        </div>
+        <div id="holder" class="row"></div>
+    </div>
+    
+
+    <!-- Javascript -->
+    <!-- JQuery -->
+    <script src="./assets/libs/jquery/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    
+<script type="text/tmpl" id="tmpl">
+  {{ 
+  var date = date || new Date(),
+      month = date.getMonth(), 
+      year = date.getFullYear(), 
+      first = new Date(year, month, 1), 
+      last = new Date(year, month + 1, 0),
+      startingDay = first.getDay(), 
+      thedate = new Date(year, month, 1 - startingDay),
+      dayclass = lastmonthcss,
+      today = new Date(),
+      i, j; 
+  if (mode === 'week') {
+    thedate = new Date(date);
+    thedate.setDate(date.getDate() - date.getDay());
+    first = new Date(thedate);
+    last = new Date(thedate);
+    last.setDate(last.getDate()+6);
+  }
+  
+  }}
+  <table class="calendar-table table table-condensed table-tight">
+    <thead>
+      <tr>
+        <td colspan="7" style="text-align: center">
+          <table style="white-space: nowrap; width: 100%">
+            <tr>
+              <td style="text-align: left;">
+                <span class="btn-group">
+                  <button class="js-cal-prev btn btn-default"><</button>
+                  <button class="js-cal-next btn btn-default">></button>
+                </span>
+                <button class="js-cal-option btn btn-default {{: first.toDateInt() <= today.toDateInt() && today.toDateInt() <= last.toDateInt() ? 'active':'' }}" data-date="{{: today.toISOString()}}" data-mode="month">{{: todayname }}</button>
+              </td>
+              <td>
+                <span class="btn-group btn-group-lg">
+                  {{ if (mode !== 'day') { }}
+                    {{ if (mode === 'month') { }}<button class="js-cal-option btn btn-link" data-mode="year">{{: months[month] }}</button>{{ } }}
+                    {{ if (mode ==='week') { }}
+                      <button class="btn btn-link disabled">{{: shortMonths[first.getMonth()] }} {{: first.getDate() }} - {{: shortMonths[last.getMonth()] }} {{: last.getDate() }}</button>
+                    {{ } }}
+                    <button class="js-cal-years btn btn-link">{{: year}}</button> 
+                  {{ } else { }}
+                    <button class="btn btn-link disabled">{{: date.toDateString() }}</button> 
+                  {{ } }}
+                </span>
+              </td>
+              <td style="text-align: right">
+                <span class="btn-group">
+                  <button class="js-cal-option btn btn-default {{: mode==='year'? 'active':'' }}" data-mode="year">Year</button>
+                  <button class="js-cal-option btn btn-default {{: mode==='month'? 'active':'' }}" data-mode="month">Month</button>
+                  <button class="js-cal-option btn btn-default {{: mode==='week'? 'active':'' }}" data-mode="week">Week</button>
+                  <!-- <button class="js-cal-option btn btn-default {{: mode==='day'? 'active':'' }}" data-mode="day">Day</button> -->
+                </span>
+              </td>
+            </tr>
+          </table>
+          
+        </td>
+      </tr>
+    </thead>
+    {{ if (mode ==='year') {
+      month = 0;
+    }}
+    <tbody>
+      {{ for (j = 0; j < 3; j++) { }}
+      <tr>
+        {{ for (i = 0; i < 4; i++) { }}
+        <td class="calendar-month month-{{:month}} js-cal-option" data-date="{{: new Date(year, month, 1).toISOString() }}" data-mode="month">
+          {{: months[month] }}
+          {{ month++;}}
+        </td>
+        {{ } }}
+      </tr>
+      {{ } }}
+    </tbody>
+    {{ } }}
+    {{ if (mode ==='month' || mode ==='week') { }}
+    <thead>
+      <tr class="c-weeks">
+        {{ for (i = 0; i < 7; i++) { }}
+          <th class="c-name">
+            {{: days[i] }}
+          </th>
+        {{ } }}
+      </tr>
+    </thead>
+    <tbody>
+      {{ for (j = 0; j < 6 && (j < 1 || mode === 'month'); j++) { }}
+      <tr>
+        {{ for (i = 0; i < 7; i++) { }}
+        {{ if (thedate > last) { dayclass = nextmonthcss; } else if (thedate >= first) { dayclass = thismonthcss; } }}
+        <td class="calendar-day {{: dayclass }} {{: thedate.toDateCssClass() }} {{: date.toDateCssClass() === thedate.toDateCssClass() ? 'selected':'' }} {{: daycss[i] }} js-cal-option" data-date="{{: thedate.toISOString() }}">
+          <div class="date">{{: thedate.getDate() }}</div>
+          {{ thedate.setDate(thedate.getDate() + 1);}}
+        </td>
+        {{ } }}
+      </tr>
+      {{ } }}
+    </tbody>
+    {{ } }}
+    {{ if (mode ==='day') { }}
+    <tbody>
+      <tr>
+        <td colspan="7">
+          <table class="table table-striped table-condensed table-tight-vert" >
+            <thead>
+              <tr>
+                <th> </th>
+                <th style="text-align: center; width: 100%">{{: days[date.getDay()] }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="timetitle" >All Day</th>
+                <td class="{{: date.toDateCssClass() }}">  </td>
+              </tr>
+              <tr>
+                <th class="timetitle" >Before 6 AM</th>
+                <td class="time-0-0"> </td>
+              </tr>
+              {{for (i = 6; i < 22; i++) { }}
+              <tr>
+                <th class="timetitle" >{{: i <= 12 ? i : i - 12 }} {{: i < 12 ? "AM" : "PM"}}</th>
+                <td class="time-{{: i}}-0"> </td>
+              </tr>
+              <tr>
+                <th class="timetitle" >{{: i <= 12 ? i : i - 12 }}:30 {{: i < 12 ? "AM" : "PM"}}</th>
+                <td class="time-{{: i}}-30"> </td>
+              </tr>
+              {{ } }}
+              <tr>
+                <th class="timetitle" >After 10 PM</th>
+                <td class="time-22-0"> </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+    {{ } }}
+  </table>
+</script>
+    <!-- App JS -->
+    <script src="./assets/js/main-ui.js" type='module'></script>
+</body>
+
+</html>

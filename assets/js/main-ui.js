@@ -1,4 +1,4 @@
-import {  getTinhNamPhungVuInstant, nameOfDays } from '../../lichphungvu/dist/index.mjs'
+import {  getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.mjs'
 
 
   $.extend({

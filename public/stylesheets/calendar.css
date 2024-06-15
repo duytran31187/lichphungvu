@@ -96,4 +96,7 @@
     width: 100px;
     padding: 5px;
     font-size: 10px;  
-  }  
+  }
+  th.c-name {
+    text-align: center;
+}

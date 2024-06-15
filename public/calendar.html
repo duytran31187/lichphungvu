@@ -63,13 +63,13 @@ last.setDate(last.getDate()+6);
           <td>
             <span class="btn-group btn-group-lg">
               {{ if (mode !== 'day') { }}
-                {{ if (mode === 'month') { }}<button class="js-cal-option btn btn-link" data-mode="year">{{: months[month] }}</button>{{ } }}
+                {{ if (mode === 'month') { }}<button class="js-cal-option btn" data-mode="year">{{: months[month] }}</button>{{ } }}
                 {{ if (mode ==='week') { }}
-                  <button class="btn btn-link disabled">{{: shortMonths[first.getMonth()] }} {{: first.getDate() }} - {{: shortMonths[last.getMonth()] }} {{: last.getDate() }}</button>
+                  <button class="btn disabled">{{: shortMonths[first.getMonth()] }} {{: first.getDate() }} - {{: shortMonths[last.getMonth()] }} {{: last.getDate() }}</button>
                 {{ } }}
-                <button class="js-cal-years btn btn-link">{{: year}}</button> 
+                <button class="js-cal-years btn">{{: year}}</button> 
               {{ } else { }}
-                <button class="btn btn-link disabled">{{: date.toDateString() }}</button> 
+                <button class="btn disabled">{{: date.toDateString() }}</button> 
               {{ } }}
             </span>
           </td>

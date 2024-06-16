@@ -61,7 +61,6 @@ $(document).ready(function () {
       const classMonth = m%2 == 1 ? 'odd-cls' : 'even-cls';
       const trItemBody =document.createElement('tr');
       // print month if need
-      console.log( currentDate.getMonth());
       if (m !== currentMonth) {
         currentMonth = m;
         printHeadOfMonth(currentMonth);

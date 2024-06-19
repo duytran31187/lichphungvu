@@ -220,8 +220,12 @@ import {  LE_KINH, LE_NHO, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays } from
   var data = [];
 
 
-// in lich phung vu   
-for (let y = 2020; y <=2030;y++) { // add 10 nam
+// in lich phung vu
+
+let params = new URLSearchParams(window.location.search);
+let debug = params.get('debug') ? true : false;
+if (!debug) {
+  for (let y = 2020; y <=2030;y++) { // add 10 nam
     var namPhungvu = getTinhNamPhungVuInstant(y);
     const fullYear = namPhungvu.getLichPhungVuTheoThang(6);
     for (let yk in fullYear) {
@@ -255,7 +259,19 @@ for (let y = 2020; y <=2030;y++) { // add 10 nam
             );
         }
     }
+  }
+} else {
+  data.push(
+      {
+      title: 'debug',
+      start: new Date('2024-06-10'),
+      end: new Date('2024-06-11'),
+      typeClss: '',
+      allDay: true
+      }
+  );
 }
+
   data.sort(function (a, b) { return (+a.start) - (+b.start); });
   //Actually do everything
   $('#holder').calendar({

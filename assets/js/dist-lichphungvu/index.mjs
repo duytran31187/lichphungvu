@@ -1687,7 +1687,6 @@ var TinhNamPhungVu = class {
       this.getFullLichPhungVuTheoNam();
     }
     for (let key in this.fullYear) {
-      console.log(this.fullYear[key]);
       if (this.fullYear[key].date.getMonth() == month) {
         fullMonth.push(this.fullYear[key]);
       }

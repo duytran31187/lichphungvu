@@ -1,4 +1,4 @@
-import {  LE_KINH, LE_NHO, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.mjs'
+import {  LE_KINH, LE_NHO, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays } from './dist-mobile/index.mjs'
 
 var namPhungvu = getTinhNamPhungVuInstant(2024);
 const fullYear = namPhungvu.getFullLichPhungVuTheoNam();

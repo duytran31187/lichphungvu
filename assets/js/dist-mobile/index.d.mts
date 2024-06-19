@@ -3,7 +3,6 @@ type NamPhungVu = {
     yearABC: string;
     oddEven: string;
     leDucMeChuaTroi?: Date;
-    dangchuaGiesuTrongDenThanh: Date;
     theEpiphanyOfTheLord: Date;
     leChuaChiuPhepRua: Date;
     ashWed: Date;
@@ -29,7 +28,6 @@ type NamPhungVu = {
     secondSundayOfAdvent: Date;
     thirdSundayOfAdvent: Date;
     fourthSundayOfAdvent: Date;
-    christmas: Date;
     leThanhGia: Date;
     firstOrdinarySundayAfterPentecostSunday: number;
 };
@@ -63,7 +61,6 @@ declare const nameOfDays: {
     chuaKitoVua: string;
     firstOrdinarySundayAfterPentecostSunday: string;
     leDucMeChuaTroi: string;
-    dangchuaGiesuTrongDenThanh: string;
     leChuaBaNgoi: string;
     leMinhMauThanhChua: string;
     leThanhTamChuaGieSu: string;
@@ -78,6 +75,9 @@ type SingleDateData = {
     date: Date;
     cacNgayLe: NgayLeData[];
 };
+declare const LE_KINH = "L\u1EC5 K\u00EDnh";
+declare const LE_NHO = "L\u1EC5 Nh\u1EDB";
+declare const LE_TRONG = "L\u1EC5 Tr\u1ECDng";
 
 declare class TinhNamPhungVu {
     private year;
@@ -85,11 +85,11 @@ declare class TinhNamPhungVu {
     private pThuTuLeTro;
     private pNgayLeChuaHienLinh;
     private pLeThanhGia;
-    private pNgayLeGiangSinh;
     private p4TuanMuaVong;
     private namPhungVu;
     private fullYear;
     private firstSundayOfYear;
+    private printed;
     constructor(year: number);
     private getFullYearKeyFromDate;
     private addNgayLeVoDanhSach;
@@ -99,19 +99,23 @@ declare class TinhNamPhungVu {
     private get ngayLeTro();
     private get ngayLeChuaHienLinh();
     private get ngayLeThanhGia();
-    private get ngayLeGiangSinh();
     private get bonTuanMuaVong();
     private tinhLichPhungVu;
     getNamPhungVu(): NamPhungVu | undefined;
     private populateCalculatedDaysToCalender;
+    private setSameTimeOfDate;
     private populateCacNgayLeCoDinh;
+    private nameChuaNhaMuaThuongNienThu;
     /**
      * goi sau khi da populate het cac ngay le co dinh, theo cong thu
      */
     private tinhchuaNhatMuaThuongNien;
+    private populateTuanBatNhat;
+    private populateTuanThanh;
     getFullLichPhungVuTheoNam(): SingleDateData[];
+    getLichPhungVuTheoThang(month: number): SingleDateData[];
 }
 
 declare function getTinhNamPhungVuInstant(year: number): TinhNamPhungVu;
 
-export { getTinhNamPhungVuInstant, nameOfDays };
+export { LE_KINH, LE_NHO, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays };

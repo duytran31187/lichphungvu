@@ -157,6 +157,9 @@ var require_lephucsinhlib = __commonJS({
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
+  LE_KINH: () => LE_KINH,
+  LE_NHO: () => LE_NHO,
+  LE_TRONG: () => LE_TRONG,
   getTinhNamPhungVuInstant: () => getTinhNamPhungVuInstant,
   nameOfDays: () => nameOfDays
 });
@@ -168,7 +171,7 @@ function cloneDate(d) {
 }
 function newDate(year, month, day) {
   const d = /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
-  d.setHours(0);
+  d.setHours(1);
   d.setMinutes(0);
   d.setSeconds(0);
   return d;
@@ -217,159 +220,180 @@ var buildKeyInNumberFromDate = (date) => {
   clonedD.setSeconds(0);
   return clonedD.getTime();
 };
+var tenChuaNhatThuongNienThu = (n) => {
+  return `CN ${n} mua thuong nien`;
+};
 
 // src/commonData.ts
 var nameOfDays = {
-  year: "year( N\u0103m)",
-  yearABC: "A|B|C (n\u0103m A|B|C)",
-  oddEven: "Odd|Even (N\u0103m ch\u1EB5n l\u1EBB)",
-  theEpiphanyOfTheLord: "The Epiphany of the Lord (L\u1EC5 Ch\xFAa Hi\u1EC3n Linh)",
+  year: "N\u0103m",
+  yearABC: "n\u0103m A|B|C",
+  oddEven: "N\u0103m ch\u1EB5n l\u1EBB",
+  theEpiphanyOfTheLord: "L\u1EC5 Ch\xFAa Hi\u1EC3n Linh",
   leChuaChiuPhepRua: "L\u1EC5 Ch\xFAa ch\u1ECBu ph\xE9p r\u1EEDa",
-  ashWed: "Ash Wednesday (Th\u1EE9 t\u01B0 l\u1EC5 tro)",
-  firstSundayOfLent: "First Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a chay)",
-  secondSundayOfLent: "Second Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 2 m\xF9a chay)",
-  thirdSundayOfLent: "Third Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 3 m\xF9a chay)",
-  fourthSundayOfLent: "Fourth Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 4 m\xF9a chay)",
-  fifthSundayOfLent: "Fifth Sunday of Lent (Ch\xFAa nh\u1EADt th\u1EE9 5 m\xF9a chay)",
-  palmSunday: "Palm Sunday (L\u1EC5 L\xE1)",
-  easterSunday: "Easter Sunda (Ph\u1EE5c sinh)",
-  secondSundayOfEaster: "Second Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 2 ph\u1EE5c sinh)",
-  thirdSundayOfEaster: "Third Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 3 ph\u1EE5c sinh)",
-  fourthSundayOfEaster: "Fourth Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 4 ph\u1EE5c sinh)",
-  fifthSundayOfEaster: "Fifth Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 5 ph\u1EE5c sinh)",
-  sixthSundayOfEaster: "Sixth Sunday of Easter (Ch\xFAa nh\u1EADt th\u1EE9 6 ph\u1EE5c sinh)",
-  theAscentionOfTheLord: "The Ascention of the Lord (L\u1EC5 Ch\xFAa L\xEAn Tr\u1EDDi)",
-  pentecostSunday: "Pentecost Sunday (L\u1EC5 Ch\xFAa Th\xE1nh Th\u1EA7n hi\u1EC7n xu\u1ED1ng)",
-  firstSundayOfAdvent: "First Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a v\u1ECDng)",
-  secondSundayOfAdvent: "Second Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 2 m\xF9a v\u1ECDng)",
-  thirdSundayOfAdvent: "Third Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 3 m\xF9a v\u1ECDng)",
-  fourthSundayOfAdvent: "Fourth Sunday of Advent (Ch\xFAa nh\u1EADt th\u1EE9 t\u01B0 m\xF9a v\u1ECDng)",
-  christmas: "Christmas (Gi\xE1ng sinh)",
+  ashWed: "Th\u1EE9 t\u01B0 l\u1EC5 tro",
+  firstSundayOfLent: "Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a chay",
+  secondSundayOfLent: "Ch\xFAa nh\u1EADt th\u1EE9 2 m\xF9a chay",
+  thirdSundayOfLent: "Ch\xFAa nh\u1EADt th\u1EE9 3 m\xF9a chay",
+  fourthSundayOfLent: "Ch\xFAa nh\u1EADt th\u1EE9 4 m\xF9a chay",
+  fifthSundayOfLent: "Ch\xFAa nh\u1EADt th\u1EE9 5 m\xF9a chay",
+  palmSunday: "L\u1EC5 L\xE1",
+  easterSunday: "Ph\u1EE5c sinh",
+  secondSundayOfEaster: "Ch\xFAa nh\u1EADt th\u1EE9 2 ph\u1EE5c sinh",
+  thirdSundayOfEaster: "Ch\xFAa nh\u1EADt th\u1EE9 3 ph\u1EE5c sinh",
+  fourthSundayOfEaster: "Ch\xFAa nh\u1EADt th\u1EE9 4 ph\u1EE5c sinh",
+  fifthSundayOfEaster: "Ch\xFAa nh\u1EADt th\u1EE9 5 ph\u1EE5c sinh",
+  sixthSundayOfEaster: "Ch\xFAa nh\u1EADt th\u1EE9 6 ph\u1EE5c sinh",
+  theAscentionOfTheLord: "L\u1EC5 Ch\xFAa L\xEAn Tr\u1EDDi",
+  pentecostSunday: "L\u1EC5 Ch\xFAa Th\xE1nh Th\u1EA7n hi\u1EC7n xu\u1ED1ng",
+  firstSundayOfAdvent: "Ch\xFAa nh\u1EADt th\u1EE9 nh\u1EA5t m\xF9a v\u1ECDng",
+  secondSundayOfAdvent: "Ch\xFAa nh\u1EADt th\u1EE9 2 m\xF9a v\u1ECDng",
+  thirdSundayOfAdvent: "Ch\xFAa nh\u1EADt th\u1EE9 3 m\xF9a v\u1ECDng",
+  fourthSundayOfAdvent: "Ch\xFAa nh\u1EADt th\u1EE9 t\u01B0 m\xF9a v\u1ECDng",
+  christmas: "Gi\xE1ng sinh",
   leThanhGia: "L\u1EC5 Th\xE1nh Gia",
   chuaKitoVua: "L\u1EC5 Ch\xFAa KiTo Vua",
   firstOrdinarySundayAfterPentecostSunday: "Chua Nhat Thuong Nien sau Le Chua Thanh than hien xuong",
   leDucMeChuaTroi: "Th\xE1nh Ma-ri-a, \xD0\u1EE9c M\u1EB9 Ch\xFAa Tr\u1EDDi",
-  dangchuaGiesuTrongDenThanh: "D\xE2ng Ch\xFAa Gi\xEA-su Trong \u0110\u1EC1n Th\xE1nh",
   leChuaBaNgoi: "L\u1EC5 Ch\xFAa Ba Ng\xF4i",
   leMinhMauThanhChua: "L\u1EC5 M\xECnh M\xE1u Th\xE1nh Ch\xFAa",
   leThanhTamChuaGieSu: "L\u1EC5 Th\xE1nh T\xE2m Ch\xFAa Gi\xEA Su"
 };
+var LE_KINH = "L\u1EC5 K\xEDnh";
+var LE_NHO = "L\u1EC5 Nh\u1EDB";
+var LE_TRONG = "L\u1EC5 Tr\u1ECDng";
 var danhSachNgayLeCoDinh = (year) => {
   return [
     {
       name: "Th\xE1nh Ma-ri-a, \xD0\u1EE9c M\u1EB9 Ch\xFAa Tr\u1EDDi",
       date: newDate(year, 1, 1),
-      type: "L\u1EC5 Tr\u1ECDng",
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "Th\xE1nh Ba-xi-li-\xF4 C\u1EA3 v\xE0 th\xE1nh Gh\xEA-g\xF4-ri-\xF4 Na-di-en, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 1, 2),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Kinh Danh r\u1EA5t th\xE1nh Ch\xFAa Gi\xEA-su",
       date: newDate(year, 1, 3),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh R\xE2y-mun-\u0111\xF4 P\xEA-nha-pho, linh m\u1EE5c",
       date: newDate(year, 1, 7),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Hi-la-ri-\xF4, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 1, 13),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-t\xF4n, vi\u1EC7n ph\u1EE5",
       date: newDate(year, 1, 17),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Pha-bi-a-n\xF4, gi\xE1o ho\xE0ng, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 1, 20),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh X\xEA-b\xE1t-ti-a-n\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 1, 20),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh A-n\xEA, trinh n\u1EEF, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 1, 21),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Vinh-s\u01A1n, ph\xF3 t\u1EBF, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 1, 22),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phan-xi-c\xF4 \u0111\u01A1 Xan, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 1, 24),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phao-l\xF4 T\xF4ng \u0111\u1ED3 tr\u1EDF l\u1EA1i",
       date: newDate(year, 1, 25),
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Ti-m\xF4-th\xEA v\xE0 th\xE1nh Ti-t\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 1, 26),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-gi\xEA-la M\xEA-ri-si, trinh n\u1EEF",
       date: newDate(year, 1, 27),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xF4-ma A-qui-n\xF4, linh m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 1, 28),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an B\u1ED1t-c\xF4, linh m\u1EE5c",
       date: newDate(year, 1, 31),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "D\xE2ng Ch\xFAa Gi\xEA-su Trong \u0110\u1EC1n Th\xE1nh",
       date: newDate(year, 2, 2),
-      type: "Le K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh An-ga-ri-\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 2, 3),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh B\u01A1-la-xi-\xF4, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 2, 3),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh A-ga-ta, trinh n\u1EEF, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 2, 5),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phao-l\xF4 Mi-ki v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 2, 6),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh C\xF4-l\xE1t-ti-ca, trinh n\u1EEF",
       date: newDate(year, 2, 10),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -380,618 +404,667 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Sy-ri-l\xF4, \u0111an s\u0129 v\xE0 th\xE1nh M\xEA-t\xF4-\u0111i-\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 2, 14),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "B\u1EA3y th\xE1nh l\u1EADp d\xF2ng T\xF4i T\u1EDB \u0110\u1EE9c M\u1EB9",
       date: newDate(year, 2, 17),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ph\xEA-r\xF4 \u0110a-mi-a-n\xF4, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 2, 21),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "L\u1EADp t\xF4ng t\xF2a th\xE1nh Ph\xEA-r\xF4 T\xF4ng \u0111\u1ED3",
       date: newDate(year, 2, 22),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Gh\xEA-g\xF4-ri-\xF4 th\xE0nh Narek, vi\u1EC7n ph\u1EE5, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 2, 27),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ca-xi-mia",
       date: newDate(year, 3, 4),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh n\u1EEF Pe-p\xEA-tu-a v\xE0 th\xE1nh n\u1EEF Ph\xEA-li-xi-ta, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 3, 7),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh P\xE1t-tric, gi\xE1m m\u1EE5c",
       date: newDate(year, 3, 17),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Sy-ri-l\xF4, gi\xE1m m\u1EE5c Gi\xEA-ru-sa-lem, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 3, 18),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Giu-se, B\u1EA1n tr\u0103m n\u0103m \u0110\u1EE9c Trinh n\u1EEF Maria",
       date: newDate(year, 3, 19),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "L\u1EC5 Truy\u1EC1n Tin",
       date: newDate(year, 3, 25),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "Th\xE1nh M\xE1c-c\xF4, t\xE1c gi\u1EA3 s\xE1ch Tin M\u1EEBng",
       date: newDate(year, 4, 25),
       fixed: true,
-      type: "L\u1EC5 k\xEDnh"
+      type: LE_KINH
     },
     {
       name: "Th\xE1nh Lu-i \u0111\u01A1 M\xF4ng-pho, linh m\u1EE5c",
       date: newDate(year, 4, 28),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ph\xEA-r\xF4 Sa-nen, linh m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 4, 28),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ca-ta-ri-na Si-\xEA-na, trinh n\u1EEF, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 4, 29),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Pi-\xF4 V, gi\xE1o ho\xE0ng",
       date: newDate(year, 4, 30),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Giu-se th\u1EE3",
       date: newDate(year, 5, 1),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh A-tha-na-xi-\xF4, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 5, 2),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phi-lip-ph\xEA v\xE0 th\xE1nh Gia-c\xF4-b\xEA, t\xF4ng \u0111\u1ED3",
       date: newDate(year, 5, 3),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh N\xEA-r\xEA-\xF4 v\xE0 th\xE1nh A-ki-l\xEA-\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 5, 12),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh P\u0103ng-ra-xi-\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 5, 12),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c M\u1EB9 Fa-ti-ma",
       date: newDate(year, 5, 13),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh M\xE1t-thi-a, T\xF4ng \u0111\u1ED3",
       date: newDate(year, 5, 14),
       fixed: true,
-      type: "L\u1EC5 k\xEDnh"
+      type: LE_KINH
     },
     {
       name: "Th\xE1nh B\xEA-na-\u0111i-n\xF4 Xi-\xEA-na, linh m\u1EE5c",
       date: newDate(year, 5, 20),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Christ\xF4ph\xEA de Magallanes, linh m\u1EE5c, v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 5, 21),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ri-ta th\xE0nh Ca-xi-a, N\u1EEF tu",
       date: newDate(year, 5, 22),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phi-lip-ph\xEA N\xEA-ri, linh m\u1EE5c",
       date: newDate(year, 5, 26),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Au-tinh th\xE0nh Can-t\u01A1-b\u01A1-ri, gi\xE1m m\u1EE5c",
       date: newDate(year, 5, 27),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c Maria th\u0103m vi\u1EBFng b\xE0 \xCA-li-sa-b\xE9t",
-      type: "L\u1EC5 k\xEDnh",
+      type: LE_KINH,
       date: newDate(year, 5, 31),
       fixed: true
     },
     {
       name: "Th\xE1nh M\xE1c-s\xEA-li-n\xF4 v\xE0 th\xE1nh Ph\xEA-r\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 6, 2),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ca-r\xF4-l\xF4 Loan-ga v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 6, 3),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh B\xF4-ni-ph\xE1t, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 6, 5),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh N\xF4-bec-t\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 6, 6),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ba-na-ba, t\xF4ng \u0111\u1ED3",
       date: newDate(year, 6, 11),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-t\xF4n th\xE0nh Pa-\u0111\xF4-va, linh m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 6, 13),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh R\xF4-moan-\u0111\xF4, vi\u1EC7n ph\u1EE5",
       date: newDate(year, 6, 19),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Sinh nh\u1EADt th\xE1nh Gio-an T\u1EA9y Gi\u1EA3",
       date: newDate(year, 6, 24),
-      type: "L\u1EC5 Tr\u1ECDng",
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "Th\xE1nh Ph\xEA-r\xF4 v\xE0 th\xE1nh Phao-l\xF4, t\xF4ng \u0111\u1ED3",
       date: newDate(year, 6, 29),
-      type: "L\u1EC5 Tr\u1ECDng",
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "C\xE1c th\xE1nh t\u1EED \u0111\u1EA1o ti\xEAn kh\u1EDFi c\u1EE7a gi\xE1o \u0111o\xE0n R\xF4-ma",
       date: newDate(year, 6, 30),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xF4-ma, t\xF4ng \u0111\u1ED3",
       date: newDate(year, 7, 3),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh n\u1EEF \xCA-li-sa-b\xE9t B\u1ED3-\u0111\xE0o-nha",
       date: newDate(year, 7, 4),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Augustin\xF4 Tri\u1EC7u Vinh, linh m\u1EE5c v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 7, 9),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Bi\u1EC3n-\u0111\u1EE9c, vi\u1EC7n ph\u1EE5",
       date: newDate(year, 7, 11),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ca-mi-l\xF4 Len-li, linh m\u1EE5c",
       date: newDate(year, 7, 14),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh B\xF4-na-ven-tu-ra, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 7, 15),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c M\u1EB9 n\xFAi Cat-minh",
       date: newDate(year, 7, 16),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh L\xF4-ren-x\xF4 B\u01A1-rin-\u0111i-xi, linh m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 7, 21),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ma-ri-a Ma-\u0111a-l\xEA-na",
       date: newDate(year, 7, 22),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Bi-ghit-ta, n\u1EEF tu",
       date: newDate(year, 7, 23),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Sa-ben Mac-lup, linh m\u1EE5c",
       date: newDate(year, 7, 24),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gia-c\xF4-b\xEA, t\xF4ng \u0111\u1ED3",
       date: newDate(year, 7, 25),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-a-kim v\xE0 th\xE1nh An-na, song th\xE2n \u0110\u1EE9c Maria",
       fixed: true,
       date: newDate(year, 7, 26),
-      type: "L\u1EC5 nh\u1EDB"
+      type: LE_NHO
     },
     {
       name: "Th\xE1nh n\u1EEF M\xE1c-ta, th\xE1nh n\u1EEF Ma-ri-a v\xE0 th\xE1nh La-xa-r\u01A1",
       date: newDate(year, 7, 29),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ph\xEA-r\xF4 Kim Ng\xF4n, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 7, 30),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh I-nha-xi-\xF4 L\xF4i-\xF4-la, linh m\u1EE5c",
       date: newDate(year, 7, 31),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-phong Ma-ri-a Li-g\xF4-ri, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 8, 1),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an Ma-ri-a Vi-a-n\xEA, linh m\u1EE5c",
       date: newDate(year, 8, 4),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Cung hi\u1EBFn th\xE1nh \u0111\u01B0\u1EDDng \u0110\u1EE9c Ma-ri-a",
       date: newDate(year, 8, 5),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Ch\xFAa Hi\u1EC3n Dung",
       date: newDate(year, 8, 6),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Ga-\xEA-ta-n\xF4, linh m\u1EE5c",
       date: newDate(year, 8, 7),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Xit-t\xF4 II, gi\xE1o ho\xE0ng v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 8, 7),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh \u0110a-minh, linh m\u1EE5c",
       date: newDate(year, 8, 8),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh C\u1EDD-la-ra, trinh n\u1EEF",
       date: newDate(year, 8, 11),
-      type: "L\xEA Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an-na Phan-xi-ca S\u0103ng-tan, n\u1EEF tu",
       date: newDate(year, 8, 12),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh P\xF4n-xi-a-n\xF4, gi\xE1o ho\xE0ng, v\xE0 th\xE1nh Hip-p\xF4-li-t\xF4, linh m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 8, 13),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh M\xE1c-xi-mi-li-a-n\xF4 K\xF4n-b\xEA, linh m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 8, 14),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c Ma-ri-a L\xEAn Tr\u1EDDi",
       date: newDate(year, 8, 15),
-      type: "L\xEA Tr\u1ECDng",
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an \u01A0-\u0111\u01A1, linh m\u1EE5c",
       date: newDate(year, 8, 19),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh B\xEA-na-\u0111\xF4, vi\u1EC7n ph\u1EE5, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 8, 20),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Pi\xF4 X, gi\xE1o ho\xE0ng",
       date: newDate(year, 8, 21),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c Ma-ri-a N\u1EEF v\u01B0\u01A1ng",
       date: newDate(year, 8, 22),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Giu-se Ca-la-xan, linh m\u1EE5c",
       date: newDate(year, 8, 25),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Lu-y",
       date: newDate(year, 8, 25),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh n\u1EEF M\xF4-ni-ca",
       date: newDate(year, 8, 27),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh  u-tinh, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 8, 28),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an T\u1EA9y Gi\u1EA3 b\u1ECB tr\u1EA3m quy\u1EBFt",
       date: newDate(year, 8, 29),
-      type: "L\u1EC5 Nh\u1EDB",
-      fixed: true
-    },
-    {
-      name: "Ng\xE0y Qu\u1ED1c Kh\xE1nh",
-      date: newDate(year, 9, 2),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gr\xEA-g\xF4-ri-\xF4 C\u1EA3, gi\xE1o ho\xE0ng, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 9, 3),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xEA-r\xEA-xa Cal-cut-ta, n\u1EEF tu",
       date: newDate(year, 9, 5),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Sinh nh\u1EADt \u0110\u1EE9c trinh n\u1EEF Maria",
       date: newDate(year, 9, 8),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Ph\xEA-r\xF4 C\u01A1-la-ve, linh m\u1EE5c",
       date: newDate(year, 9, 9),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Danh R\u1EA5t Th\xE1nh trinh n\u1EEF Ma-ri-a",
       date: newDate(year, 9, 12),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Suy t\xF4n Th\xE1nh gi\xE1",
       date: newDate(year, 9, 14),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c M\u1EB9 s\u1EA7u bi",
       date: newDate(year, 9, 15),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Co-n\xEA-li-\xF4, gi\xE1o ho\xE0ng v\xE0 th\xE1nh Sip-ri-a-n\xF4, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 9, 16),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh R\xF4-be-t\xF4 Be-la-mi-n\xF4, gi\xE1m m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 9, 17),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh n\u1EEF Hildegarde th\xE0nh Bingen, trinh n\u1EEF, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 9, 17),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gia-nu-a-ri-\xF4, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 9, 19),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh M\xE1t-th\xEAu, t\xF4ng \u0111\u1ED3, t\xE1c gi\u1EA3 s\xE1ch Tin M\u1EEBng",
       date: newDate(year, 9, 21),
-      type: "L\u1EC5 k\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Pi-\xF4 th\xE0nh Pi-e-tren-ci-na, linh m\u1EE5c",
       date: newDate(year, 9, 23),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh C\xF3t-ma v\xE0 th\xE1nh \u0110a-mi-a-n\xF4, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 9, 26),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Vinh-s\u01A1n Phao-l\xF4, linh m\u1EE5c",
       date: newDate(year, 9, 27),
       fixed: true,
-      type: "L\u1EC5 Nh\u1EDB"
+      type: LE_NHO
     },
     {
       name: "C\xE1c T\u1ED5ng l\xE3nh thi\xEAn th\u1EA7n Mi-ca-en, G\xE1p-ri-en v\xE0 Ra-pha-en",
       date: newDate(year, 9, 29),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Gi\xEA-r\xF4-ni-m\xF4, linh m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 9, 30),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xEA-r\xEA-xa H\xE0i \u0110\u1ED3ng Gi\xEA-su, trinh n\u1EEF, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 10, 1),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "C\xE1c thi\xEAn th\u1EA7n h\u1ED9 th\u1EE7",
       date: newDate(year, 10, 2),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Phan-xi-c\xF4 \xC1t-xi-di",
       date: newDate(year, 10, 4),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh B\u01A1-ru-n\xF4, linh m\u1EE5c",
       date: newDate(year, 10, 6),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c M\u1EB9 M\xE2n C\xF4i",
       date: newDate(year, 10, 7),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an L\xEA-\xF4-n\xE1c-\u0111i, linh m\u1EE5c",
       date: newDate(year, 10, 9),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh \u0110i-\xF4-ni-xi-\xF4, gi\xE1m m\u1EE5c v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 10, 9),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ca-l\xEDt-t\xF4 I, gi\xE1o ho\xE0ng, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 10, 14),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xEA-r\xEA-xa Gi\xEA-su, trinh n\u1EEF, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 10, 15),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh H\xE9t-v\xEDch, n\u1EEF tu",
       date: newDate(year, 10, 16),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ma-ga-ri-ta Ma-ri-a A-la-c\u1ED1c, trinh n\u1EEF",
       date: newDate(year, 10, 16),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh I-nha-xi-\xF4 th\xE0nh An-ti-\xF4-khi-a, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 10, 17),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Lu-ca, t\xE1c gi\u1EA3 S\xE1ch Tin M\u1EEBng",
       date: newDate(year, 10, 18),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an Phao-l\xF4 II, gi\xE1o ho\xE0ng",
       date: newDate(year, 10, 22),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an th\xE0nh Ca-p\xE9t-ra-n\xF4, linh m\u1EE5c",
       date: newDate(year, 10, 23),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-t\xF4n Ma-ri-a C\u01A1-la-r\xE9t, gi\xE1m m\u1EE5c",
       date: newDate(year, 10, 24),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Si-mon v\xE0 th\xE1nh Giu-\u0111a, t\xF4ng \u0111\u1ED3",
       date: newDate(year, 10, 28),
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "C\xE1c Th\xE1nh Nam N\u1EEF",
       date: newDate(year, 11, 1),
-      type: "L\u1EC5 Tr\u1ECDng",
+      type: LE_TRONG,
       fixed: true
     },
     {
@@ -1007,37 +1080,37 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Th\xE1nh Ca-r\xF4-l\xF4 B\xF4-r\xF4-m\xEA-\xF4, gi\xE1m m\u1EE5c",
       date: newDate(year, 11, 4),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Cung hi\u1EBFn th\xE1nh \u0111\u01B0\u1EDDng La-t\xEA-ra-n\xF4",
       date: newDate(year, 11, 9),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh L\xEA-\xF4 C\u1EA3, gi\xE1o ho\xE0ng, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 11, 10),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh M\xE1c-ti-n\xF4 th\xE0nh Tua, gi\xE1m m\u1EE5c",
       date: newDate(year, 11, 11),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gi\xF4-sa-ph\xE1t, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 11, 12),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh n\u1EEF \xCA-li-sa-bet n\u01B0\u1EDBc Hung-ga-ri",
       date: newDate(year, 11, 17),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -1048,60 +1121,67 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "\u0110\u1EE9c M\u1EB9 d\xE2ng m\xECnh trong \u0111\u1EC1n th\u1EDD",
       date: newDate(year, 11, 21),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-r\xEA D\u0169ng L\u1EA1c v\xE0 c\xE1c b\u1EA1n, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 11, 24),
-      type: "L\u1EC5 Nh\u1EDB",
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Ca-ta-ri-na A-l\xEA-xan-ri-a, trinh n\u1EEF, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 11, 25),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh An-r\xEA, T\xF4ng \u0111\u1ED3",
       date: newDate(year, 11, 30),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Phan-xi-c\xF4 Xa-vi-e, linh m\u1EE5c",
       date: newDate(year, 12, 3),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Gioan \u0110a-m\xE1t, linh m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 12, 4),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an \u0110i-\xEA-g\xF4",
       date: newDate(year, 12, 9),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c trinh n\u1EEF Ma-ri-a L\xF4-r\xEA-t\xF4",
       date: newDate(year, 12, 10),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh \u0110a-ma-x\xF4 I, gi\xE1o ho\xE0ng",
       date: newDate(year, 12, 11),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "\u0110\u1EE9c trinh n\u1EEF Ma-ri-a Goa-\u0111a-lu-p\xEA",
       date: newDate(year, 12, 12),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an th\xE0nh K\xEA-ty, linh m\u1EE5c",
       date: newDate(year, 12, 23),
+      type: LE_NHO,
       fixed: true
     },
     {
@@ -1112,35 +1192,37 @@ var danhSachNgayLeCoDinh = (year) => {
     {
       name: "Ch\xFAa Gi\xE1ng Sinh",
       date: newDate(year, 12, 25),
-      type: "L\xEA Tr\u1ECDng",
+      type: LE_TRONG,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xEA-pha-n\xF4, t\u1EED \u0111\u1EA1o ti\xEAn kh\u1EDFi",
       date: newDate(year, 12, 26),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh Gio-an, T\xF4ng \u0111\u1ED3, t\xE1c gi\u1EA3 s\xE1ch Tin m\u1EEBng",
       date: newDate(year, 12, 27),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "C\xE1c th\xE1nh Anh H\xE0i, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 12, 28),
-      type: "L\u1EC5 K\xEDnh",
+      type: LE_KINH,
       fixed: true
     },
     {
       name: "Th\xE1nh T\xF4-ma B\xE9c-k\xE9t, gi\xE1m m\u1EE5c, t\u1EED \u0111\u1EA1o",
       date: newDate(year, 12, 29),
+      type: LE_NHO,
       fixed: true
     },
     {
       name: "Th\xE1nh Xin-vet-t\xEA I, gi\xE1o ho\xE0ng",
       date: newDate(year, 12, 31),
+      type: LE_NHO,
       fixed: true
     }
   ];
@@ -1361,12 +1443,13 @@ var palmSunday = (ashWednesday) => {
 
 // src/TinhNamPhungVu.ts
 var TinhNamPhungVu = class {
-  // CN tuan dau tien de tinh mua thuong nien
   constructor(year) {
     // cac ngay le tinh theo cong thu
     this.fullYear = [];
     // full 365 ngay
     this.firstSundayOfYear = void 0;
+    // CN tuan dau tien de tinh mua thuong nien
+    this.printed = false;
     this.year = +year;
     let date = newDate(this.year, 1, 1);
     const endDate = newDate(this.year + 1, 1, 1);
@@ -1430,12 +1513,6 @@ var TinhNamPhungVu = class {
     }
     return this.pLeThanhGia;
   }
-  get ngayLeGiangSinh() {
-    if (!this.pNgayLeGiangSinh) {
-      this.pNgayLeGiangSinh = getChristmasDay(this.year);
-    }
-    return this.pNgayLeGiangSinh;
-  }
   get bonTuanMuaVong() {
     if (!this.p4TuanMuaVong) {
       this.p4TuanMuaVong = tinh4TuanMuaVong(this.year);
@@ -1461,8 +1538,6 @@ var TinhNamPhungVu = class {
       year: this.year,
       yearABC: tinhNamABC(this.year),
       oddEven: this.year % 2 == 0 ? "Even ( N\u0103m ch\u1EB5n)" : "Odd (N\u0103m l\u1EBB)",
-      // leDucMeChuaTroi: newDate(this.year, 1,1),
-      dangchuaGiesuTrongDenThanh: newDate(this.year, 2, 2),
       theEpiphanyOfTheLord: this.ngayLeChuaHienLinh,
       firstOrdinarySundayAfterPentecostSunday: chuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong,
       leChuaChiuPhepRua,
@@ -1489,7 +1564,6 @@ var TinhNamPhungVu = class {
       secondSundayOfAdvent: tuanMuaVong.week2,
       thirdSundayOfAdvent: tuanMuaVong.week3,
       fourthSundayOfAdvent: tuanMuaVong.week4,
-      christmas: this.ngayLeGiangSinh,
       leThanhGia: this.ngayLeThanhGia
     };
   }
@@ -1501,19 +1575,48 @@ var TinhNamPhungVu = class {
   }
   populateCalculatedDaysToCalender() {
     const namphungVuIns = this.getNamPhungVu();
+    const LeTrong = [
+      "theEpiphanyOfTheLord",
+      // Le Chua Hien Linh
+      "theAscentionOfTheLord",
+      // Le Chua Len Troi
+      "pentecostSunday",
+      //: 'Lễ Chúa Thánh Thần hiện xuống'
+      "leChuaBaNgoi",
+      //: leChuaBaNgoi
+      "leMinhMauThanhChua",
+      "leThanhTamChuaGieSu"
+    ];
+    const LeKinh = [
+      "leChuaChiuPhepRua",
+      "leThanhGia"
+    ];
     for (let key in namphungVuIns) {
       if (namphungVuIns.hasOwnProperty(key)) {
         const val = namphungVuIns[key];
         const nameOfDate = nameOfDays[key];
         if (val instanceof Date) {
           if (nameOfDays.hasOwnProperty(key)) {
-            this.addNgayLeVoDanhSach(val, nameOfDate, "", false);
+            let loaiNgayLe = "";
+            if (LeTrong.includes(key)) {
+              loaiNgayLe = LE_TRONG;
+            } else if (LeKinh.includes(key)) {
+              loaiNgayLe = LE_KINH;
+            }
+            this.addNgayLeVoDanhSach(val, nameOfDate, loaiNgayLe, false);
           } else {
             throw new Error("khong the tim thay ten ngay le");
           }
         }
       }
     }
+  }
+  setSameTimeOfDate(date) {
+    const d = cloneDate(date);
+    d.setHours(1);
+    d.setMinutes(0);
+    d.setSeconds(0);
+    return d;
   }
   populateCacNgayLeCoDinh() {
     const LeCoDinh = danhSachNgayLeCoDinh(this.year);
@@ -1522,21 +1625,26 @@ var TinhNamPhungVu = class {
       this.addNgayLeVoDanhSach(d.date, d.name, d.type, d.fixed);
     }
   }
+  nameChuaNhaMuaThuongNienThu(n) {
+    return tenChuaNhatThuongNienThu(n);
+  }
   /**
    * goi sau khi da populate het cac ngay le co dinh, theo cong thu
    */
   tinhchuaNhatMuaThuongNien() {
     const namPhungVu = this.namPhungVu;
     const leChuaHienLinh = namPhungVu.theEpiphanyOfTheLord;
-    const leChuaThanhThanHienxuong = namPhungVu.pentecostSunday;
     let d = cloneDate(leChuaHienLinh);
     d.setDate(d.getDate() + 7);
+    if (d.toDateString() == namPhungVu.leChuaChiuPhepRua.toDateString()) {
+      d.setDate(d.getDate() + 7);
+    }
     const thu4LeTro = namPhungVu.ashWed;
     let muaThuongNienThu = 2;
     while (d.getTime() < thu4LeTro.getTime()) {
       this.addNgayLeVoDanhSach(
         d,
-        "CN thu " + muaThuongNienThu + " mua thuong nien",
+        this.nameChuaNhaMuaThuongNienThu(muaThuongNienThu),
         "",
         false
       );
@@ -1544,29 +1652,74 @@ var TinhNamPhungVu = class {
       muaThuongNienThu++;
     }
     muaThuongNienThu = namPhungVu.firstOrdinarySundayAfterPentecostSunday;
-    d = cloneDate(namPhungVu.leMinhMauThanhChua);
-    d.setHours(0);
-    d.setMinutes(0);
-    d.setSeconds(0);
+    d = cloneDate(namPhungVu.pentecostSunday);
+    d = this.setSameTimeOfDate(d);
     d.setDate(d.getDate() + 7);
-    const leKitoVua = namPhungVu.chuaKitoVua;
-    leKitoVua.setHours(0);
-    leKitoVua.setMinutes(0);
-    leKitoVua.setSeconds(0);
-    while (d.getTime() > namPhungVu.leMinhMauThanhChua.getTime() && d.getTime() < leKitoVua.getTime()) {
-      this.addNgayLeVoDanhSach(
-        d,
-        "CN thu " + muaThuongNienThu + " mua thuong nien",
-        "",
-        false
-      );
+    const leKitoVua = this.setSameTimeOfDate(namPhungVu.chuaKitoVua);
+    while (d.getTime() > namPhungVu.pentecostSunday.getTime() && d.getTime() < leKitoVua.getTime()) {
+      if (d.toDateString() !== namPhungVu.leChuaBaNgoi.toDateString() && d.toDateString() !== namPhungVu.leMinhMauThanhChua.toDateString() && d.toDateString() !== newDate(this.year, 6, 29).toDateString()) {
+        this.addNgayLeVoDanhSach(
+          d,
+          this.nameChuaNhaMuaThuongNienThu(muaThuongNienThu),
+          "",
+          false
+        );
+      }
       d.setDate(d.getDate() + 7);
       muaThuongNienThu++;
     }
   }
+  populateTuanBatNhat() {
+    const namPhungVu = this.namPhungVu;
+    const d = cloneDate(namPhungVu.easterSunday);
+    let batNhaThu = 1;
+    do {
+      d.setDate(d.getDate() + 1);
+      batNhaThu++;
+      this.addNgayLeVoDanhSach(
+        d,
+        `Thu ${batNhaThu} trong Tu\u1EA7n B\xE1t Nh\u1EADt L\u1EC5 Ph\u1EE5c Sinh`,
+        LE_TRONG,
+        false
+      );
+    } while (batNhaThu < 8);
+  }
+  populateTuanThanh() {
+    const namPhungVu = this.namPhungVu;
+    const d = cloneDate(namPhungVu.palmSunday);
+    let thu = 1;
+    do {
+      d.setDate(d.getDate() + 1);
+      thu++;
+      this.addNgayLeVoDanhSach(
+        d,
+        `Thu ${thu} Tu\u1EA7n Th\xE1nh`,
+        "",
+        false
+      );
+    } while (thu < 8);
+  }
   getFullLichPhungVuTheoNam() {
+    this.populateCacNgayLeCoDinh();
     this.populateCalculatedDaysToCalender();
+    this.tinhchuaNhatMuaThuongNien();
+    this.populateTuanBatNhat();
+    this.populateTuanThanh();
+    this.printed = true;
     return this.fullYear;
+  }
+  getLichPhungVuTheoThang(month) {
+    const fullMonth = [];
+    month--;
+    if (!this.printed) {
+      this.getFullLichPhungVuTheoNam();
+    }
+    for (let key in this.fullYear) {
+      if (this.fullYear[key].date.getMonth() == month) {
+        fullMonth.push(this.fullYear[key]);
+      }
+    }
+    return fullMonth;
   }
 };
 
@@ -1574,8 +1727,13 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
+var ins = getTinhNamPhungVuInstant(2024);
+var fullYear = ins.getLichPhungVuTheoThang(6);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  LE_KINH,
+  LE_NHO,
+  LE_TRONG,
   getTinhNamPhungVuInstant,
   nameOfDays
 });

@@ -260,20 +260,25 @@ if (!debug) {
         }
     }
   }
-} else {
-  // data.push(
-  //     {
-  //     title: 'debug',
-  //     start: new Date('2024-06-10'),
-  //     end: new Date('2024-06-11'),
-  //     typeClss: '',
-  //     allDay: true
-  //     }
-  // );
-}
-
+  
   data.sort(function (a, b) { return (+a.start) - (+b.start); });
   //Actually do everything
   $('#holder').calendar({
     data: data
   });
+} else {
+  data.push(
+      {
+      title: 'debug',
+      start: new Date('2024-06-10'),
+      end: new Date('2024-06-11'),
+      typeClss: '',
+      allDay: true
+      }
+  );
+  // data.sort(function (a, b) { return (+a.start) - (+b.start); });
+  //Actually do everything
+  $('#holder').calendar({
+    data: data
+  });
+}

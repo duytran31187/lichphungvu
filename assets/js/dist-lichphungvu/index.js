@@ -1729,15 +1729,6 @@ function getTinhNamPhungVuInstant(year) {
 }
 var ins = getTinhNamPhungVuInstant(2024);
 var fullYear = ins.getLichPhungVuTheoThang(6);
-for (let key in fullYear) {
-  if (fullYear[key]["cacNgayLe"].length > 0) {
-    for (let i in fullYear[key]["cacNgayLe"]) {
-      console.log(fullYear[key].date.toDateString() + ":" + fullYear[key]["cacNgayLe"][i]["name"]);
-    }
-  } else {
-    console.log(fullYear[key].date.toDateString());
-  }
-}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   LE_KINH,

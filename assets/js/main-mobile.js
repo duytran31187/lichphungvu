@@ -20,7 +20,7 @@ for (let yk in fullYear) {
       // }
       label += fullYear[yk]['cacNgayLe'][ngayle]['name'];
       let typeClss = '';
-      document.getElementById('holder').innerHTML = label;
+      document.getElementById('holder').innerHTML = '111111111111';
       count++;
       // data.push(
       //     {

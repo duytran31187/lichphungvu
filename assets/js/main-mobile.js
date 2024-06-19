@@ -1,3 +1,5 @@
+import {  LE_KINH, LE_NHO, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.mjs'
+
 var namPhungvu = getTinhNamPhungVuInstant(2024);
 const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
 let count = 0;

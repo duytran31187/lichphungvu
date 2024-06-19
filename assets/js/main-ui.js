@@ -1,4 +1,4 @@
-import {  LE_KINH, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.mjs'
+import {  LE_KINH, LE_NHO, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.mjs'
 
 
   $.extend({

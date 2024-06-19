@@ -3,7 +3,7 @@ import {  getTinhNamPhungVuInstant } from './dist-mobile/index.mjs'
 var namPhungvu = getTinhNamPhungVuInstant(2024);
 const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
 let count = 0;
-document.getElementById('holder').innerHTML = 'start_---------';
+document.getElementById('holder').innerHTML = 'start';
 for (let yk in fullYear) {
   if(count >=2) {
     break;
@@ -33,6 +33,6 @@ for (let yk in fullYear) {
       // );
   }
 }
-setTimeout(() => {
-  document.getElementById('holder').innerHTML = 'end_---------';
-}, 60);
+// setTimeout(() => {
+//   document.getElementById('holder').innerHTML = 'end_---------';
+// }, 60);

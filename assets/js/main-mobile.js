@@ -1,9 +1,9 @@
 import {  getTinhNamPhungVuInstant } from './dist-mobile/index.mjs'
 
-var namPhungvu = getTinhNamPhungVuInstant(2024);
+// var namPhungvu = getTinhNamPhungVuInstant(2024);
 // const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
 let count = 0;
-document.getElementById('holder-mobile').innerHTML = 'start';
+document.getElementById('holdermobile').innerHTML = 'start';
 // for (let yk in fullYear) {
 //   if(count >=2) {
 //     break;

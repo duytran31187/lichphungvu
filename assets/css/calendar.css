@@ -100,3 +100,7 @@
 th.c-name {
   text-align: center;
 }
+div#holder-mobile {
+  margin-top: 10%;
+  margin-left: 5%;
+}

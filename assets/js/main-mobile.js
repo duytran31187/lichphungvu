@@ -27,7 +27,7 @@ for (let yk in fullYear) {
           typeClss = 'le_trong_d';
       }
       document.getElementById('holder').innerHTML = label;
-      coun++;
+      count++;
       // data.push(
       //     {
       //     title: label,

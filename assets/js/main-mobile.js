@@ -1,7 +1,7 @@
 import {  getTinhNamPhungVuInstant } from './dist-mobile/index.mjs'
 
 var namPhungvu = getTinhNamPhungVuInstant(2024);
-const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+// const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
 let count = 0;
 document.getElementById('holder').innerHTML = 'aaaaaaaaa';
 // for (let yk in fullYear) {

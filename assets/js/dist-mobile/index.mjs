@@ -1540,9 +1540,7 @@ var TinhNamPhungVu = class {
     }
   }
   getFullLichPhungVuTheoNam() {
-    this.populateCacNgayLeCoDinh();
     this.populateCalculatedDaysToCalender();
-    this.tinhchuaNhatMuaThuongNien();
     return this.fullYear;
   }
 };

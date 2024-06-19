@@ -20,7 +20,7 @@ for (let yk in fullYear) {
       // }
       label += fullYear[yk]['cacNgayLe'][ngayle]['name'];
       let typeClss = '';
-      document.getElementById('holder').innerHTML = '111111111111';
+      document.getElementById('holder').innerHTML =  label;
       count++;
       // data.push(
       //     {
@@ -33,6 +33,6 @@ for (let yk in fullYear) {
       // );
   }
 }
-// setTimeout(() => {
-//   document.getElementById('holder').innerHTML = 'end_---------';
-// }, 60);
+setTimeout(() => {
+  document.getElementById('holder').innerHTML = 'end_---------';
+}, 60);

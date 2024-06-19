@@ -12,7 +12,7 @@
   background-color: #eee;
 }
 .today {
-  background-color: #f0c9c9;
+  border: 2px solid #f0c9c9;
 }
 .outside .date {
   color: #ccc;

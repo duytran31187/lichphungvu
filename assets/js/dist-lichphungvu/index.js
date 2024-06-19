@@ -157,6 +157,9 @@ var require_lephucsinhlib = __commonJS({
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
+  LE_KINH: () => LE_KINH,
+  LE_NHO: () => LE_NHO,
+  LE_TRONG: () => LE_TRONG,
   getTinhNamPhungVuInstant: () => getTinhNamPhungVuInstant,
   nameOfDays: () => nameOfDays
 });
@@ -1440,12 +1443,13 @@ var palmSunday = (ashWednesday) => {
 
 // src/TinhNamPhungVu.ts
 var TinhNamPhungVu = class {
-  // CN tuan dau tien de tinh mua thuong nien
   constructor(year) {
     // cac ngay le tinh theo cong thu
     this.fullYear = [];
     // full 365 ngay
     this.firstSundayOfYear = void 0;
+    // CN tuan dau tien de tinh mua thuong nien
+    this.printed = false;
     this.year = +year;
     let date = newDate(this.year, 1, 1);
     const endDate = newDate(this.year + 1, 1, 1);
@@ -1701,7 +1705,22 @@ var TinhNamPhungVu = class {
     this.tinhchuaNhatMuaThuongNien();
     this.populateTuanBatNhat();
     this.populateTuanThanh();
+    this.printed = true;
     return this.fullYear;
+  }
+  getLichPhungVuTheoThang(month) {
+    const fullMonth = [];
+    month--;
+    if (!this.printed) {
+      this.getFullLichPhungVuTheoNam();
+    }
+    for (let key in this.fullYear) {
+      console.log(this.fullYear[key]);
+      if (this.fullYear[key].date.getMonth() == month) {
+        fullMonth.push(this.fullYear[key]);
+      }
+    }
+    return fullMonth;
   }
 };
 
@@ -1709,8 +1728,22 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
+var ins = getTinhNamPhungVuInstant(2024);
+var fullYear = ins.getLichPhungVuTheoThang(6);
+for (let key in fullYear) {
+  if (fullYear[key]["cacNgayLe"].length > 0) {
+    for (let i in fullYear[key]["cacNgayLe"]) {
+      console.log(fullYear[key].date.toDateString() + ":" + fullYear[key]["cacNgayLe"][i]["name"]);
+    }
+  } else {
+    console.log(fullYear[key].date.toDateString());
+  }
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  LE_KINH,
+  LE_NHO,
+  LE_TRONG,
   getTinhNamPhungVuInstant,
   nameOfDays
 });

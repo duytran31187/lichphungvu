@@ -1,4 +1,4 @@
-import {  getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.mjs'
+import {  LE_KINH, LE_TRONG, getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.mjs'
 
 
   $.extend({
@@ -223,7 +223,7 @@ import {  getTinhNamPhungVuInstant, nameOfDays } from './dist-lichphungvu/index.
 // in lich phung vu   
 for (let y = 2020; y <=2030;y++) { // add 10 nam
     var namPhungvu = getTinhNamPhungVuInstant(y);
-    const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+    const fullYear = namPhungvu.getLichPhungVuTheoThang(6);
     for (let yk in fullYear) {
         for (let ngayle in fullYear[yk]['cacNgayLe']) {
             const tmpD = fullYear[yk]['date'];
@@ -237,11 +237,11 @@ for (let y = 2020; y <=2030;y++) { // add 10 nam
             // }
             label += fullYear[yk]['cacNgayLe'][ngayle]['name'];
             let typeClss = '';
-            if (typeNgayLe == 'Lễ Nhớ') {
+            if (typeNgayLe == LE_NHO) {
                 typeClss = 'le_nho_d';
-            } else if (typeNgayLe == 'Lễ Kính') {
+            } else if (typeNgayLe == LE_KINH) {
                 typeClss = 'le_kinh_d';
-            } else if (typeNgayLe == 'Lễ Trọng') {
+            } else if (typeNgayLe == LE_TRONG) {
                 typeClss = 'le_trong_d';
             }
             data.push(

@@ -57,10 +57,15 @@
         crossorigin="anonymous"></script>
 
     <!-- App JS -->
+
+<script type="module">
+    import {  getTinhNamPhungVuInstant } from './dist-mobile/index.mjs'
     
-    <script type="module" src="./assets/js/main-mobile.js"></script>
-<script nomodule>
-  document.getElementById('holder').innerHTML = 'no support module';
+
+    var namPhungvu = getTinhNamPhungVuInstant(2024);
+    const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+    let count = 0;
+    document.getElementById('holder3').innerHTML = JSON.stringify(fullYear);
 </script>
 </body>
 

@@ -22,14 +22,18 @@ for (let yk in fullYear) {
       let typeClss = '';
       document.getElementById('holder').innerHTML =  label;
       count++;
-      // data.push(
-      //     {
-      //     title: label,
-      //     start: tmpD,
-      //     end: tmpD,
-      //     typeClss: typeClss,
-      //     allDay: true
-      //     }
-      // );
+      data.push(
+          {
+          title: label,
+          start: tmpD,
+          end: tmpD,
+          typeClss: typeClss,
+          allDay: true
+          }
+      );
   }
 }
+
+$('#holder').calendar({
+    data: data
+  });

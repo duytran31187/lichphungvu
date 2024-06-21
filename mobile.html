@@ -45,8 +45,8 @@
 </head>
 
 <body>
-  bbb      
-  <div id="holder"></div>
+  <div id="holder">holder</div>
+  <div id="holder2">holder 2</div>
 
     <!-- Javascript -->
     <!-- JQuery -->
@@ -57,7 +57,10 @@
         crossorigin="anonymous"></script>
 
     <!-- App JS -->
-    <script src="./assets/js/main-mobile.js" type='module'></script>
+    <script src="./assets/js/main-mobile.js"></script>
+    <script>
+      document.getElementById('holder2').innerHTML = 'start inline....';
+    </script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@ var namPhungvu = getTinhNamPhungVuInstant(2024);
 const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
 const divItem  = document.getElementById('holder');
 let count = 0;
-// document.getElementById('holder').innerHTML = 'start....';
+document.getElementById('holder').innerHTML = 'start....';
 for (let yk in fullYear) {
   if(count >=2) {
     break;
@@ -34,7 +34,8 @@ for (let yk in fullYear) {
       );
   }
 }
-
-$('#holder').calendar({
-    data: data
-  });
+(function ($) {
+    $('#holder').calendar({
+        data: data
+      });
+});

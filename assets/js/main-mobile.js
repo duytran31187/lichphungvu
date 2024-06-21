@@ -3,4 +3,4 @@
 // var namPhungvu = getTinhNamPhungVuInstant(2024);
 // const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
 let count = 0;
-document.getElementById('holder3').innerHTML = '3333333333333335555555555....';
+document.getElementById('holder3').innerHTML = '666....';

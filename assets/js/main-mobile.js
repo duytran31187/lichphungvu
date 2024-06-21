@@ -2,6 +2,7 @@ import {  getTinhNamPhungVuInstant } from './dist-mobile/index.mjs'
 
 var namPhungvu = getTinhNamPhungVuInstant(2024);
 const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+const divItem  = document.getElementById('holder');
 let count = 0;
 // document.getElementById('holder').innerHTML = 'start....';
 for (let yk in fullYear) {
@@ -20,7 +21,7 @@ for (let yk in fullYear) {
       // }
       label += fullYear[yk]['cacNgayLe'][ngayle]['name'];
       let typeClss = '';
-      document.getElementById('holder').innerHTML =  label;
+      divItem.innerHTML =  label;
       count++;
       data.push(
           {

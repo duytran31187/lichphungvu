@@ -1,28 +1,11 @@
-"use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/lephucsinhlib.js
 var require_lephucsinhlib = __commonJS({
-  "src/lephucsinhlib.js"(exports2, module2) {
+  "src/lephucsinhlib.js"(exports, module) {
     "use strict";
     var PI = Math.PI;
     function INT(d) {
@@ -148,22 +131,11 @@ var require_lephucsinhlib = __commonJS({
       }
       return new Array(lunarDay, lunarMonth, lunarYear, lunarLeap);
     }
-    module2.exports = {
+    module.exports = {
       convertSolar2Lunar: convertSolar2Lunar2
     };
   }
 });
-
-// src/index.ts
-var src_exports = {};
-__export(src_exports, {
-  LE_KINH: () => LE_KINH,
-  LE_NHO: () => LE_NHO,
-  LE_TRONG: () => LE_TRONG,
-  getTinhNamPhungVuInstant: () => getTinhNamPhungVuInstant,
-  nameOfDays: () => nameOfDays
-});
-module.exports = __toCommonJS(src_exports);
 
 // src/utils.ts
 function cloneDate(d) {
@@ -1729,12 +1701,11 @@ function getTinhNamPhungVuInstant(year) {
 }
 var ins = getTinhNamPhungVuInstant(2024);
 var fullYear = ins.getLichPhungVuTheoThang(6);
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+export {
   LE_KINH,
   LE_NHO,
   LE_TRONG,
   getTinhNamPhungVuInstant,
   nameOfDays
-});
-//# sourceMappingURL=index.js.map
+};
+//# sourceMappingURL=index.mjs.map

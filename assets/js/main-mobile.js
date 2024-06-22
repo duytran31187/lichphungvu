@@ -1,7 +1,3 @@
-import { getTinhNamPhungVuInstant } from "./dist-mobile/index.d.ts";
+import { addTextToBody } from "./dist-lichphungvu/index.mjs";
 
-var namPhungvu = getTinhNamPhungVuInstant(2024);
-const fullYear = namPhungvu.getFullLichPhungVuTheoNam();
-
-let count = 0;
-document.getElementById('holder3').innerHTML = JSON.stringify(fullYear);
+addTextToBody('Modules are pretty cool.');

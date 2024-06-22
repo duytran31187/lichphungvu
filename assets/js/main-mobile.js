@@ -1,3 +1,3 @@
-import { addTextToBody } from "./dist-lichphungvu/index.mjs";
+import { addTextToBody } from "./dist-mobile/index.mjs";
 
 addTextToBody('Modules are pretty cool.');

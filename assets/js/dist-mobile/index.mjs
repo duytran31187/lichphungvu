@@ -1699,8 +1699,9 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
-var ins = getTinhNamPhungVuInstant(2024);
-var fullYear = ins.getLichPhungVuTheoThang(6);
+var namPhungvu = getTinhNamPhungVuInstant(2024);
+var fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+document.getElementById("holder3").innerHTML = JSON.stringify(fullYear);
 export {
   LE_KINH,
   LE_NHO,

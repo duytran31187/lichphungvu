@@ -1727,8 +1727,9 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
-var ins = getTinhNamPhungVuInstant(2024);
-var fullYear = ins.getLichPhungVuTheoThang(6);
+var namPhungvu = getTinhNamPhungVuInstant(2024);
+var fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+document.getElementById("holder3").innerHTML = JSON.stringify(fullYear);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   LE_KINH,

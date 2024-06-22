@@ -1699,9 +1699,12 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
-export function addTextToBody(text) {
+export function addTextToBody() {
+  
+  var namPhungvu = getTinhNamPhungVuInstant(2024);
+  var fullYear = namPhungvu.getFullLichPhungVuTheoNam();
   const div = document.createElement('div');
-  div.textContent = text;
+  div.textContent = JSON.stringify(fullYear);
   document.body.appendChild(div);
 }
 // var ins = getTinhNamPhungVuInstant(2024);

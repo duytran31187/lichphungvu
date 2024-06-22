@@ -1696,19 +1696,21 @@ var TinhNamPhungVu = class {
 };
 
 // src/index.ts
-export function getTinhNamPhungVuInstant(year) {
+function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
-// export LE_KINH;
-// export LE_NHO;
-
-// // var ins = getTinhNamPhungVuInstant(2024);
-// // var fullYear = ins.getLichPhungVuTheoThang(6);
-// export {
-//   LE_KINH,
-//   LE_NHO,
-//   LE_TRONG,
-//   getTinhNamPhungVuInstant,
-//   nameOfDays
-// };
+export function addTextToBody(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  document.body.appendChild(div);
+}
+// var ins = getTinhNamPhungVuInstant(2024);
+// var fullYear = ins.getLichPhungVuTheoThang(6);
+export {
+  LE_KINH,
+  LE_NHO,
+  LE_TRONG,
+  getTinhNamPhungVuInstant,
+  nameOfDays
+};
 //# sourceMappingURL=index.mjs.map

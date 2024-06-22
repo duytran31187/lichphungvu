@@ -1,4 +1,4 @@
-import { getTinhNamPhungVuInstant } from "./dist-lichphungvu/index.d.mts";
+import { getTinhNamPhungVuInstant } from "./dist-lichphungvu/index.js";
 
 var namPhungvu = getTinhNamPhungVuInstant(2024);
 const fullYear = namPhungvu.getFullLichPhungVuTheoNam();

@@ -57,8 +57,12 @@
         crossorigin="anonymous"></script>
 
     <!-- App JS -->
-    
-    <script defer src="./assets/js/dist-mobile/index.js"></script>
+
+    <script type="module">
+        import {addTextToBody} from "./assets/js/dist-mobile/index.mjs";
+      
+        addTextToBody('Modules are pretty cool.');
+    </script>
 </body>
 
 </html>

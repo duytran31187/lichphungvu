@@ -1699,16 +1699,11 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
-export function addTextToBody() {
-  
-  var namPhungvu = getTinhNamPhungVuInstant(2024);
-  var fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+export function addTextToBody(text) {
   const div = document.createElement('div');
-  div.textContent = JSON.stringify(fullYear);
+  div.textContent = tinhNamABC(2024);
   document.body.appendChild(div);
 }
-// var ins = getTinhNamPhungVuInstant(2024);
-// var fullYear = ins.getLichPhungVuTheoThang(6);
 export {
   LE_KINH,
   LE_NHO,

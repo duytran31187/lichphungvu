@@ -1,4 +1,4 @@
-import { getTinhNamPhungVuInstant } from "./dist-mobile/index.js";
+import { getTinhNamPhungVuInstant } from "./dist-mobile/index.d.ts";
 
 var namPhungvu = getTinhNamPhungVuInstant(2024);
 const fullYear = namPhungvu.getFullLichPhungVuTheoNam();

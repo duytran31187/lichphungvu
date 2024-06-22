@@ -1,24 +1,8 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/lephucsinhlib.js
 var require_lephucsinhlib = __commonJS({
@@ -154,17 +138,6 @@ var require_lephucsinhlib = __commonJS({
   }
 });
 
-// src/index.ts
-var src_exports = {};
-__export(src_exports, {
-  LE_KINH: () => LE_KINH,
-  LE_NHO: () => LE_NHO,
-  LE_TRONG: () => LE_TRONG,
-  getTinhNamPhungVuInstant: () => getTinhNamPhungVuInstant,
-  nameOfDays: () => nameOfDays
-});
-module.exports = __toCommonJS(src_exports);
-
 // src/utils.ts
 function cloneDate(d) {
   return new Date(d);
@@ -222,6 +195,219 @@ var buildKeyInNumberFromDate = (date) => {
 };
 var tenChuaNhatThuongNienThu = (n) => {
   return `CN ${n} mua thuong nien`;
+};
+
+// src/cacNgayLeNamPhungVu.ts
+var { convertSolar2Lunar } = require_lephucsinhlib();
+var tinhngayramsau21thang3 = (y) => {
+  let ngayRamFound = false;
+  let count = 0;
+  let dateFrom21 = 21;
+  let month = 3;
+  do {
+    const ngayAm = convertSolar2Lunar(
+      dateFrom21,
+      month,
+      y,
+      7
+      // UTC+7
+    );
+    const lunarDay = ngayAm[0];
+    if (lunarDay === 16) {
+      ngayRamFound = true;
+    }
+    count++;
+    dateFrom21++;
+    if (dateFrom21 == 32) {
+      dateFrom21 = 1;
+      month = 4;
+    }
+  } while (!ngayRamFound);
+  return {
+    year: y,
+    month,
+    day: dateFrom21
+  };
+};
+function tinhThuTuLeTro(ngayLePhucSinh) {
+  const d = cloneDate(ngayLePhucSinh);
+  d.setDate(d.getDate() - 46);
+  return d;
+}
+var tinhNgayPhucSinh = (year) => {
+  const simpleDateParam = tinhngayramsau21thang3(year);
+  let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
+  const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
+  if (foundDate instanceof Date) {
+    return foundDate;
+  }
+  return false;
+};
+function tinhLeChuaHienLinh(y) {
+  const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
+  switch (ngayLeHienLinh.getDay()) {
+    case 1:
+      return /* @__PURE__ */ new Date(y + "-01-05");
+    case 2:
+      return /* @__PURE__ */ new Date(y + "-01-04");
+    case 3:
+      return /* @__PURE__ */ new Date(y + "-01-03");
+    case 4:
+      return /* @__PURE__ */ new Date(y + "-01-02");
+    case 5:
+      return /* @__PURE__ */ new Date(y + "-01-8");
+    case 6:
+      return /* @__PURE__ */ new Date(y + "-01-7");
+    default:
+      return ngayLeHienLinh;
+  }
+}
+function tinhLeThanhGia(y) {
+  const christMas = getChristmasDay(y);
+  let count = 1;
+  let breakTheLoop = false;
+  let foundDate = /* @__PURE__ */ new Date(y + "-12-30");
+  do {
+    let octaveDay = addDate(christMas, count);
+    if (octaveDay.getDay() == 0) {
+      breakTheLoop = true;
+      foundDate = octaveDay;
+    }
+    count++;
+    if (count > 6) {
+      breakTheLoop = true;
+    }
+  } while (!breakTheLoop);
+  return foundDate;
+}
+function tinhLeChuaChiuPhepRua(y) {
+  const leHienLinh = tinhLeChuaHienLinh(y);
+  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
+  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
+  let ngayLe;
+  if (leHienLinh.getTime() == day7.getTime()) {
+    ngayLe = timNgayTrongTuanSauNgay(day7, 1);
+  } else if (leHienLinh.getTime() == day8.getTime()) {
+    ngayLe = timNgayTrongTuanSauNgay(day8, 1);
+  } else {
+    ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
+  }
+  if (ngayLe instanceof Date) {
+    return ngayLe;
+  } else {
+    return false;
+  }
+}
+var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
+  let tuan = cloneDate(chuaNhatThuNhatMuaVong);
+  tuan.setDate(tuan.getDate() - 7);
+  return tuan;
+};
+var tinhLeChuaThanhThanHienxuong = (easter) => {
+  const d = cloneDate(easter);
+  return addDate(d, 49);
+};
+var tinhLeChuaBaNgoi = (leChuaThanhThanHienXuong) => {
+  const d = cloneDate(leChuaThanhThanHienXuong);
+  return addDate(d, 7);
+};
+var tinhLeMinhMauThanhChua = (tinhLeChuaBaNgoi2) => {
+  const d = cloneDate(tinhLeChuaBaNgoi2);
+  return addDate(d, 7);
+};
+var tinhLeThanhTamChuaGieSu = (tinhLeMinhMauThanhChua2) => {
+  const d = cloneDate(tinhLeMinhMauThanhChua2);
+  return addDate(d, 5);
+};
+var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
+  let count = 33;
+  let found = false;
+  const chuaNhatThuongNienDauTienMua2 = cloneDate(leChuatthienxuong);
+  chuaNhatThuongNienDauTienMua2.setDate(chuaNhatThuongNienDauTienMua2.getDate() + 7);
+  if (leChuatthienxuong.getDay() != 0 || leKiToVua.getDay() != 0) {
+    console.error("invalid params");
+    return 100;
+  }
+  do {
+    let sunday34 = cloneDate(leKiToVua);
+    sunday34.setDate(sunday34.getDate() - (34 - count) * 7);
+    count--;
+    if (sunday34.toDateString() == chuaNhatThuongNienDauTienMua2.toDateString()) {
+      found = true;
+      count++;
+    }
+  } while (!found);
+  return count;
+};
+function tinhNamABC(y) {
+  let yearStr = y.toString();
+  let yearNums = Array.from(yearStr);
+  let countNum = 0;
+  let year;
+  yearNums.forEach((element) => {
+    countNum += parseInt(element);
+  });
+  switch (countNum % 3) {
+    case 1:
+      year = "A";
+      break;
+    case 2:
+      year = "B";
+      break;
+    default:
+      year = "C";
+  }
+  return year;
+}
+function tinh4TuanMuaVong(y) {
+  let chrismastDate = getChristmasDay(y);
+  let sundayFound = false;
+  let count = 0;
+  let finalResult;
+  do {
+    let closestSunday_1 = chrismastDate;
+    closestSunday_1.setDate(chrismastDate.getDate() - 1);
+    if (closestSunday_1.getDay() === 0) {
+      let sunday4 = new Date(closestSunday_1.getTime());
+      let sunday3 = new Date(sunday4.getTime());
+      sunday3.setDate(sunday3.getDate() - 7);
+      let sunday2 = new Date(sunday3.getTime());
+      sunday2.setDate(sunday2.getDate() - 7);
+      let sunday1 = new Date(sunday2.getTime());
+      sunday1.setDate(sunday2.getDate() - 7);
+      sundayFound = true;
+      finalResult = {
+        week1: sunday1,
+        week2: sunday2,
+        week3: sunday3,
+        week4: sunday4
+      };
+      break;
+    }
+    count++;
+  } while (!sundayFound);
+  return finalResult;
+}
+var firstSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 4);
+};
+var secondSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 11);
+};
+var thirdSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 18);
+};
+var fourthSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 25);
+};
+var fifthSundayOfLent = (ashWednesday) => {
+  return addDate(ashWednesday, 32);
+};
+var calculateTheAscentionOfTheLord = (easter) => {
+  return addDate(easter, 42);
+};
+var palmSunday = (ashWednesday) => {
+  return addDate(ashWednesday, 39);
 };
 
 // src/commonData.ts
@@ -1228,219 +1414,6 @@ var danhSachNgayLeCoDinh = (year) => {
   ];
 };
 
-// src/cacNgayLeNamPhungVu.ts
-var { convertSolar2Lunar } = require_lephucsinhlib();
-var tinhngayramsau21thang3 = (y) => {
-  let ngayRamFound = false;
-  let count = 0;
-  let dateFrom21 = 21;
-  let month = 3;
-  do {
-    const ngayAm = convertSolar2Lunar(
-      dateFrom21,
-      month,
-      y,
-      7
-      // UTC+7
-    );
-    const lunarDay = ngayAm[0];
-    if (lunarDay === 16) {
-      ngayRamFound = true;
-    }
-    count++;
-    dateFrom21++;
-    if (dateFrom21 == 32) {
-      dateFrom21 = 1;
-      month = 4;
-    }
-  } while (!ngayRamFound);
-  return {
-    year: y,
-    month,
-    day: dateFrom21
-  };
-};
-function tinhThuTuLeTro(ngayLePhucSinh) {
-  const d = cloneDate(ngayLePhucSinh);
-  d.setDate(d.getDate() - 46);
-  return d;
-}
-var tinhNgayPhucSinh = (year) => {
-  const simpleDateParam = tinhngayramsau21thang3(year);
-  let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
-  const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
-  if (foundDate instanceof Date) {
-    return foundDate;
-  }
-  return false;
-};
-function tinhLeChuaHienLinh(y) {
-  const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
-  switch (ngayLeHienLinh.getDay()) {
-    case 1:
-      return /* @__PURE__ */ new Date(y + "-01-05");
-    case 2:
-      return /* @__PURE__ */ new Date(y + "-01-04");
-    case 3:
-      return /* @__PURE__ */ new Date(y + "-01-03");
-    case 4:
-      return /* @__PURE__ */ new Date(y + "-01-02");
-    case 5:
-      return /* @__PURE__ */ new Date(y + "-01-8");
-    case 6:
-      return /* @__PURE__ */ new Date(y + "-01-7");
-    default:
-      return ngayLeHienLinh;
-  }
-}
-function tinhLeThanhGia(y) {
-  const christMas = getChristmasDay(y);
-  let count = 1;
-  let breakTheLoop = false;
-  let foundDate = /* @__PURE__ */ new Date(y + "-12-30");
-  do {
-    let octaveDay = addDate(christMas, count);
-    if (octaveDay.getDay() == 0) {
-      breakTheLoop = true;
-      foundDate = octaveDay;
-    }
-    count++;
-    if (count > 6) {
-      breakTheLoop = true;
-    }
-  } while (!breakTheLoop);
-  return foundDate;
-}
-function tinhLeChuaChiuPhepRua(y) {
-  const leHienLinh = tinhLeChuaHienLinh(y);
-  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
-  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
-  let ngayLe;
-  if (leHienLinh.getTime() == day7.getTime()) {
-    ngayLe = timNgayTrongTuanSauNgay(day7, 1);
-  } else if (leHienLinh.getTime() == day8.getTime()) {
-    ngayLe = timNgayTrongTuanSauNgay(day8, 1);
-  } else {
-    ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
-  }
-  if (ngayLe instanceof Date) {
-    return ngayLe;
-  } else {
-    return false;
-  }
-}
-var tinhLeChuaKiToVua = (chuaNhatThuNhatMuaVong) => {
-  let tuan = cloneDate(chuaNhatThuNhatMuaVong);
-  tuan.setDate(tuan.getDate() - 7);
-  return tuan;
-};
-var tinhLeChuaThanhThanHienxuong = (easter) => {
-  const d = cloneDate(easter);
-  return addDate(d, 49);
-};
-var tinhLeChuaBaNgoi = (leChuaThanhThanHienXuong) => {
-  const d = cloneDate(leChuaThanhThanHienXuong);
-  return addDate(d, 7);
-};
-var tinhLeMinhMauThanhChua = (tinhLeChuaBaNgoi2) => {
-  const d = cloneDate(tinhLeChuaBaNgoi2);
-  return addDate(d, 7);
-};
-var tinhLeThanhTamChuaGieSu = (tinhLeMinhMauThanhChua2) => {
-  const d = cloneDate(tinhLeMinhMauThanhChua2);
-  return addDate(d, 5);
-};
-var tinhChuaNhatThuongNienDauTienSauLeChuaThanhThanHienXuong = (leKiToVua, leChuatthienxuong) => {
-  let count = 33;
-  let found = false;
-  const chuaNhatThuongNienDauTienMua2 = cloneDate(leChuatthienxuong);
-  chuaNhatThuongNienDauTienMua2.setDate(chuaNhatThuongNienDauTienMua2.getDate() + 7);
-  if (leChuatthienxuong.getDay() != 0 || leKiToVua.getDay() != 0) {
-    console.error("invalid params");
-    return 100;
-  }
-  do {
-    let sunday34 = cloneDate(leKiToVua);
-    sunday34.setDate(sunday34.getDate() - (34 - count) * 7);
-    count--;
-    if (sunday34.toDateString() == chuaNhatThuongNienDauTienMua2.toDateString()) {
-      found = true;
-      count++;
-    }
-  } while (!found);
-  return count;
-};
-function tinhNamABC(y) {
-  let yearStr = y.toString();
-  let yearNums = Array.from(yearStr);
-  let countNum = 0;
-  let year;
-  yearNums.forEach((element) => {
-    countNum += parseInt(element);
-  });
-  switch (countNum % 3) {
-    case 1:
-      year = "A";
-      break;
-    case 2:
-      year = "B";
-      break;
-    default:
-      year = "C";
-  }
-  return year;
-}
-function tinh4TuanMuaVong(y) {
-  let chrismastDate = getChristmasDay(y);
-  let sundayFound = false;
-  let count = 0;
-  let finalResult;
-  do {
-    let closestSunday_1 = chrismastDate;
-    closestSunday_1.setDate(chrismastDate.getDate() - 1);
-    if (closestSunday_1.getDay() === 0) {
-      let sunday4 = new Date(closestSunday_1.getTime());
-      let sunday3 = new Date(sunday4.getTime());
-      sunday3.setDate(sunday3.getDate() - 7);
-      let sunday2 = new Date(sunday3.getTime());
-      sunday2.setDate(sunday2.getDate() - 7);
-      let sunday1 = new Date(sunday2.getTime());
-      sunday1.setDate(sunday2.getDate() - 7);
-      sundayFound = true;
-      finalResult = {
-        week1: sunday1,
-        week2: sunday2,
-        week3: sunday3,
-        week4: sunday4
-      };
-      break;
-    }
-    count++;
-  } while (!sundayFound);
-  return finalResult;
-}
-var firstSundayOfLent = (ashWednesday) => {
-  return addDate(ashWednesday, 4);
-};
-var secondSundayOfLent = (ashWednesday) => {
-  return addDate(ashWednesday, 11);
-};
-var thirdSundayOfLent = (ashWednesday) => {
-  return addDate(ashWednesday, 18);
-};
-var fourthSundayOfLent = (ashWednesday) => {
-  return addDate(ashWednesday, 25);
-};
-var fifthSundayOfLent = (ashWednesday) => {
-  return addDate(ashWednesday, 32);
-};
-var calculateTheAscentionOfTheLord = (easter) => {
-  return addDate(easter, 42);
-};
-var palmSunday = (ashWednesday) => {
-  return addDate(ashWednesday, 39);
-};
-
 // src/TinhNamPhungVu.ts
 var TinhNamPhungVu = class {
   constructor(year) {
@@ -1724,18 +1697,7 @@ var TinhNamPhungVu = class {
 };
 
 // src/index.ts
-function getTinhNamPhungVuInstant(year) {
-  return new TinhNamPhungVu(year);
-}
-var namPhungvu = getTinhNamPhungVuInstant(2024);
+var namPhungvu = new TinhNamPhungVu(2024);
 var fullYear = namPhungvu.getFullLichPhungVuTheoNam();
 document.getElementById("holder3").innerHTML = JSON.stringify(fullYear);
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  LE_KINH,
-  LE_NHO,
-  LE_TRONG,
-  getTinhNamPhungVuInstant,
-  nameOfDays
-});
 //# sourceMappingURL=index.js.map

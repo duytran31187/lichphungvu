@@ -59,9 +59,11 @@
     <!-- App JS -->
 
     <script type="module">
-        import {addTextToBody} from "./assets/js/dist-mobile/index.mjs";
-      
-        addTextToBody('Modules are pretty cool.');
+        import {getTinhNamPhungVuInstant} from "./assets/js/dist-mobile/index.mjs";
+        
+        var namPhungvu = getTinhNamPhungVuInstant(y);
+        var fullYear = namPhungvu.getFullLichPhungVuTheoNam();
+        document.getElementById('holder3').innerHTML = JSON.stringify(fullYear);
     </script>
 </body>
 

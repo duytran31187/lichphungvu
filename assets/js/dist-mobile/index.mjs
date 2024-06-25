@@ -1715,6 +1715,6 @@ export {
 
 export function addTextToBody(text) {
   const div = document.createElement('div');
-  div.textContent = tinhNamABC(2023);
+  div.textContent = tinhNamABC(2024);
   document.body.appendChild(div);
 }

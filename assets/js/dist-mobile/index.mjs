@@ -169,7 +169,7 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
     count++;
     if (count > 7) {
       breakTheLoop = true;
-      addTextToBody('timNgayTrongTuanSauNgay failse');
+      addTextToBody(`timNgayTrongTuanSauNgay failse ${d} ${dayOfWeek}`);
     }
   } while (!breakTheLoop);
   if (!resultDay) {

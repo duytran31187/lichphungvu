@@ -1225,6 +1225,9 @@ var tinhngayramsau21thang3 = (y) => {
       dateFrom21 = 1;
       month = 4;
     }
+    if(count > 35) {
+      ngayRamFound = true;
+    }
   } while (!ngayRamFound);
   return {
     year: y,

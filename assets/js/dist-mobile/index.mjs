@@ -173,7 +173,7 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
     }
   } while (!breakTheLoop);
   if (!resultDay) {
-    console.log(`cant find timNgayTrongTuanSauNgay for d ${d.toDateString()} for ${dayOfWeek}`);
+    console.log(`cant find timNgayTrongTuanSauNgay for d ${d} for ${dayOfWeek}`);
     return null;
   }
   return resultDay;
@@ -1246,7 +1246,7 @@ var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
   addTextToBody(`simpleDateParam ${JSON.stringify(simpleDateParam)}`);
   let closestSunday = newDate(+simpleDateParam.year,+simpleDateParam.month, +simpleDateParam.day);
-  addTextToBody(`tinhNgayPhucSinh for ${closestSunday.toDateString}`);
+  addTextToBody(`tinhNgayPhucSinh for ${closestSunday}`);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
   if (foundDate instanceof Date) {
     return foundDate;

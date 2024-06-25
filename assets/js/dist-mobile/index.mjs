@@ -1244,6 +1244,7 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 }
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
+  console.log(`simpleDateParam ${JSON.stringify(simpleDateParam)}`);
   let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
   addTextToBody(`tinhNgayPhucSinh for ${closestSunday}`);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);

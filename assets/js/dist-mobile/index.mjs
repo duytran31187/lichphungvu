@@ -180,6 +180,7 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
 }
 var timChuaNhatGanNhatTuNgay = (d) => {
   d.setDate(d.getDate() - 1);
+  addTextToBody(`timChuaNhatGanNhatTuNgay for d ${d}`);
   const foundDate = timNgayTrongTuanSauNgay(d, 0);
   if (foundDate instanceof Date) {
     return foundDate;
@@ -1293,10 +1294,13 @@ function tinhLeChuaChiuPhepRua(y) {
   const day8 = /* @__PURE__ */ new Date(y + "-1-8");
   let ngayLe;
   if (leHienLinh.getTime() == day7.getTime()) {
+    addTextToBody(`tinhLeChuaChiuPhepRua for d ${day7}`);
     ngayLe = timNgayTrongTuanSauNgay(day7, 1);
   } else if (leHienLinh.getTime() == day8.getTime()) {
+    addTextToBody(`tinhLeChuaChiuPhepRua for d ${day8}`);
     ngayLe = timNgayTrongTuanSauNgay(day8, 1);
   } else {
+    addTextToBody(`tinhLeChuaChiuPhepRua for d ${leHienLinh}`);
     ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
   }
   if (ngayLe instanceof Date) {

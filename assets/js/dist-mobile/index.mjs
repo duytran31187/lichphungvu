@@ -1292,8 +1292,8 @@ function tinhLeThanhGia(y) {
 }
 function tinhLeChuaChiuPhepRua(y) {
   const leHienLinh = tinhLeChuaHienLinh(y);
-  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
-  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
+  const day7 = newDate(y, 1, 7);
+  const day8 = newDate(y, 1, 8);
   let ngayLe;
   if (leHienLinh.getTime() == day7.getTime()) {
     addTextToBody(`tinhLeChuaChiuPhepRua for d ${day7}`);

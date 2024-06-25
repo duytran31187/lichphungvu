@@ -1715,7 +1715,7 @@ export {
 //# sourceMappingURL=index.mjs.map
 export function addTextToBody(text = '') {
   const div = document.createElement('div');
-  if (text !== '') {
+  if (text == '') {
     div.textContent = tinhNamABC(2027);
   } else {
     div.textContent = text;

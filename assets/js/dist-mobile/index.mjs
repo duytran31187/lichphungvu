@@ -1705,7 +1705,7 @@ export {
   LE_KINH,
   LE_NHO,
   LE_TRONG,
-  getTinhNamPhungVuInstant,
+  // getTinhNamPhungVuInstant,
   nameOfDays
 };
 //# sourceMappingURL=index.mjs.map

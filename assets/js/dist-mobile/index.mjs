@@ -1252,7 +1252,7 @@ var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
   showError(`simpleDateParam year: ${simpleDateParam.year} month: ${simpleDateParam.month} day: ${simpleDateParam.day}`);
   const dd = newDate(simpleDateParam.year, simpleDateParam.month, simpleDateParam.day);
-  console.log(`aaaaa ${dd}`);
+  showError(`aaaaa ${dd}`);
   const closestSundayPS = newDate(year, 3, 26);
   showError(`tinhNgayPhucSinh ${closestSundayPS}`);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);

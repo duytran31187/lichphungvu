@@ -144,6 +144,8 @@ function cloneDate(d) {
 function newDate(year, month, day) {
   if (isNaN(month) || isNaN(day)) {
     showError(`newDate ${year} - ${month} - ${day}`);
+    month = 1;
+    day = 1;
   }
   
   const d = new Date(year + "-" + month + "-" + day);
@@ -1249,7 +1251,7 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 }
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
-  showError(`simpleDateParam ${JSON.stringify(simpleDateParam)}`);
+  showError(`simpleDateParam ${simpleDateParam.year - simpleDateParam.month - simpleDateParam.day}`);
   const closestSundayPS = newDate(simpleDateParam.year,+simpleDateParam.month, +simpleDateParam.day);
   showError(`tinhNgayPhucSinh for ${closestSundayPS}`);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);

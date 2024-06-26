@@ -1717,8 +1717,8 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
-var ins = getTinhNamPhungVuInstant(2024);
-var fullYear = ins.getLichPhungVuTheoThang(6);
+// var ins = getTinhNamPhungVuInstant(2024);
+// var fullYear = ins.getLichPhungVuTheoThang(6);
 export {
   LE_KINH,
   LE_NHO,
@@ -1726,6 +1726,7 @@ export {
   getTinhNamPhungVuInstant,
   nameOfDays
 };
+tinhNgayPhucSinh(2024);
 //# sourceMappingURL=index.mjs.map
 export function showError(text = '') {
   const div = document.createElement('div');

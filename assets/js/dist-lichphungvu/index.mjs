@@ -149,9 +149,9 @@ function newDate(year, month, day) {
   return d;
 }
 function addDate(currentDate, numOfDate) {
-  const newDate3 = cloneDate(currentDate);
-  newDate3.setDate(newDate3.getDate() + numOfDate);
-  return newDate3;
+  const newDate2 = cloneDate(currentDate);
+  newDate2.setDate(newDate2.getDate() + numOfDate);
+  return newDate2;
 }
 function getChristmasDay(year) {
   return newDate(year, 12, 25);
@@ -1239,7 +1239,7 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 }
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
-  let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
+  let closestSunday = newDate(simpleDateParam.year, simpleDateParam.month, simpleDateParam.day);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
   if (foundDate instanceof Date) {
     return foundDate;
@@ -1247,20 +1247,20 @@ var tinhNgayPhucSinh = (year) => {
   return false;
 };
 function tinhLeChuaHienLinh(y) {
-  const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
+  const ngayLeHienLinh = newDate(y, 1, 6);
   switch (ngayLeHienLinh.getDay()) {
     case 1:
-      return /* @__PURE__ */ new Date(y + "-01-05");
+      return newDate(y, 1, 5);
     case 2:
-      return /* @__PURE__ */ new Date(y + "-01-04");
+      return newDate(y, 1, 4);
     case 3:
-      return /* @__PURE__ */ new Date(y + "-01-03");
+      return newDate(y, 1, 3);
     case 4:
-      return /* @__PURE__ */ new Date(y + "-01-02");
+      return newDate(y, 1, 2);
     case 5:
-      return /* @__PURE__ */ new Date(y + "-01-8");
+      return newDate(y, 1, 8);
     case 6:
-      return /* @__PURE__ */ new Date(y + "-01-7");
+      return newDate(y, 1, 7);
     default:
       return ngayLeHienLinh;
   }
@@ -1269,7 +1269,7 @@ function tinhLeThanhGia(y) {
   const christMas = getChristmasDay(y);
   let count = 1;
   let breakTheLoop = false;
-  let foundDate = /* @__PURE__ */ new Date(y + "-12-30");
+  let foundDate = newDate(y, 12, 30);
   do {
     let octaveDay = addDate(christMas, count);
     if (octaveDay.getDay() == 0) {
@@ -1285,8 +1285,8 @@ function tinhLeThanhGia(y) {
 }
 function tinhLeChuaChiuPhepRua(y) {
   const leHienLinh = tinhLeChuaHienLinh(y);
-  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
-  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
+  const day7 = newDate(y, 1, 7);
+  const day8 = newDate(y, 1, 8);
   let ngayLe;
   if (leHienLinh.getTime() == day7.getTime()) {
     ngayLe = timNgayTrongTuanSauNgay(day7, 1);
@@ -1557,7 +1557,8 @@ var TinhNamPhungVu = class {
       "leChuaBaNgoi",
       //: leChuaBaNgoi
       "leMinhMauThanhChua",
-      "leThanhTamChuaGieSu"
+      "leThanhTamChuaGieSu",
+      "chuaKitoVua"
     ];
     const LeKinh = [
       "leChuaChiuPhepRua",

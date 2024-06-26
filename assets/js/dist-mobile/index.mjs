@@ -1255,11 +1255,11 @@ var tinhNgayPhucSinh = (year) => {
   showError(`aaaaa ${dd}`);
   const closestSundayPS = newDate(year, 3, 26);
   showError(`tinhNgayPhucSinh ${closestSundayPS}`);
-  const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);
-  if (foundDate instanceof Date) {
-    return foundDate;
-  }
-  return false;
+  // const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);
+  // if (foundDate instanceof Date) {
+  //   return foundDate;
+  // }
+  // return false;
 };
 function tinhLeChuaHienLinh(y) {
   const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");

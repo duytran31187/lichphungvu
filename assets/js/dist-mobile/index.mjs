@@ -142,7 +142,7 @@ function cloneDate(d) {
   return new Date(d);
 }
 function newDate(year, month, day) {
-  showError(`y: ${y} m: ${m} d: ${d}`);
+  showError(`y: ${year} m: ${month} d: ${day}`);
   const d = /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
   d.setHours(1);
   d.setMinutes(0);

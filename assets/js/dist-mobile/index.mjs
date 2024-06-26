@@ -143,7 +143,7 @@ function cloneDate(d) {
 }
 function newDate(year, month, day) {
   showError(`y: ${year} m: ${month} d: ${day}`);
-  const d = /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
+  const d = new Date(year + "-" + month + "-" + day);
   d.setHours(1);
   d.setMinutes(0);
   d.setSeconds(0);
@@ -1245,10 +1245,10 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
   return d;
 }
 var tinhNgayPhucSinh = (year) => {
-  const simpleDateParam = tinhngayramsau21thang3(year);
-  showError(`simpleDateParam year: ${simpleDateParam.year} month: ${simpleDateParam.month} day: ${simpleDateParam.day}`);
-  const dd = newDate(simpleDateParam.year, simpleDateParam.month, simpleDateParam.day);
-  showError(`aaaaa ${dd}`);
+  // const simpleDateParam = tinhngayramsau21thang3(year);
+  // showError(`simpleDateParam year: ${simpleDateParam.year} month: ${simpleDateParam.month} day: ${simpleDateParam.day}`);
+  // const dd = newDate(simpleDateParam.year, simpleDateParam.month, simpleDateParam.day);
+  // showError(`aaaaa ${dd}`);
   const closestSundayPS = newDate(2024, 3, 26);
   showError(`tinhNgayPhucSinh ${closestSundayPS}`);
   // const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);

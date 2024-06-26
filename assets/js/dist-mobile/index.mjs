@@ -1247,7 +1247,7 @@ var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
   showError(`simpleDateParam ${JSON.stringify(simpleDateParam)}`);
   const closestSundayPS = newDate(simpleDateParam.year,+simpleDateParam.month, +simpleDateParam.day);
-  showError(`tinhNgayPhucSinh for ${closeclosestSundayPSstSunday}`);
+  showError(`tinhNgayPhucSinh for ${closestSundayPS}`);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);
   if (foundDate instanceof Date) {
     return foundDate;

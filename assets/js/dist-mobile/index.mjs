@@ -1252,8 +1252,9 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
   showError(`simpleDateParam year: ${simpleDateParam.year} month: ${simpleDateParam.month} day: ${simpleDateParam.day}`);
-  const closestSundayPS = newDate(simpleDateParam.year,+simpleDateParam.month, +simpleDateParam.day);
-  showError(`tinhNgayPhucSinh for ${closestSundayPS}`);
+  console.log(`aaaaa ${newDate(simpleDateParam.year, simpleDateParam.month, simpleDateParam.day).toDateString()}`)
+  const closestSundayPS = newDate(year, 3, 26);
+  showError(`tinhNgayPhucSinh ${closestSundayPS}`);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);
   if (foundDate instanceof Date) {
     return foundDate;

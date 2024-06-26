@@ -1234,9 +1234,9 @@ var tinhngayramsau21thang3 = (y) => {
     }
   } while (!ngayRamFound);
   return {
-    year: y,
-    month,
-    day: dateFrom21
+    year: +y,
+    month: +month,
+    day: +dateFrom21
   };
 };
 function tinhThuTuLeTro(ngayLePhucSinh) {

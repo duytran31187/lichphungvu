@@ -157,6 +157,9 @@ var require_lephucsinhlib = __commonJS({
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
+  LE_KINH: () => LE_KINH,
+  LE_NHO: () => LE_NHO,
+  LE_TRONG: () => LE_TRONG,
   getTinhNamPhungVuInstant: () => getTinhNamPhungVuInstant,
   nameOfDays: () => nameOfDays
 });
@@ -167,16 +170,30 @@ function cloneDate(d) {
   return new Date(d);
 }
 function newDate(year, month, day) {
-  const d = /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
+  let monthStr = "";
+  let dayStr = "";
+  if (month < 10) {
+    monthStr = "0" + month;
+  } else {
+    monthStr = month.toString();
+  }
+  ;
+  if (day < 10) {
+    dayStr = "0" + day;
+  } else {
+    dayStr = day.toString();
+  }
+  ;
+  const d = /* @__PURE__ */ new Date(year + "-" + monthStr + "-" + dayStr);
   d.setHours(1);
   d.setMinutes(0);
   d.setSeconds(0);
   return d;
 }
 function addDate(currentDate, numOfDate) {
-  const newDate3 = cloneDate(currentDate);
-  newDate3.setDate(newDate3.getDate() + numOfDate);
-  return newDate3;
+  const newDate2 = cloneDate(currentDate);
+  newDate2.setDate(newDate2.getDate() + numOfDate);
+  return newDate2;
 }
 function getChristmasDay(year) {
   return newDate(year, 12, 25);
@@ -1264,7 +1281,7 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 }
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
-  let closestSunday = /* @__PURE__ */ new Date(simpleDateParam.year + "-" + simpleDateParam.month + "-" + simpleDateParam.day);
+  let closestSunday = newDate(simpleDateParam.year, simpleDateParam.month, simpleDateParam.day);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
   if (foundDate instanceof Date) {
     return foundDate;
@@ -1272,20 +1289,20 @@ var tinhNgayPhucSinh = (year) => {
   return false;
 };
 function tinhLeChuaHienLinh(y) {
-  const ngayLeHienLinh = /* @__PURE__ */ new Date(y + "-01-06");
+  const ngayLeHienLinh = newDate(y, 1, 6);
   switch (ngayLeHienLinh.getDay()) {
     case 1:
-      return /* @__PURE__ */ new Date(y + "-01-05");
+      return newDate(y, 1, 5);
     case 2:
-      return /* @__PURE__ */ new Date(y + "-01-04");
+      return newDate(y, 1, 4);
     case 3:
-      return /* @__PURE__ */ new Date(y + "-01-03");
+      return newDate(y, 1, 3);
     case 4:
-      return /* @__PURE__ */ new Date(y + "-01-02");
+      return newDate(y, 1, 2);
     case 5:
-      return /* @__PURE__ */ new Date(y + "-01-8");
+      return newDate(y, 1, 8);
     case 6:
-      return /* @__PURE__ */ new Date(y + "-01-7");
+      return newDate(y, 1, 7);
     default:
       return ngayLeHienLinh;
   }
@@ -1294,7 +1311,7 @@ function tinhLeThanhGia(y) {
   const christMas = getChristmasDay(y);
   let count = 1;
   let breakTheLoop = false;
-  let foundDate = /* @__PURE__ */ new Date(y + "-12-30");
+  let foundDate = newDate(y, 12, 30);
   do {
     let octaveDay = addDate(christMas, count);
     if (octaveDay.getDay() == 0) {
@@ -1310,8 +1327,8 @@ function tinhLeThanhGia(y) {
 }
 function tinhLeChuaChiuPhepRua(y) {
   const leHienLinh = tinhLeChuaHienLinh(y);
-  const day7 = /* @__PURE__ */ new Date(y + "-1-7");
-  const day8 = /* @__PURE__ */ new Date(y + "-1-8");
+  const day7 = newDate(y, 1, 7);
+  const day8 = newDate(y, 1, 8);
   let ngayLe;
   if (leHienLinh.getTime() == day7.getTime()) {
     ngayLe = timNgayTrongTuanSauNgay(day7, 1);
@@ -1440,12 +1457,13 @@ var palmSunday = (ashWednesday) => {
 
 // src/TinhNamPhungVu.ts
 var TinhNamPhungVu = class {
-  // CN tuan dau tien de tinh mua thuong nien
   constructor(year) {
     // cac ngay le tinh theo cong thu
     this.fullYear = [];
     // full 365 ngay
     this.firstSundayOfYear = void 0;
+    // CN tuan dau tien de tinh mua thuong nien
+    this.printed = false;
     this.year = +year;
     let date = newDate(this.year, 1, 1);
     const endDate = newDate(this.year + 1, 1, 1);
@@ -1581,7 +1599,8 @@ var TinhNamPhungVu = class {
       "leChuaBaNgoi",
       //: leChuaBaNgoi
       "leMinhMauThanhChua",
-      "leThanhTamChuaGieSu"
+      "leThanhTamChuaGieSu",
+      "chuaKitoVua"
     ];
     const LeKinh = [
       "leChuaChiuPhepRua",
@@ -1701,7 +1720,21 @@ var TinhNamPhungVu = class {
     this.tinhchuaNhatMuaThuongNien();
     this.populateTuanBatNhat();
     this.populateTuanThanh();
+    this.printed = true;
     return this.fullYear;
+  }
+  getLichPhungVuTheoThang(month) {
+    const fullMonth = [];
+    month--;
+    if (!this.printed) {
+      this.getFullLichPhungVuTheoNam();
+    }
+    for (let key in this.fullYear) {
+      if (this.fullYear[key].date.getMonth() == month) {
+        fullMonth.push(this.fullYear[key]);
+      }
+    }
+    return fullMonth;
   }
 };
 
@@ -1709,8 +1742,13 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
+var ins = getTinhNamPhungVuInstant(2024);
+var fullYear = ins.getLichPhungVuTheoThang(6);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  LE_KINH,
+  LE_NHO,
+  LE_TRONG,
   getTinhNamPhungVuInstant,
   nameOfDays
 });

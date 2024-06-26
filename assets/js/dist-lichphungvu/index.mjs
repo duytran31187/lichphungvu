@@ -142,15 +142,21 @@ function cloneDate(d) {
   return new Date(d);
 }
 function newDate(year, month, day) {
-  const monthInNum = +month;
-  const dateInNum = +day;
-  if (monthInNum < 10) {
-    month = '0' + month;
+  let monthStr = "";
+  let dayStr = "";
+  if (month < 10) {
+    monthStr = "0" + month;
+  } else {
+    monthStr = month.toString();
   }
-  if (dateInNum < 10) {
-    day = '0' + day;
+  ;
+  if (day < 10) {
+    dayStr = "0" + day;
+  } else {
+    dayStr = day.toString();
   }
-  const d = new Date(year + "-" + month + "-" + day);
+  ;
+  const d = /* @__PURE__ */ new Date(year + "-" + monthStr + "-" + dayStr);
   d.setHours(1);
   d.setMinutes(0);
   d.setSeconds(0);

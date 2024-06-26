@@ -170,7 +170,21 @@ function cloneDate(d) {
   return new Date(d);
 }
 function newDate(year, month, day) {
-  const d = /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
+  let monthStr = "";
+  let dayStr = "";
+  if (month < 10) {
+    monthStr = "0" + month;
+  } else {
+    monthStr = month.toString();
+  }
+  ;
+  if (day < 10) {
+    dayStr = "0" + day;
+  } else {
+    dayStr = day.toString();
+  }
+  ;
+  const d = /* @__PURE__ */ new Date(year + "-" + monthStr + "-" + dayStr);
   d.setHours(1);
   d.setMinutes(0);
   d.setSeconds(0);

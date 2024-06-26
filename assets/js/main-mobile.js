@@ -1,3 +1,3 @@
-import { addTextToBody } from "./dist-mobile/index.mjs";
+import { showError } from "./dist-mobile/index.mjs";
 
-addTextToBody('Modules are pretty cool.');
+showError('Modules are pretty cool.');

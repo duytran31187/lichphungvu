@@ -169,7 +169,7 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
     count++;
     if (count > 7) {
       breakTheLoop = true;
-      addTextToBody(`timNgayTrongTuanSauNgay failse ${dayOfWeek}`);
+      showError(`timNgayTrongTuanSauNgay failse ${dayOfWeek}`);
     }
   } while (!breakTheLoop);
   if (!resultDay) {
@@ -180,7 +180,7 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
 }
 var timChuaNhatGanNhatTuNgay = (d) => {
   d.setDate(d.getDate() - 1);
-  addTextToBody(`timChuaNhatGanNhatTuNgay for d ${d}`);
+  showError(`timChuaNhatGanNhatTuNgay for d ${d}`);
   const foundDate = timNgayTrongTuanSauNgay(d, 0);
   if (foundDate instanceof Date) {
     return foundDate;
@@ -1228,7 +1228,7 @@ var tinhngayramsau21thang3 = (y) => {
       month = 4;
     }
     if (count >=35) {
-      addTextToBody('tinhngayramsau21thang3 failse');
+      showError('tinhngayramsau21thang3 failse');
     }
   } while (!ngayRamFound);
   return {
@@ -1244,9 +1244,9 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 }
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
-  addTextToBody(`simpleDateParam ${JSON.stringify(simpleDateParam)}`);
-  let closestSunday = newDate(+simpleDateParam.year,+simpleDateParam.month, +simpleDateParam.day);
-  addTextToBody(`tinhNgayPhucSinh for ${closestSunday}`);
+  showError(`simpleDateParam ${simpleDateParam.year - simpleDateParam.month - simpleDateParam.day}`);
+  let closestSunday = newDate(parseInt(simpleDateParam.year),parseInt(simpleDateParam.month), parseInt(simpleDateParam.day));
+  showError(`tinhNgayPhucSinh for ${closestSunday}`);
   const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
   if (foundDate instanceof Date) {
     return foundDate;
@@ -1296,13 +1296,13 @@ function tinhLeChuaChiuPhepRua(y) {
   const day8 = newDate(y, 1, 8);
   let ngayLe;
   if (leHienLinh.getTime() == day7.getTime()) {
-    addTextToBody(`tinhLeChuaChiuPhepRua for d ${day7}`);
+    showError(`tinhLeChuaChiuPhepRua for d ${day7}`);
     ngayLe = timNgayTrongTuanSauNgay(day7, 1);
   } else if (leHienLinh.getTime() == day8.getTime()) {
-    addTextToBody(`tinhLeChuaChiuPhepRua for d ${day8}`);
+    showError(`tinhLeChuaChiuPhepRua for d ${day8}`);
     ngayLe = timNgayTrongTuanSauNgay(day8, 1);
   } else {
-    addTextToBody(`tinhLeChuaChiuPhepRua for d ${leHienLinh}`);
+    showError(`tinhLeChuaChiuPhepRua for d ${leHienLinh}`);
     ngayLe = timNgayTrongTuanSauNgay(leHienLinh, 0);
   }
   if (ngayLe instanceof Date) {
@@ -1719,7 +1719,7 @@ export {
   nameOfDays
 };
 //# sourceMappingURL=index.mjs.map
-export function addTextToBody(text = '') {
+export function showError(text = '') {
   const div = document.createElement('div');
   if (text == '') {
     div.textContent = tinhNamABC(2027);

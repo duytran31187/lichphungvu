@@ -142,15 +142,11 @@ function cloneDate(d) {
   return new Date(d);
 }
 function newDate(year, month, day) {
-  let d;
-  try {
-    d = new Date(year + "-" + month + "-" + day);
-    d.setHours(1);
-    d.setMinutes(0);
-    d.setSeconds(0);
-  } catch (error) {
-    showError(`newDate ${year} - ${month} - ${day}`);
-  }
+  showError(`y: ${y} m: ${m} d: ${d}`);
+  const d = /* @__PURE__ */ new Date(year + "-" + month + "-" + day);
+  d.setHours(1);
+  d.setMinutes(0);
+  d.setSeconds(0);
   return d;
 }
 function addDate(currentDate, numOfDate) {
@@ -1253,7 +1249,7 @@ var tinhNgayPhucSinh = (year) => {
   showError(`simpleDateParam year: ${simpleDateParam.year} month: ${simpleDateParam.month} day: ${simpleDateParam.day}`);
   const dd = newDate(simpleDateParam.year, simpleDateParam.month, simpleDateParam.day);
   showError(`aaaaa ${dd}`);
-  const closestSundayPS = newDate(year, 3, 26);
+  const closestSundayPS = newDate(2024, 3, 26);
   showError(`tinhNgayPhucSinh ${closestSundayPS}`);
   // const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);
   // if (foundDate instanceof Date) {

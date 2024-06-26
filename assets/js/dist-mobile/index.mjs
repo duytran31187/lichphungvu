@@ -178,7 +178,8 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
   }
   return resultDay;
 }
-var timChuaNhatGanNhatTuNgay = (d) => {
+var timChuaNhatGanNhatTuNgay = (dt) => {
+  let d = cloneDate(dt);
   d.setDate(d.getDate() - 1);
   showError(`timChuaNhatGanNhatTuNgay for d ${d}`);
   const foundDate = timNgayTrongTuanSauNgay(d, 0);
@@ -1245,9 +1246,9 @@ function tinhThuTuLeTro(ngayLePhucSinh) {
 var tinhNgayPhucSinh = (year) => {
   const simpleDateParam = tinhngayramsau21thang3(year);
   showError(`simpleDateParam ${simpleDateParam.year - simpleDateParam.month - simpleDateParam.day}`);
-  let closestSunday = newDate(parseInt(simpleDateParam.year),parseInt(simpleDateParam.month), parseInt(simpleDateParam.day));
-  showError(`tinhNgayPhucSinh for ${closestSunday}`);
-  const foundDate = timChuaNhatGanNhatTuNgay(closestSunday);
+  const closestSundayPS = newDate(parseInt(simpleDateParam.year),parseInt(simpleDateParam.month), parseInt(simpleDateParam.day));
+  showError(`tinhNgayPhucSinh for ${closeclosestSundayPSstSunday}`);
+  const foundDate = timChuaNhatGanNhatTuNgay(closestSundayPS);
   if (foundDate instanceof Date) {
     return foundDate;
   }

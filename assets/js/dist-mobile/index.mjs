@@ -142,7 +142,10 @@ function cloneDate(d) {
   return new Date(d);
 }
 function newDate(year, month, day) {
-  showError(`newDate ${year} - ${month} - ${day}`);
+  if (isNaN(month) || isNaN(day)) {
+    showError(`newDate ${year} - ${month} - ${day}`);
+  }
+  
   const d = new Date(year + "-" + month + "-" + day);
   d.setHours(1);
   d.setMinutes(0);

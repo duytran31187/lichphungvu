@@ -25,8 +25,6 @@ $(document).ready(function () {
   if (searchYearField) {
     searchYearField.val(searchYear);
   }
-
-  var date = new Date(searchYear + '-' + currentDate.getMonth() + '-01');
   
   var namPhungvu = getTinhNamPhungVuInstant(searchYear);
   var namphungVuIns = namPhungvu.getNamPhungVu();

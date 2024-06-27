@@ -359,3 +359,9 @@ tr.Sunday {
 tr.odd-cls {
   background-color: #cccc;
 }
+th.th-date {
+  min-width: 150px;
+}
+i.loai_ngay_le {
+  color: green;
+}

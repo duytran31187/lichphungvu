@@ -2,25 +2,13 @@ extends layout
 block content
   div(class='container', id='app')
     div(class='row')
-      div(class='col-12', id='divCalendar')
-    div(class='row justify-content-md-center')
-      div(class='col-md-6') 
-        form
-          label Search Year 
-          div(class='form-group')
-            input(type='number', id='searchYear', name='searchYear', class='form-control')
-          div(class='form-group') 
-              input(type='submit', class='btn btn-primary')
-    //- div(class='row justify-content-md-center')
-      //- h1 Nam phung vu {{year}}
-      //- h6 Lich Phung vu libs
-      //- ul(v-for="item in dataNamPhungVuIns")
-      //-   li {{item}}     
-    div(class='row justify-content-md-center')
-      h1 {{year}}
-      h2(class="th_month") Thang 1
-      div(class='days-1')
-        ul(v-for="item in namPhungvu.month_1")
-          li {{item}}
-      //- div(class='col-md-6')
-        table(id='lichphungvuTable', class='table table-bordered table-sm')
+      div(class='form-group col-1')
+        label Search Year 
+      div(class='form-group col-2')
+        input(type='number', id='searchYear', name='searchYear', class='form-control')
+      div(class='form-group col-2') 
+        input(type='submit', class='btn btn-primary')
+  hr       
+  div(class='row justify-content-md-center')          
+    div(class='col-6')
+      table(id='lichphungvuTable', class='table table-bordered')

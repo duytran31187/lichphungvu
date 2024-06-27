@@ -829,6 +829,12 @@ var danhSachNgayLeCoDinh = (year) => {
       fixed: true
     },
     {
+      name: "Th\xE1nh Bartolommeo t\xF4ng \u0111\u1ED3",
+      date: newDate(year, 8, 24),
+      type: LE_KINH,
+      fixed: true
+    },
+    {
       name: "Th\xE1nh Giu-se Ca-la-xan, linh m\u1EE5c",
       date: newDate(year, 8, 25),
       type: LE_NHO,
@@ -1153,6 +1159,12 @@ var danhSachNgayLeCoDinh = (year) => {
       name: "Th\xE1nh Gioan \u0110a-m\xE1t, linh m\u1EE5c, ti\u1EBFn s\u0129 H\u1ED9i Th\xE1nh",
       date: newDate(year, 12, 4),
       type: LE_NHO,
+      fixed: true
+    },
+    {
+      name: "\u0110\u1EE9c M\u1EB9 V\xF4 Nhi\u1EC5m Nguy\xEAn T\u1ED9i",
+      date: newDate(year, 12, 8),
+      type: LE_TRONG,
       fixed: true
     },
     {
@@ -1731,7 +1743,6 @@ var TinhNamPhungVu = class {
 function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
-var ins = getTinhNamPhungVuInstant(2024);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   LE_KINH,

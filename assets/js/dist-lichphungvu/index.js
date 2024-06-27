@@ -170,21 +170,8 @@ function cloneDate(d) {
   return new Date(d);
 }
 function newDate(year, month, day) {
-  let monthStr = "";
-  let dayStr = "";
-  if (month < 10) {
-    monthStr = "0" + month;
-  } else {
-    monthStr = month.toString();
-  }
-  ;
-  if (day < 10) {
-    dayStr = "0" + day;
-  } else {
-    dayStr = day.toString();
-  }
-  ;
-  const d = /* @__PURE__ */ new Date(year + "-" + monthStr + "-" + dayStr);
+  month--;
+  const d = new Date(year, month, day);
   d.setHours(1);
   d.setMinutes(0);
   d.setSeconds(0);
@@ -1546,7 +1533,7 @@ var TinhNamPhungVu = class {
     );
     const leChuaChiuPhepRua = tinhLeChuaChiuPhepRua(this.year);
     if (!(leChuaChiuPhepRua instanceof Date)) {
-      return false;
+      throw Error(`can't find LeChuaChiuPhepRua nam ${this.year}`);
     }
     this.namPhungVu = {
       year: this.year,
@@ -1620,7 +1607,7 @@ var TinhNamPhungVu = class {
             }
             this.addNgayLeVoDanhSach(val, nameOfDate, loaiNgayLe, false);
           } else {
-            throw new Error("khong the tim thay ten ngay le");
+            throw new Error(`khong the tim thay ten ngay le cho ngay: ${key}`);
           }
         }
       }
@@ -1723,19 +1710,21 @@ var TinhNamPhungVu = class {
     this.printed = true;
     return this.fullYear;
   }
-  getLichPhungVuTheoThang(month) {
-    const fullMonth = [];
-    month--;
-    if (!this.printed) {
-      this.getFullLichPhungVuTheoNam();
-    }
-    for (let key in this.fullYear) {
-      if (this.fullYear[key].date.getMonth() == month) {
-        fullMonth.push(this.fullYear[key]);
-      }
-    }
-    return fullMonth;
-  }
+  // public getLichPhungVuTheoThang(month: number) {
+  //     const fullMonth: SingleDateData[] = [];
+  //     month--; // as getMonth() return 0-11
+  //     if (!this.printed) {
+  //         this.getFullLichPhungVuTheoNam();
+  //     }
+  //     // console.log(this.fullYear);
+  //     for (let key in this.fullYear) {
+  //         if (this.fullYear[key].date.getMonth() == month)
+  //         {
+  //             fullMonth.push(this.fullYear[key]);   
+  //         }
+  //     }
+  //     return fullMonth;
+  // }
 };
 
 // src/index.ts
@@ -1743,7 +1732,6 @@ function getTinhNamPhungVuInstant(year) {
   return new TinhNamPhungVu(year);
 }
 var ins = getTinhNamPhungVuInstant(2024);
-var fullYear = ins.getLichPhungVuTheoThang(6);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   LE_KINH,

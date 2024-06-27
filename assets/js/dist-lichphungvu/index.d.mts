@@ -113,7 +113,6 @@ declare class TinhNamPhungVu {
     private populateTuanBatNhat;
     private populateTuanThanh;
     getFullLichPhungVuTheoNam(): SingleDateData[];
-    getLichPhungVuTheoThang(month: number): SingleDateData[];
 }
 
 declare function getTinhNamPhungVuInstant(year: number): TinhNamPhungVu;

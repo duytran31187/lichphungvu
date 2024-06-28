@@ -24,8 +24,8 @@
 .event {
   border-top: 1px solid #b2dba1;
   border-bottom: 1px solid #b2dba1;
-  background-image: linear-gradient(to bottom, #dff0d8 0px, #c8e5bc 100%);
-  background-repeat: repeat-x;
+  /* background-image: linear-gradient(to bottom, #dff0d8 0px, #c8e5bc 100%);
+  background-repeat: repeat-x; */
   color: #3c763d;
   border-width: 1px;
   font-size: .75em;

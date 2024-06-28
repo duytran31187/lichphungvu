@@ -201,7 +201,7 @@ function timNgayTrongTuanSauNgay(d, dayOfWeek) {
     }
   } while (!breakTheLoop);
   if (!resultDay) {
-    console.log(`cant find timNgayTrongTuanSauNgay for d ${d.toDateString()} for ${dayOfWeek}`);
+    throw new Error(`cant find timNgayTrongTuanSauNgay for d ${d.toDateString()} for ${dayOfWeek}`);
     return null;
   }
   return resultDay;
@@ -1699,7 +1699,7 @@ var TinhNamPhungVu = class {
         LE_TRONG,
         false
       );
-    } while (batNhaThu < 8);
+    } while (batNhaThu < 7);
   }
   populateTuanThanh() {
     const namPhungVu = this.namPhungVu;
@@ -1714,7 +1714,7 @@ var TinhNamPhungVu = class {
         "",
         false
       );
-    } while (thu < 8);
+    } while (thu < 7);
   }
   getFullLichPhungVuTheoNam() {
     this.populateCacNgayLeCoDinh();

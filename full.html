@@ -44,44 +44,53 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div id="divCalendar" class="col-12"></div>
-            <form>
-                <div class="row">
-                <div class="form-group col-1">
-                    <label>Search Year </label>
+    <div id="app">
+        <div class="container theme-showcase">
+          <div class="row">
+            <div class="col">
+              <!-- search form -->
+              <form v-on:submit.prevent="doResearch">
+                <input type="number" name="searchYear" v-model="searchYearInfo" placeholder="Năm Phụng Vụ"
+                  v-on:change="doResearch" />
+                <!-- <button type="submit"> Search</button> -->
+              </form>
+    
+              <!-- end search form -->
+              <h4 class="summary_month">{{ yearInfo }}</h4>
+              </h5>
+              <!-- print sample css -->
+              <div class="btn-group">
+                <button type="button" class="btn  sample le_trong_d" v-on:click="toggleLeTrong">{{leTrong}}</button>
+                <button type="button" class="btn  sample le_kinh_d" v-on:click="toggleLeKinh">{{leKinh}}</button>
+                <button type="button" class="btn  sample le_nho_d" v-on:click="toggleLeNho">{{leNho}}</button>
+                <button type="button" class="btn  sample today">{{today}}</button>
+              </div>
+    
+              <!-- render full year -->
+              <div class="each_date" v-for="(fullDateData, ind) in fullNamPhungVu">
+                <div class="container">
+                  <div class="row ">
+                    <div class="w-25 border bg-light text-center align-middle">{{printDate(fullDateData['date'])}}</div>
+                    <div v-for="ngayle in fullDateData['cacNgayLe']" v-bind:class="getNgayLeEventClass(ngayle['type'])"
+                      v-show="(ngayle['type'] == leTrong && showLeTrong) || (ngayle['type'] == leKinh && showLeKinh) || (ngayle['type'] == leNho && showLeNho) || ngayle['type'] == ''">
+                      {{ngayle['name']}}
+                      <!-- <i v-if="ngayle['type'] !== ''">- {{ngayle['type']}}</i> -->
+                    </div>
+                    <div class="w-75 bg-light border" v-if="fullDateData['cacNgayLe'].length==0">&nbsp;</div>
+                  </div>
                 </div>
-                <div class="form-group col-2">
-                    <input type="number" id="searchYear" name="searchYear" class="form-control"/>
-                </div>
-                <div class="form-group col-2"> 
-                    <input type="submit" class="btn btn-primary"/>
-                </div>
-                </div>
-            </form>
-            <hr/>
-            <div class="row justify-content-md-center">         
-                <div class="col-12">
-                <table  class="table table-hover table-responsive">
-                    <tbody id="lichphungvuTable"></tbody>
-                </table>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
     
 
     <!-- Javascript -->
-    <!-- JQuery -->
-    <script src="./assets/libs/jquery/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <!-- App JS -->
-    <script src="./assets/js/main.js" type='module'></script>
+    <script src="./assets/js/main-vue.js" type='module'></script>
 </body>
 
 </html>

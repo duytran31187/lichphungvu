@@ -14,6 +14,9 @@
 .today {
   background-color: #f0c9c9 !important;
 }
+.outside {
+  display: none;
+}
 .outside .date {
   color: #ccc;
 }
